@@ -30,7 +30,7 @@ const Sidebar = () => {
       <div className="sidebar-wrapper">
         <div className="sidebar-imgs">
           <img src={photoIcon} alt="" className="sidenav-img" />
-          <h2 className="sidebar-h2">NDOWE BOUTIQUE</h2>
+          <h2 className="sidebar-h2">NDOE BOUTIQUE</h2>
         </div>
         <Menu
           mode="vertical"
@@ -45,12 +45,6 @@ const Sidebar = () => {
           </Menu.Item>
           <Menu.Item key="/personnel" icon={<UserOutlined />} title="Personnel" style={{ fontSize: '16px' }}>
             <Link to="/personnel">Personnel</Link>
-          </Menu.Item>
-          <Menu.Item key="/departement" icon={<ApartmentOutlined />} title="Département" style={{ fontSize: '16px' }}>
-            <Link to="/departement">Département</Link>
-          </Menu.Item>
-          <Menu.Item key="/contrats" icon={<CheckCircleOutlined />} title="Contrats" style={{ fontSize: '16px' }}>
-            <Link to="/contrats">Contrats</Link>
           </Menu.Item>
           <Menu.Item key="/affectation" icon={<LineChartOutlined />} title="Affectation" style={{ fontSize: '16px' }}>
             <Link to="/affectation">Affectation</Link>

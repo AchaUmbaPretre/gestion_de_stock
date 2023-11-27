@@ -20,9 +20,9 @@ li{
     min-height: 100vh;
 }
 .appOutlet{
+    position: relative;
     background: #f2f2f2;
     flex: 8;
-    position: relative;
     overflow: hidden;
 }
 .appOutletRow{

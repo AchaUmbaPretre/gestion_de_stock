@@ -12,30 +12,22 @@
         display: flex;
         flex-direction: column;
         width: 30%;
-        gap: 15px;
+        padding: 15px;
         .login-entete{
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
-            padding-top: 30px;
             .login-img{
-                height: 40px;
-                width: 40px;
+                height:160px;
+                width: 160px;
                 border-radius: 50%;
-            }
-            .login-h2{
-                text-align: center;
-                color: rgb(49, 76, 158);
-                font-weight: 400;
-                font-size: 1.8rem;
             }
         }
         .login-form{
             display: flex;
             flex-direction: column;
             gap: 10px;
-            padding: 25px;
+            padding: 0px 10px 10px 10px;
             .login-controle{
                 display: flex;
                 flex-direction: column;
@@ -88,8 +80,7 @@
             }
         }
         .form-bottom{
-            background: rgba(110, 138, 224, 0.034);
-            padding: 10px 25px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
