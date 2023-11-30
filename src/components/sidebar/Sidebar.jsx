@@ -1,93 +1,151 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import photoIcon from './../../assets/logo doe.jpg'
-import { useState } from 'react';
 import { Menu } from 'antd';
-import './sidebar.scss';
+import { Link } from 'react-router-dom';
 import {
-  HomeOutlined,
-  UserOutlined,
+  AttachMoneyOutlined,
+  FeedbackOutlined,
   LineChartOutlined,
-  CheckOutlined,
-  CheckCircleOutlined,
-  ClusterOutlined,
-  SolutionOutlined,
-  ScheduleOutlined,
-  MoneyCollectOutlined,
-  PlusOutlined,
-  FileSearchOutlined,
+  MailOutlined,
+  UsergroupAddOutlined,
+  MessageOutlined,
+  ShoppingCartOutlined,
+  FileTextOutlined,
+  SettingOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons';
-import { ApartmentOutlined, FileCopyOutlined } from '@mui/icons-material';
+import { AttachMoney, Home, HomeOutlined, VerifiedUserOutlined } from '@mui/icons-material';
+import './sidebar.css'
 
 const { SubMenu } = Menu;
 
 const Sidebar = () => {
-  const location = useLocation();
-  const [open, setOpen] = useState(false);
-
   return (
-    <div className="sidebar">
-      <div className="sidebar-wrapper">
-        <div className="sidebar-imgs">
-          <img src={photoIcon} alt="" className="sidenav-img" />
-          <h2 className="sidebar-h2">NDOE BOUTIQUE</h2>
-        </div>
-        <Menu
-          mode="vertical"
-          theme="dark"
-          selectedKeys={[location.pathname]}
-          defaultOpenKeys={[]}
-          inlineCollapsed={open}
-          style={{ background: 'none' }}
-        >
-          <Menu.Item key="/" icon={<HomeOutlined />} title="Accueil" style={{ fontSize: '16px' }}>
-            <Link to="/">Accueil</Link>
-          </Menu.Item>
-          <Menu.Item key="/personnel" icon={<UserOutlined />} title="Personnel" style={{ fontSize: '16px' }}>
-            <Link to="/personnel">Personnel</Link>
-          </Menu.Item>
-          <Menu.Item key="/affectation" icon={<LineChartOutlined />} title="Affectation" style={{ fontSize: '16px' }}>
-            <Link to="/affectation">Affectation</Link>
-          </Menu.Item>
-          <SubMenu key="sub1" icon={<ClusterOutlined />} title="Client" style={{ fontSize: '16px' }}>
-            <Menu.Item key="/client" title="client" icon={<SolutionOutlined />} style={{ fontSize: '16px' }}>
-              <Link to="/client">Client</Link>
-            </Menu.Item>
-            <Menu.Item key="/fonction" title="Fonctions" icon={<CheckOutlined />} style={{ fontSize: '16px' }}>
-              <Link to="/fonction">Fonctions</Link>
-            </Menu.Item>
-            <Menu.Item key="/sites" title="Lieu du travail" icon={<PlusOutlined />} style={{ fontSize: '16px' }}>
-              <Link to="/sites">Lieu du travail</Link>
-            </Menu.Item>
-          </SubMenu>
-          <Menu.Item key="/mission" icon={<ScheduleOutlined />} title="Horaires" style={{ fontSize: '16px' }}>
-            <Link to="/mission">Horaires</Link>
-          </Menu.Item>
-          <SubMenu key="sub2" icon={<CheckOutlined />} title="Presence" style={{ fontSize: '16px' }}>
-            <Menu.Item key="/presence" title="Presence" icon={<CheckCircleOutlined />} style={{ fontSize: '16px' }}>
-              <Link to="/presence">Presence</Link>
-            </Menu.Item>
-            <Menu.Item key="/rapport" title="Rapport" icon={<FileSearchOutlined />} style={{ fontSize: '16px' }}>
-              <Link to="/rapportPresence">Rapport des presences</Link>
-            </Menu.Item>
-          </SubMenu>
-          <SubMenu key="sub3" icon={<FileCopyOutlined />} title="Gestion de congé" style={{ fontSize: '16px' }}>
-            <Menu.Item key="/presence" title="Gestion de congé" icon={<CheckCircleOutlined />} style={{ fontSize: '16px' }}>
-              <Link to="/listeConge">Gestion de congé</Link>
-            </Menu.Item>
-            <Menu.Item key="/rapport" title="Rapport" icon={<FileCopyOutlined />} style={{ fontSize: '16px' }}>
-              <Link to="/typeCongé">Type de congé</Link>
-            </Menu.Item>
-          </SubMenu>
-          <Menu.Item key="/facturation" icon={<FileSearchOutlined />} title="Facturation" style={{ fontSize: '16px' }}>
-            <Link to="/facturation">Facturation</Link>
-          </Menu.Item>
-          <Menu.Item key="/paiement" icon={<MoneyCollectOutlined />} title="Paiement" style={{ fontSize: '16px' }}>
-            <Link to="/paiement">Paiement</Link>
-          </Menu.Item>
-        </Menu>
-      </div>
-    </div>
+    <Menu mode="inline" theme="light" className="sidebar">
+       <Menu.Item key="/personnel"  title={<span className="sidebarH3">Accueil</span>} icon={<HomeOutlined style={{fontSize: "20px"}} />}  style={{ fontSize: '16px' }}>
+            <Link to="/personnel">
+              Accueil
+            </Link>
+        </Menu.Item>
+      <SubMenu key="products" title={<span className="sidebarH3">Products</span>} icon={<ShoppingCartOutlined style={{fontSize: "19px"}} />}>
+        <Menu.Item key="allProducts">
+          <Link to="/users" className="sidebarLink">
+            Products
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="categories">
+          <Link to="/categories" className="sidebarLink">
+            Categories
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="brands">
+          <Link to="/marques" className="sidebarLink">
+            Marques
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+
+      <SubMenu key="sales" title={<span className="sidebarH3">Ventes</span>} icon={<MailOutlined style={{fontSize: "19px"}} />}>
+        <Menu.Item key="salesOrders">
+          <Link to="/ventes" className="sidebarLink">
+            Ventes
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="invoices">
+          <Link to="/factures" className="sidebarLink">
+            Factures
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="quotes">
+          <Link to="/citation" className="sidebarLink">
+            Citation
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+
+      <SubMenu key="purchases" title={<span className="sidebarH3">Achats</span>} icon={<ShoppingCartOutlined style={{fontSize: "19px"}}/>}>
+        <Menu.Item key="purchasesOrders">
+          <Link to="/achats" className="sidebarLink">
+            Achats
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="purchaseOrders">
+          <Link to="/bonDeCommande" className="sidebarLink">
+            Bon de commande
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="purchaseReturns">
+          <Link to="/retourAchat" className="sidebarLink">
+            Retour d'achat
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+
+      <SubMenu key="finance" title={<span className="sidebarH3">Finances et comptes</span>} icon={<AttachMoney style={{fontSize: "19px"}}/>}>
+        <Menu.Item key="expenses">
+          <Link to="/frais" className="sidebarLink">
+            Frais
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+
+      <SubMenu key="people" title={<span className="sidebarH3">Peuples</span>} icon={<UsergroupAddOutlined style={{fontSize: "19px"}}/>}>
+        <Menu.Item key="clients">
+          <Link to="/clients" className="sidebarLink">
+            Clients
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="suppliers">
+          <Link to="/fournisseurs" className="sidebarLink">
+            Fournisseurs
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="users">
+          <Link to="/utilisateurs" className="sidebarLink">
+            Utilisateurs
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="stores">
+          <Link to="/magasins" className="sidebarLink">
+            Magasins
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+
+      <SubMenu key="reports" title={<span className="sidebarH3">Rapports</span>} icon={<FileTextOutlined style={{fontSize: "19px"}}/>}>
+        <Menu.Item key="salesReport">
+          <Link to="/rapportVentes" className="sidebarLink">
+            Rapport des ventes
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="purchaseReport">
+          <Link to="/rapportAchat" className="sidebarLink">
+            Rapport d'achat
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="customerReport">
+          <Link to="/rapportClient" className="sidebarLink">
+            Rapport de client
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+
+      <SubMenu key="settings" title={<span className="sidebarH3">Réglages</span>} icon={<SettingOutlined style={{fontSize: "19px"}}/>}>
+        <Menu.Item key="generalSettings">
+          <Link to="/reglagesGeneraux" className="sidebarLink">
+            Réglages généraux
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="paymentSettings">
+          <Link to="/reglagesPaiement" className="sidebarLink">
+            Réglages de paiement
+          </Link>
+        </Menu.Item>
+        <Menu.Item key="logout">
+          <Link to="/deconnexion" className="sidebarLink">
+            Se déconnecter
+          </Link>
+        </Menu.Item>
+      </SubMenu>
+    </Menu>
   );
 };
 

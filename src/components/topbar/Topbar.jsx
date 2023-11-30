@@ -1,44 +1,32 @@
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { AuthContext } from '../../context/authContext';
-import './topbar.scss';
-import { Menu } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import { Language, MailOutline, NotificationsNone, Settings, WbSunnyOutlined } from '@mui/icons-material'
+import React from 'react'
+import './topbar.css'
+import logo from './../../assets/logo_doe-removebg-preview.png'
 
 const Topbar = () => {
-  const navigate = useNavigate();
-  const [error, setError] = useState('');
-
-  const handleMenu = async () => {
-    try {
-
-      navigate('/');
-
-    } catch (error) {
-      setError(error.response.data);
-    }
-  };
-
   return (
     <>
       <div className="topbar">
         <div className="topbar-left">
-          <Menu className='topbar-img-title' />
+          <img src={logo} alt="" className="topbar-img" />
+          <span className="logo">Ndoé Boutique</span>  
         </div>
         <div className="topbar-right">
-          <MailOutlineIcon className='topbar-icon' />
-          <NotificationsNoneIcon className='topbar-icon' />
-          <img src={''} alt="" className="topbar-img" />
-          <div className="topbar-row" onClick={handleMenu}>
-            <PowerSettingsNewIcon className='topbar-power' />
-            <span className="span-logout">Déconnecter</span>
+          <div className="topbar-icons">
+            <NotificationsNone/>
+            <span className="topbar-not">2</span>
+          </div>
+          <div className="topbar-icons">
+            <MailOutline/>
+            <span className="topbar-not">2</span>
+          </div>
+          <div className="topbar-icons">
+            <img src={logo} alt="" className="topbar-imgUser"/>
           </div>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Topbar;
+export default Topbar

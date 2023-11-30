@@ -9,6 +9,8 @@ import Register from './pages/register/Register';
 import { FadeLoader } from 'react-spinners';
 import Page404 from './pages/page404/Page404';
 import { AuthContext } from './context/authContext';
+import Login1 from './pages/login1/Login1';
+import Register1 from './pages/register1/Register1';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -17,13 +19,11 @@ function App() {
   const Layout = () => {
     return (
       <div>
+        <Topbar/>
         <div className="appContainer">
-          <Sidebar />
+          <Sidebar/>
           <div className="appOutlet">
-            <Topbar />
-            <div className="appOutletRow">
-              <Outlet />
-            </div>
+            <Outlet />
           </div>
         </div>
       </div>
@@ -50,11 +50,11 @@ function App() {
     },
     {
       path: '/login',
-      element: <Login />
+      element: <Login1 />
     },
     {
       path: '/register',
-      element: <Register />
+      element: <Register1 />
     },
     {
       path: '/*',
