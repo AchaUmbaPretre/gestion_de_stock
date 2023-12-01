@@ -21,7 +21,7 @@ const Sidebar = () => {
   return (
     <Menu mode="vertical" theme="light" className="sidebar">
        <Menu.Item key="/personnel"  title={<span className="sidebarH3">Accueil</span>} icon={<HomeOutlined style={{ fontSize: '25px', color: 'rgb(129, 129, 170)' }} />}>
-          <Link to="/personnel" style={{fontSize: "17px", color: 'rgb(129, 129, 170)'}}>
+          <Link to="/personnel" style={{fontSize: "16px", color: 'rgb(129, 129, 170)'}}>
             Accueil
           </Link>
         </Menu.Item>
@@ -141,7 +141,7 @@ const Sidebar = () => {
         </Menu.Item>
       </SubMenu>
       <Menu.Item key="logout" icon={<LogoutOutlined style={{ fontSize: '19px', color: 'rgb(129, 129, 170)' }} />}>
-      <Link to="/deconnexion" className="sidebarLink" style={{fontSize: "17px", color: 'rgb(129, 129, 170)'}}>
+      <Link to="/deconnexion" className="sidebarLink" style={{fontSize: "16px", color: 'rgb(129, 129, 170)'}}>
         Se déconnecter
       </Link>
     </Menu.Item>
