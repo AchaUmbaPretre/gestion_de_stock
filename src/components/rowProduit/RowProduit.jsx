@@ -1,33 +1,34 @@
 import './rowProduit.scss'
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined,MoreOutlined } from '@ant-design/icons';
 import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
-import { Button, Input, Space, Table } from 'antd';
+import { Button, Input, Space, Table, Popover } from 'antd';
+import { Link } from 'react-router-dom';
 
 const data = [
   {
     key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
+    code: '1',
+    produit: "Ketch",
+    prix: '300',
   },
   {
     key: '2',
-    name: 'Joe Black',
-    age: 42,
-    address: 'London No. 1 Lake Park',
+    code: '2',
+    produit: "Ketch",
+    prix: '350',
   },
   {
     key: '3',
-    name: 'Jim Green',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
+    code: '3',
+    produit: "Ketch",
+    prix: '200',
   },
   {
     key: '4',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
+    code: '4',
+    produit: "Ketch",
+    prix: '250',
   },
 ];
 
@@ -35,6 +36,13 @@ const RowProduit = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
+
+  const content = (
+    <div className='popOverSous' style={{display: 'flex', flexDirection: "column", gap: "10px"}}>
+      <Link>Liste des produits</Link>
+      <Link>Ajouter un produit</Link>
+    </div>
+  )
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -143,24 +151,24 @@ const RowProduit = () => {
 
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'code',
+      dataIndex: 'code',
+      key: 'code',
       width: '30%',
-      ...getColumnSearchProps('name'),
+      ...getColumnSearchProps('code'),
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
+      title: 'Produits',
+      dataIndex: 'produit',
+      key: 'produit',
       width: '20%',
-      ...getColumnSearchProps('age'),
+      ...getColumnSearchProps('produits'),
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-      ...getColumnSearchProps('address'),
+      title: 'Prix',
+      dataIndex: 'prix',
+      key: 'prix',
+      ...getColumnSearchProps('prix'),
       sorter: (a, b) => a.address.length - b.address.length,
       sortDirections: ['descend', 'ascend'],
     },
@@ -173,6 +181,11 @@ const RowProduit = () => {
             <div className="rowProduit-wrapper">
                 <div className="rowChart-title">
                     <h3>Produits récemment ajoutés</h3>
+                    <div className="rowChart-right">
+                      <Popover content={content}>
+                        <MoreOutlined  style={{color: 'rgb(1, 35, 138)', cursor: 'pointer' }}/>
+                      </Popover>
+                    </div>
                 </div>
                 <div className="rowChart-row-table">
                 <Table columns={columns} dataSource={data} />

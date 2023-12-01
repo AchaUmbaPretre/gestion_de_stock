@@ -1,6 +1,8 @@
 .rowProduit{
     .rowProduit-wrapper{
         .rowChart-title{
+            display: flex;
+            justify-content: space-between;
             padding-bottom: 20px;
             h3{
                 font-size: 1rem;
