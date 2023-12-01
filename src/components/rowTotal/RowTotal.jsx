@@ -1,6 +1,7 @@
 import React from 'react'
 import './rowTotal.scss'
-import { CarryOutOutlined } from '@ant-design/icons';
+import { CarryOutOutlined, VerticalAlignBottomOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
+import { Money } from '@mui/icons-material';
 
 
 const RowTotal = () => {
@@ -10,7 +11,7 @@ const RowTotal = () => {
             <div className="rowTotal-wrapper">
                 <div className="rowTotal">
                     <div className="rowTotal-left">
-                        <CarryOutOutlined className='rowTotalIcon' style={{color: 'red'}}/>
+                        <CarryOutOutlined className='rowTotalIcon' style={{color: 'orange'}}/>
                     </div>
                     <div className="rowTotal-right">
                         <h2>$307 144</h2>
@@ -18,8 +19,8 @@ const RowTotal = () => {
                     </div>
                 </div>
                 <div className="rowTotal">
-                    <div className="rowTotal-left">
-                        <CarryOutOutlined className='rowTotalIcon' style={{color: 'red'}}/>
+                    <div className="rowTotal-left" style={{background: 'rgba(0, 0, 255, 0.137)'}}>
+                        <Money className='rowTotalIcon' style={{color: 'blue'}}/>
                     </div>
                     <div className="rowTotal-right">
                         <h2>$307 144</h2>
@@ -27,8 +28,8 @@ const RowTotal = () => {
                     </div>
                 </div>
                 <div className="rowTotal">
-                    <div className="rowTotal-left">
-                        <CarryOutOutlined className='rowTotalIcon' style={{color: 'red'}}/>
+                    <div className="rowTotal-left" style={{background: 'rgba(53, 52, 52, 0.137)'}}>
+                        <VerticalAlignBottomOutlined  className='rowTotalIcon' style={{color: 'rgba(53, 52, 52, 0.719)'}}/>
                     </div>
                     <div className="rowTotal-right">
                         <h2>$307 144</h2>
@@ -36,8 +37,8 @@ const RowTotal = () => {
                     </div>
                 </div>
                 <div className="rowTotal">
-                    <div className="rowTotal-left">
-                        <CarryOutOutlined className='rowTotalIcon' style={{color: 'red'}}/>
+                    <div className="rowTotal-left" style={{background : 'rgba(0, 128, 0, 0.164)'}}>
+                        <VerticalAlignTopOutlined className='rowTotalIcon' style={{color: 'green'}}/>
                     </div>
                     <div className="rowTotal-right">
                         <h2>$307 144</h2>
