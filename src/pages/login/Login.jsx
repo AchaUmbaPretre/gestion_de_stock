@@ -5,7 +5,6 @@ import { Form, Input, Button, Typography } from 'antd';
 import { UserOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone,LoginOutlined } from '@ant-design/icons';
 import { AuthContext } from '../../context/authContext';
 import './login.scss'
-import { colors } from '@mui/material';
 
 const { Title } = Typography;
 

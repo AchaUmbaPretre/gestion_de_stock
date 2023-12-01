@@ -19,13 +19,13 @@ const { SubMenu } = Menu;
 
 const Sidebar = () => {
   return (
-    <Menu mode="inline" theme="light" className="sidebar">
-       <Menu.Item key="/personnel"  title={<span className="sidebarH3">Accueil</span>} icon={<HomeOutlined style={{fontSize: "20px"}} />}  style={{ fontSize: '16px' }}>
-            <Link to="/personnel">
-              Accueil
-            </Link>
+    <Menu mode="vertical" theme="light" className="sidebar">
+       <Menu.Item key="/personnel"  title={<span className="sidebarH3">Accueil</span>} icon={<HomeOutlined style={{ fontSize: '25px', color: 'rgb(129, 129, 170)' }} />}>
+          <Link to="/personnel" style={{fontSize: "20px", color: 'rgb(129, 129, 170)'}}>
+            Accueil
+          </Link>
         </Menu.Item>
-      <SubMenu key="products" title={<span className="sidebarH3">Products</span>} icon={<ShoppingCartOutlined style={{fontSize: "19px"}} />}>
+      <SubMenu key="products" title={<span className="sidebarH3">Products</span>} icon={<ShoppingCartOutlined style={{ fontSize: '20px', color: 'rgb(129, 129, 170)' }} />}>
         <Menu.Item key="allProducts">
           <Link to="/users" className="sidebarLink">
             Products
@@ -43,7 +43,7 @@ const Sidebar = () => {
         </Menu.Item>
       </SubMenu>
 
-      <SubMenu key="sales" title={<span className="sidebarH3">Ventes</span>} icon={<MailOutlined style={{fontSize: "19px"}} />}>
+      <SubMenu key="sales" title={<span className="sidebarH3">Ventes</span>} icon={<MailOutlined style={{ fontSize: '20px', color: 'rgb(129, 129, 170)' }} />}>
         <Menu.Item key="salesOrders">
           <Link to="/ventes" className="sidebarLink">
             Ventes
@@ -61,7 +61,7 @@ const Sidebar = () => {
         </Menu.Item>
       </SubMenu>
 
-      <SubMenu key="purchases" title={<span className="sidebarH3">Achats</span>} icon={<ShoppingCartOutlined style={{fontSize: "19px"}}/>}>
+      <SubMenu key="purchases" title={<span className="sidebarH3">Achats</span>} icon={<ShoppingCartOutlined style={{ fontSize: '20px', color: 'rgb(129, 129, 170)' }}/>}>
         <Menu.Item key="purchasesOrders">
           <Link to="/achats" className="sidebarLink">
             Achats
@@ -79,7 +79,7 @@ const Sidebar = () => {
         </Menu.Item>
       </SubMenu>
 
-      <SubMenu key="finance" title={<span className="sidebarH3">Finances et comptes</span>} icon={<AttachMoney style={{fontSize: "19px"}}/>}>
+      <SubMenu key="finance" title={<span className="sidebarH3">Finances et comptes</span>} icon={<AttachMoney style={{ fontSize: '20px', color: 'rgb(129, 129, 170)' }}/>}>
         <Menu.Item key="expenses">
           <Link to="/frais" className="sidebarLink">
             Frais
@@ -87,7 +87,7 @@ const Sidebar = () => {
         </Menu.Item>
       </SubMenu>
 
-      <SubMenu key="people" title={<span className="sidebarH3">Peuples</span>} icon={<UsergroupAddOutlined style={{fontSize: "19px"}}/>}>
+      <SubMenu key="people" title={<span className="sidebarH3">Peuples</span>} icon={<UsergroupAddOutlined style={{ fontSize: '20px', color: 'rgb(129, 129, 170)' }}/>}>
         <Menu.Item key="clients">
           <Link to="/clients" className="sidebarLink">
             Clients
@@ -110,7 +110,7 @@ const Sidebar = () => {
         </Menu.Item>
       </SubMenu>
 
-      <SubMenu key="reports" title={<span className="sidebarH3">Rapports</span>} icon={<FileTextOutlined style={{fontSize: "19px"}}/>}>
+      <SubMenu key="reports" title={<span className="sidebarH3">Rapports</span>} icon={<FileTextOutlined style={{ fontSize: '20px', color: 'rgb(129, 129, 170)' }}/>}>
         <Menu.Item key="salesReport">
           <Link to="/rapportVentes" className="sidebarLink">
             Rapport des ventes
@@ -128,7 +128,7 @@ const Sidebar = () => {
         </Menu.Item>
       </SubMenu>
 
-      <SubMenu key="settings" title={<span className="sidebarH3">Réglages</span>} icon={<SettingOutlined style={{fontSize: "19px"}}/>}>
+      <SubMenu key="settings" title={<span className="sidebarH3">Réglages</span>} icon={<SettingOutlined style={{ fontSize: '20px', color: 'rgb(129, 129, 170)' }} />}>
         <Menu.Item key="generalSettings">
           <Link to="/reglagesGeneraux" className="sidebarLink">
             Réglages généraux
@@ -139,12 +139,12 @@ const Sidebar = () => {
             Réglages de paiement
           </Link>
         </Menu.Item>
-        <Menu.Item key="logout">
-          <Link to="/deconnexion" className="sidebarLink">
-            Se déconnecter
-          </Link>
-        </Menu.Item>
       </SubMenu>
+      <Menu.Item key="logout" icon={<LogoutOutlined style={{ fontSize: '19px', color: 'rgb(129, 129, 170)' }} />}>
+      <Link to="/deconnexion" className="sidebarLink" style={{fontSize: "20px", color: 'rgb(129, 129, 170)'}}>
+        Se déconnecter
+      </Link>
+    </Menu.Item>
     </Menu>
   );
 };

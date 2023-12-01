@@ -9,16 +9,15 @@
     padding: 10px;
 }
 .sidebarWrapper{
-    padding: 20px;
+    padding: 20px 10px;
     color: #555;
 }
 .sidebarMenu{
     margin-bottom: 10px;
 }
 .sidebarH3{
-    font-size: 17px;
+    font-size: 19px;
     color: rgb(129, 129, 170);
-    letter-spacing: 1.3;
 }
 .sidebarH2{
     font-size: 16px;
@@ -33,7 +32,7 @@
     cursor: pointer;
     border-radius: 10px;
     color: #494949;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .sidebarLi.active, .sidebarLi:hover{
