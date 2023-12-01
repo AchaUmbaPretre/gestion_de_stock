@@ -50,21 +50,21 @@ export const data = {
   labels,
   datasets: [
     {
-      label: 'Dataset 1',
+      label: 'Ventes',
       data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      backgroundColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 166, 0, 0.932)',
       stack: 'Stack 0',
     },
     {
-      label: 'Dataset 2',
+      label: 'Achats',
       data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      backgroundColor: 'rgb(75, 192, 192)',
+      backgroundColor: 'rgb(131, 159, 241)',
       stack: 'Stack 0',
     },
     {
       label: 'Dataset 3',
       data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      backgroundColor: 'rgb(53, 162, 235)',
+      backgroundColor: 'rgba(0, 128, 0, 0.74)',
       stack: 'Stack 1',
     },
   ],
@@ -81,7 +81,7 @@ const RowChart = () => {
                     <h3>Achats et ventes</h3>
                 </div>
                 <div className='rowChart-container'>
-                    <Bar options={options} data={data} />
+                  <Bar options={options} data={data} />
                 </div>
             </div>
         </div>
