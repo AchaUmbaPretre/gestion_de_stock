@@ -1,4 +1,5 @@
 import RowChart from '../../components/rowChart/RowChart'
+import RowProduit from '../../components/rowProduit/RowProduit'
 import RowTotal from '../../components/rowTotal/RowTotal'
 import RowTotalDetail from '../../components/rowTotalDetail/RowTotalDetail'
 import './rightbar.scss'
@@ -14,7 +15,9 @@ const Rightbar = () => {
             <div className="rightbar-left">
               <RowChart/>
             </div>
-            <div className="rightbar-right">2</div>
+            <div className="rightbar-right">
+              <RowProduit/>
+            </div>
           </div>
         </div>
       </div>

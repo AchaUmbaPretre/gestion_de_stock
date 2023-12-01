@@ -41,7 +41,7 @@ const RowTotal = () => {
                     </div>
                     <div className="rowTotal-right">
                         <h2>$307 144</h2>
-                        <span className="rowTotal-span">Montant total de la vente</span>
+                        <span className="rowTotal-span">Total des achats à payer</span>
                     </div>
                 </div>
             </div>
