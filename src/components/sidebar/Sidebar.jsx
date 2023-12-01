@@ -12,7 +12,7 @@ import {
   SettingOutlined,
   LogoutOutlined,
 } from '@ant-design/icons';
-import { AttachMoney, Home, HomeOutlined, VerifiedUserOutlined } from '@mui/icons-material';
+import { AttachMoney, HomeOutlined} from '@mui/icons-material';
 import './sidebar.css'
 
 const { SubMenu } = Menu;
