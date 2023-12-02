@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover } from 'antd';
 import { Link } from 'react-router-dom';
+import photoIcon from './../../assets/logo doe.jpg'
 
 const data = [
   {
@@ -154,8 +155,20 @@ const RowProduit = () => {
       title: 'code',
       dataIndex: 'code',
       key: 'code',
+      width: '15%',
+      ...getColumnSearchProps('code'),
+    },
+    {
+      title: 'image',
+      dataIndex: 'image',
+      key: 'image',
       width: '30%',
       ...getColumnSearchProps('code'),
+      render: (text, record) => (
+        <div className="userList">
+          <img src={photoIcon} alt="" className="userImg" />
+        </div>
+      )
     },
     {
       title: 'Produits',
@@ -171,6 +184,14 @@ const RowProduit = () => {
       ...getColumnSearchProps('prix'),
       sorter: (a, b) => a.address.length - b.address.length,
       sortDirections: ['descend', 'ascend'],
+      render: (text) => (
+        <span>
+          {parseFloat(text).toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}
+        </span>
+      ),
     },
   ];
 
