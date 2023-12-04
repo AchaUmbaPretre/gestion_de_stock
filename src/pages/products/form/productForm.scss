@@ -8,7 +8,7 @@
         }
        .product-wrapper{
             background: #fff;
-            padding: 30px;
+            padding: 40px;
             border-radius: 5px;
         .product-container-bottom{
             display: grid;
@@ -50,10 +50,39 @@
                 justify-content: center;
                 flex-direction: column;
                 height:150px;
+                gap: 10px;
+                border-radius: 5px;
+                cursor: pointer;
                 label{
                     font-size: .9rem;
                     color: #797979;
                 }
+                .cloud-icon{
+                    color: rgb(1, 35, 138);
+                    font-size: 1.8rem;
+                }
+                span{
+                    font-size: .9rem;
+                    color: #929292;
+                    letter-spacing: 1px;
+                }
+            }
+        }
+        .form-submit{
+            display: flex;
+            gap: 10px;
+            padding-top: 10px;
+            .btn-submit{
+                padding: 15px 20px;
+                border: none;
+                color: #fff;
+                background:rgb(1, 35, 138);
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .btn-annuler{
+                background: #464444;
+                cursor: pointer;
             }
         }
        }

@@ -11,6 +11,8 @@ import Login1 from './pages/login1/Login1';
 import Register1 from './pages/register1/Register1';
 import Products from './pages/products/Products';
 import ProductForm from './pages/products/form/ProductForm';
+import Ventes from './pages/ventes/Ventes';
+import VentesForm from './pages/ventes/form/VentesForm';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -53,6 +55,14 @@ function App() {
         {
           path: '/productForm',
           element: <ProductForm />
+        },
+        {
+          path: '/ventes',
+          element: <Ventes />
+        },
+        {
+          path: '/ventesForm',
+          element: <VentesForm />
         },
       ]
     },

@@ -54,15 +54,21 @@ const ProductForm = () => {
                   <input type="date" className="form-input" />
                 </div>
               </div>
-              <div className="form-controleFile">
-                  <label htmlFor="">Image du produit</label>
-                  <input type="file" className="form-input" style={{display:"none"}} />
-                  <div className="form-file">
-                    <CloudUploadOutlined />
-                    <span>Glissez et déposez un fichier à télécharger</span>
-                  </div>
+              <div className="form-controleFile" onClick={() => document.getElementById('file-upload').click()}>
+                <label htmlFor="">Image du produit</label>
+                <input type="file" className="form-input" style={{display:"none"}} lable="Profil"
+                    id='file-upload'
+                    accept='.jpeg, .png, .jpg' />
+                <div className="form-file">
+                  <CloudUploadOutlined className='cloud-icon' />
+                  <span>Glissez et déposez un fichier à télécharger</span>
                 </div>
               </div>
+              <div className="form-submit">
+                <button className="btn-submit">Soumetre</button>
+                <button className="btn-submit btn-annuler">Annuler</button>
+              </div>
+            </div>
           </div>
         </div>
 
