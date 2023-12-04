@@ -1,18 +1,13 @@
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import {
-  AttachMoneyOutlined,
-  FeedbackOutlined,
-  LineChartOutlined,
-  MailOutlined,
   UsergroupAddOutlined,
-  MessageOutlined,
   ShoppingCartOutlined,
   FileTextOutlined,
   SettingOutlined,
   LogoutOutlined,
 } from '@ant-design/icons';
-import { AttachMoney, FeedbackRounded, HomeOutlined} from '@mui/icons-material';
+import { AttachMoney, HomeOutlined} from '@mui/icons-material';
 import './sidebar.css'
 
 const { SubMenu, Item } = Menu;
@@ -27,7 +22,7 @@ const Sidebar = () => {
       </Item>
       <SubMenu key="products" title={<span className="sidebarH3">Products</span>} icon={<ShoppingCartOutlined style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }} />}>
         <Item key="allProducts">
-          <Link to="/users" className="sidebarLink">
+          <Link to="/products" className="sidebarLink">
             Products
           </Link>
         </Item>
@@ -43,7 +38,7 @@ const Sidebar = () => {
         </Item>
       </SubMenu>
 
-      <SubMenu key="sales" title={<span className="sidebarH3">Ventes</span>} icon={<MailOutlined style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }} />}>
+      <SubMenu key="sales" title={<span className="sidebarH3">Ventes</span>} icon={<ShoppingCartOutlined  style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }} />}>
         <Item key="salesOrders">
           <Link to="/ventes" className="sidebarLink">
             Ventes

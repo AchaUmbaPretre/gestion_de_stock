@@ -37,6 +37,7 @@ const RowProduit = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
+  const scroll = { x: 400 };
 
   const content = (
     <div className='popOverSous' style={{display: 'flex', flexDirection: "column", gap: "10px"}}>
@@ -166,7 +167,7 @@ const RowProduit = () => {
       ...getColumnSearchProps('code'),
       render: (text, record) => (
         <div className="userList">
-          <img src={photoIcon} alt="" className="userImg" />
+          <img src={photoIcon} alt="" className="userImg"  />
         </div>
       )
     },
@@ -209,7 +210,7 @@ const RowProduit = () => {
                     </div>
                 </div>
                 <div className="rowChart-row-table">
-                <Table columns={columns} dataSource={data} />
+                  <Table columns={columns} dataSource={data} scroll={scroll} pagination={{ pageSize: 3}} />
                 </div>
             </div>
         </div>

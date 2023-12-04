@@ -4,13 +4,13 @@ import Sidebar from './components/sidebar/Sidebar';
 import Topbar from './components/topbar/Topbar';
 import './App.css';
 import Rightbar from './pages/rightbar/Rightbar';
-import Login from './pages/login/Login';
-import Register from './pages/register/Register';
 import { FadeLoader } from 'react-spinners';
 import Page404 from './pages/page404/Page404';
 import { AuthContext } from './context/authContext';
 import Login1 from './pages/login1/Login1';
 import Register1 from './pages/register1/Register1';
+import Products from './pages/products/Products';
+import ProductForm from './pages/products/form/ProductForm';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -45,6 +45,14 @@ function App() {
         {
           path: '/',
           element: <Rightbar />
+        },
+        {
+          path: '/products',
+          element: <Products />
+        },
+        {
+          path: '/productForm',
+          element: <ProductForm />
         },
       ]
     },
