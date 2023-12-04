@@ -16,7 +16,7 @@ const Sidebar = () => {
   return (
     <Menu mode="vertical" theme="light" className="sidebar">
       <Item key="/personnel"  title={<span className="sidebarH3">Accueil</span>} icon={<HomeOutlined style={{ fontSize: '25px', color: 'rgb(1, 35, 138)' }} />}>
-        <Link to="/personnel" style={{fontSize: "16px", color: 'rgb(1, 35, 138)'}}>
+        <Link to="/" style={{fontSize: "16px", color: 'rgb(1, 35, 138)'}}>
           Accueil
         </Link>
       </Item>

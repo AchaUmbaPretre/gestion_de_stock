@@ -1,0 +1,83 @@
+.products{
+    .product-container{
+        .product-container-top{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            .product-left{
+
+            }
+            .product-right{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background:rgb(1, 35, 138);
+                color: #fff;
+                padding: 10px;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+        }
+        .product-bottom{
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            .product-bottom-top{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .product-bottom-left{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    .product-icon{
+                        color: #fff;
+                        background:rgb(1, 35, 138);
+                        padding: 10px;
+                        border-radius: 5px;
+                        font-size: 18px;
+                    }
+                    .product-row-search{
+                        border: 1px solid #c7c7c7;
+                        border-radius: 5px;
+                        padding: 7px 10px;
+                        .product-search{
+                            border: none;
+                            outline: none;
+                            padding-left: 10px;
+                        }
+                    }
+                }
+                .product-bottom-right{
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    .product-icon-pdf{
+                        color: red;
+                        font-size: 22px;
+                        cursor: pointer;
+                    }
+                    .product-icon-excel{
+                        color: green;
+                        font-size: 22px;
+                        cursor: pointer;
+                    }
+                    .product-icon-printer{
+                        font-size: 22px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .rowChart-row-table{
+                .userList{
+                    .userImg{
+                        height: 50px;
+                        width: 50px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    }
+}
