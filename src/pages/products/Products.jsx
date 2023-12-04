@@ -248,14 +248,9 @@ const Products = () => {
           {
             title: 'Date',
             dataIndex: 'dateEntree',
-            key: 'prix',
+            key: 'date',
             sorter: (a, b) => a.dateEntree.length - b.dateEntree.length,
-            sortDirections: ['descend', 'ascend'],
-            render: (text) => (
-              <span>
-                {parseFloat(text)}
-              </span>
-            ),
+            sortDirections: ['descend', 'ascend']
           },
         {
             title: 'Action',
@@ -296,7 +291,7 @@ const Products = () => {
                         <h2 className="product-h2">Liste de produits</h2>
                         <span>Gérer vos produits</span>
                     </div>
-                    <div className="product-right">
+                    <div className="product-right" onClick={() =>navigate('/productForm')}>
                         <PlusOutlined />
                         <span className="product-btn">Ajouter un nouveau produit</span>
                     </div>
