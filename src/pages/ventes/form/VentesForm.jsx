@@ -4,18 +4,22 @@ import { Divider, Radio, Table } from 'antd';
 
 const columns = [
     {
-      title: 'Name',
+      title: 'Nom du produit',
       dataIndex: 'name',
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Age',
+      title: 'Quantité',
       dataIndex: 'age',
     },
     {
-      title: 'Address',
+      title: 'Prix',
       dataIndex: 'address',
     },
+    {
+        title: 'Total',
+        dataIndex: 'address',
+      },
   ];
 
   const data = [
