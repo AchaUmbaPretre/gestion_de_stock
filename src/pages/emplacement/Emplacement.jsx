@@ -1,153 +1,41 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
 import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import './emplacement.scss'
+import axios from 'axios';
+import config from '../../config';
+import Swal from 'sweetalert2';
 
 const Emplacement = () => {
+    const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const navigate = useNavigate();
-    const [searchText, setSearchText] = useState('');
-    const [searchedColumn, setSearchedColumn] = useState('');
-    const searchInput = useRef(null);
+    const [data, setData] = useState({});
+    const [getdata, setGetData] = useState({});
     const scroll = { x: 400 };
 
-    const handleSearch = (selectedKeys, confirm, dataIndex) => {
-        confirm();
-        setSearchText(selectedKeys[0]);
-        setSearchedColumn(dataIndex);
-      };
-      const handleReset = (clearFilters) => {
-        clearFilters();
-        setSearchText('');
-      };
+    const handleInputChange = (e) => {
+      const fieldName = e.target.name;
+      const fieldValue = e.target.value;
     
-      const getColumnSearchProps = (dataIndex) => ({
-        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-          <div
-            style={{
-              padding: 8,
-            }}
-            onKeyDown={(e) => e.stopPropagation()}
-          >
-            <Input
-              ref={searchInput}
-              placeholder={`Search ${dataIndex}`}
-              value={selectedKeys[0]}
-              onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-              onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-              style={{
-                marginBottom: 8,
-                display: 'block',
-              }}
-            />
-            <Space>
-              <Button
-                type="primary"
-                onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                icon={<SearchOutlined />}
-                size="small"
-                style={{
-                  width: 90,
-                }}
-              >
-                Search
-              </Button>
-              <Button
-                onClick={() => clearFilters && handleReset(clearFilters)}
-                size="small"
-                style={{
-                  width: 90,
-                }}
-              >
-                Reset
-              </Button>
-              <Button
-                type="link"
-                size="small"
-                onClick={() => {
-                  confirm({
-                    closeDropdown: false,
-                  });
-                  setSearchText(selectedKeys[0]);
-                  setSearchedColumn(dataIndex);
-                }}
-              >
-                Filter
-              </Button>
-              <Button
-                type="link"
-                size="small"
-                onClick={() => {
-                  close();
-                }}
-              >
-                close
-              </Button>
-            </Space>
-          </div>
-        ),
-        filterIcon: (filtered) => (
-          <SearchOutlined
-            style={{
-              color: filtered ? '#1677ff' : undefined,
-            }}
-          />
-        ),
-        onFilter: (value, record) =>
-          record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-        onFilterDropdownOpenChange: (visible) => {
-          if (visible) {
-            setTimeout(() => searchInput.current?.select(), 100);
-          }
-        },
-        render: (text) =>
-          searchedColumn === dataIndex ? (
-            <Highlighter
-              highlightStyle={{
-                backgroundColor: '#ffc069',
-                padding: 0,
-              }}
-              searchWords={[searchText]}
-              autoEscape
-              textToHighlight={text ? text.toString() : ''}
-            />
-          ) : (
-            text
-          ),
-      });
-
+      let updatedValue = fieldValue;
     
-    const data = [
-        {
-          key: '2',
-          code: '2',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate"
-        },
-        {
-          key: '3',
-          code: '3',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate"
-        },
-        {
-          key: '4',
-          code: '4',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate"
-        },
-      ];
+      if (fieldName === "contact_email") {
+        updatedValue = fieldValue.toLowerCase();
+      } else if (Number.isNaN(Number(fieldValue))) {
+        updatedValue = fieldValue.charAt(0).toUpperCase() + fieldValue.slice(1);
+      }
+    
+    setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
+    };
 
-      const columns = [
+    const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
             title: 'Emplacement',
-            dataIndex: 'emplacement',
-            key: 'emplacement',
+            dataIndex: 'nom',
+            key: 'nom',
             
         },
         {
@@ -182,10 +70,10 @@ const Emplacement = () => {
               </Space>
             ),
           },
-      ];
+    ];
 
 
-      const handleEdit = (id) => {
+    const handleEdit = (id) => {
         navigate(`/presenceEdit/${id}`);
     };
     
@@ -197,6 +85,36 @@ const Emplacement = () => {
         console.log(err);
       } */
     };
+
+    const handleClick = async (e) => {
+      e.preventDefault();
+
+      try {
+        await axios.post(`${DOMAIN}/api/produit/emplacement`,data)
+          Swal.fire({
+            title: 'Success',
+            text: 'Emplacement créé avec succès!',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
+          window.location.reload();
+        
+      } catch (error) {
+        
+      }
+    }
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get(`${DOMAIN}/api/produit/emplacement`);
+          setGetData(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    }, []);
 
   return (
     <>
@@ -212,13 +130,13 @@ const Emplacement = () => {
                         <h2 className="categorie-title">Ajouter emplacement</h2>
                         <div className="categorie-form">
                             <label htmlFor="">Nom</label>
-                            <input type="text" className="input-form" />
+                            <input type="text" className="input-form" name='nom' onChange={handleInputChange} />
                         </div>
                         <div className="categorie-form">
                             <label htmlFor="">Capacité maximale</label>
-                            <input type="number" className="input-form" />
+                            <input type="number" className="input-form" name='capacite' onChange={handleInputChange} />
                         </div>
-                        <button className="categorie-btn">Envoyer</button>
+                        <button className="categorie-btn" onClick={handleClick} >Envoyer</button>
                     </div>
                     <div className="categorie-container-right">
                         <div className="categorie-right-top">
@@ -232,7 +150,7 @@ const Emplacement = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
-                            <Table columns={columns} dataSource={data} scroll={scroll} pagination={{ pageSize: 5}} />
+                            <Table columns={columns} dataSource={''} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
                 </div>
