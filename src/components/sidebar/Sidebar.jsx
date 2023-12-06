@@ -83,8 +83,8 @@ const Sidebar = () => {
             Clients
           </Link>
         </Item>
-        <Item key="suppliers">
-          <Link to="/fournisseurs" className="sidebarLink">
+        <Item key="livreur">
+          <Link to="/livreur" className="sidebarLink">
             Livreur
           </Link>
         </Item>

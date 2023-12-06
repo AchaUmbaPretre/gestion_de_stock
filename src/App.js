@@ -17,6 +17,8 @@ import Categories from './pages/categories/Categories';
 import Emplacement from './pages/emplacement/Emplacement';
 import Client from './pages/client/Client';
 import ClientForm from './pages/client/clientForm/ClientForm';
+import Livreur from './pages/livreur/Livreur';
+import LivreurForm from './pages/livreur/livreurForm/LivreurForm';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -83,6 +85,14 @@ function App() {
         {
           path: '/clientForm',
           element: <ClientForm />
+        },
+        {
+          path: '/livreur',
+          element: <Livreur />
+        },
+        {
+          path: '/livreurForm',
+          element: <LivreurForm />
         },
       ]
     },
