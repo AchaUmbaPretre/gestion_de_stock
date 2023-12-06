@@ -74,7 +74,7 @@ const RapportVente = () => {
                     </div>
                 </div>
                 <div className="rapportVente-container">
-                    <Bar options={options} data={data} />;
+                    <Bar options={options} data={data} />
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ const Products = () => {
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
 
     const data = [
         {
@@ -282,7 +283,9 @@ const Products = () => {
             ),
           },
       ];
-
+const HandOpen = () =>{
+  setOpen(!open)
+}
   return (
     <>
         <div className="products">
@@ -293,14 +296,14 @@ const Products = () => {
                         <span>Gérer vos produits</span>
                     </div>
                     <div className="product-right" onClick={() =>navigate('/productForm')}>
-                        <PlusOutlined />
+                        <PlusOutlined className='product-icon'/>
                         <span className="product-btn">Ajouter un nouveau produit</span>
                     </div>
                 </div>
                 <div className="product-bottom">
                     <div className="product-bottom-top">
                         <div className="product-bottom-left">
-                            <SisternodeOutlined className='product-icon' />
+                            <SisternodeOutlined className='product-icon' onClick={HandOpen} />
                             <div className="product-row-search">
                                 <SearchOutlined className='product-icon-plus'/>
                                 <input type="search" name="" id="" placeholder='Recherche...' className='product-search' />
@@ -312,7 +315,8 @@ const Products = () => {
                             <PrinterOutlined className='product-icon-printer'/>
                         </div>
                     </div>
-                    <ProductSelects/>
+                   {open &&
+                    <ProductSelects/> } 
                     <div className="rowChart-row-table">
                         <Table columns={columns} dataSource={data} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
