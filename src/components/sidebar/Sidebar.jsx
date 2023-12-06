@@ -49,11 +49,6 @@ const Sidebar = () => {
             Factures
           </Link>
         </Item>
-        <Item key="quotes">
-          <Link to="/citation" className="sidebarLink">
-            Citation
-          </Link>
-        </Item>
       </SubMenu>
 
       <SubMenu key="purchases" title={<span className="sidebarH3">Achats</span>} icon={<ShoppingCartOutlined style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }}/>}>
@@ -90,7 +85,7 @@ const Sidebar = () => {
         </Item>
         <Item key="suppliers">
           <Link to="/fournisseurs" className="sidebarLink">
-            Fournisseurs
+            Livreur
           </Link>
         </Item>
         <Item key="users">
