@@ -1,0 +1,37 @@
+.rapportVente{
+    .rapportVente-wrapper{
+        .product-container-top{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            .product-left{
+                .product-h2{
+                    font-size: 1.2rem;
+                }
+            }
+            .product-right{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                .product-text{
+                    font-size: 1rem;
+                    color: #555;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                .rapport-select{
+                    border: 1px solid #dadada;
+                    padding: 8px 10px;
+                    width: 200px;
+                    border-radius: 5px;
+                }
+            }
+        }
+        .rapportVente-container{
+            background: #fff;
+            padding: 30px;
+        }
+    }
+}

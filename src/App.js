@@ -21,6 +21,7 @@ import Livreur from './pages/livreur/Livreur';
 import LivreurForm from './pages/livreur/livreurForm/LivreurForm';
 import Utilisateurs from './pages/utilisateurs/Utilisateurs';
 import UtilisateurForm from './pages/utilisateurs/utilisateurForm/UtilisateurForm';
+import RapportVente from './pages/rapportVente.jsx/RapportVente';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -103,6 +104,10 @@ function App() {
         {
           path: '/utilisateurForm',
           element: <UtilisateurForm />
+        },
+        {
+          path: '/rapportVentes',
+          element: <RapportVente/>
         },
       ]
     },
