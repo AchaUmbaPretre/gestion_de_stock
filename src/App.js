@@ -13,6 +13,7 @@ import Products from './pages/products/Products';
 import ProductForm from './pages/products/form/ProductForm';
 import Ventes from './pages/ventes/Ventes';
 import VentesForm from './pages/ventes/form/VentesForm';
+import Categories from './pages/categories/Categories';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -55,6 +56,10 @@ function App() {
         {
           path: '/productForm',
           element: <ProductForm />
+        },
+        {
+          path: '/categories',
+          element: <Categories />
         },
         {
           path: '/ventes',
