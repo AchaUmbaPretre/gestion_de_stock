@@ -9,13 +9,15 @@
         }
     }
     .categorie-container-bottom{
-        background: #fff;
         display: flex;
+        gap: 20px;
+        padding-top: 20px;
         .categorie-container-left{
             flex: 2.5;
             padding: 20px;
             display: flex;
             flex-direction: column;
+            background: #fff;
             .categorie-title{
                 font-size: .9rem;
                 color: #555;
@@ -39,7 +41,41 @@
         }
         .categorie-container-right{
             flex: 4;
-            background: yellow;
+            padding: 20px;
+            background: #fff;
+            .categorie-right-top{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 30px;
+                .categorie-left{
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    .product-icon-pdf{
+                        color: red;
+                        font-size: 20px;
+                        cursor: pointer;
+                    }
+                    .product-icon-excel{
+                        color: green;
+                        font-size: 20px;
+                        cursor: pointer;
+                    }
+                    .product-icon-printer{
+                        font-size: 20px;
+                        cursor: pointer;
+                    }
+                }
+                .categorie-right{
+                    .categorie-search{
+                        padding: 6px 10px;
+                        border: 1px solid #d4d4d4;
+                        border-radius: 3px;
+                        outline: none;
+                    }
+                }
+            }
         }
     }
 }
