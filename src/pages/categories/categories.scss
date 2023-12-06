@@ -24,19 +24,23 @@
                 font-weight: 300;
             }
             .categorie-input{
-                padding: 6px 10px;
+                padding: 8px 10px;
                 border: 1px solid #d4d4d4;
-                border-radius: 3px;
+                border-radius: 5px;
                 margin: 20px 0;
                 outline: none;
             }
             .categorie-btn{
                 border: none;
-                padding: 8px 10px;
+                padding:10px;
                 border-radius: 5px;
                 color: #fff;
                 background:rgb(1, 35, 138);
                 cursor: pointer;
+                transition: .5s;
+                &:hover{
+                    background: rgb(4, 55, 206);
+                }
             }
         }
         .categorie-container-right{
@@ -69,9 +73,9 @@
                 }
                 .categorie-right{
                     .categorie-search{
-                        padding: 6px 10px;
+                        padding: 8px 10px;
                         border: 1px solid #d4d4d4;
-                        border-radius: 3px;
+                        border-radius: 5px;
                         outline: none;
                     }
                 }
