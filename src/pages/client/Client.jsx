@@ -1,6 +1,5 @@
 import './client.scss'
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
-import ProductSelects from './productSelects/ProductSelects';
 import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
@@ -168,90 +167,43 @@ const Client = () => {
     };
     
       const columns = [
+        { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
-          title: 'image',
-          dataIndex: 'image',
-          key: 'image',
-          width: '10%',
-          render: (text, record) => (
-            <div className="userList">
-              <img src={photoIcon} alt="" className="userImg"  />
-            </div>
-          )
+            title: 'Nom',
+            dataIndex: 'nom',
+            key: 'nom',
+            width: '15%',
+            ...getColumnSearchProps('nom'),
         },
         {
-            title: 'Nom produit',
-            dataIndex: 'nom_produit',
-            key: 'code',
+            title: 'Raison sociale',
+            dataIndex: 'raison_sociale',
+            key: 'raison_sociale',
             width: '15%',
-            ...getColumnSearchProps('couleur'),
-          },
-        {
-          title: 'Couleur',
-          dataIndex: 'couleur',
-          key: 'couleur',
-          width: '15%',
-          ...getColumnSearchProps('couleur'),
+            ...getColumnSearchProps('raison_sociale'),
         },
         {
-            title: 'Categorie',
-            dataIndex: 'categorie',
-            key: 'categorie',
-            width: '15%',
-            ...getColumnSearchProps('categorie'),
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+            width: '15%'
           },
           {
-            title: 'Pointure',
+            title: 'Telephone',
             dataIndex: 'pointure',
-            key: 'pointure',
-            ...getColumnSearchProps('pointure'),
-            sorter: (a, b) => a.pointure.length - b.pointure.length,
-            sortDirections: ['descend', 'ascend'],
-            render: (text) => (
-              <span>
-                {parseFloat(text)}
-              </span>
-            ),
+            key: 'pointure'
           },
         {
-          title: 'Prix',
-          dataIndex: 'prix',
-          key: 'prix',
-          ...getColumnSearchProps('prix'),
-          sorter: (a, b) => a.address.length - b.address.length,
-          sortDirections: ['descend', 'ascend'],
-          render: (text) => (
-            <span>
-              {parseFloat(text).toLocaleString('en-US', {
-                style: 'currency',
-                currency: 'USD',
-              })}
-            </span>
-          ),
+          title: 'Ville',
+          dataIndex: 'ville',
+          key: 'ville',
+          ...getColumnSearchProps('ville')
         },
         {
-            title: 'Quantité',
-            dataIndex: 'quantite',
-            key: 'prix',
-            ...getColumnSearchProps('prix'),
-            sorter: (a, b) => a.quantite.length - b.quantite.length,
-            sortDirections: ['descend', 'ascend'],
-            render: (text) => (
-              <span>
-                {parseFloat(text).toLocaleString('en-US', {
-                  style: 'currency',
-                  currency: 'USD',
-                })}
-              </span>
-            ),
-          },
-          {
-            title: 'Date',
-            dataIndex: 'dateEntree',
-            key: 'date',
-            sorter: (a, b) => a.dateEntree.length - b.dateEntree.length,
-            sortDirections: ['descend', 'ascend']
-          },
+            title: 'Adresse',
+            dataIndex: 'adresse',
+            key: 'adresse',
+        },
         {
             title: 'Action',
             key: 'action',
@@ -288,12 +240,12 @@ const Client = () => {
             <div className="product-container">
                 <div className="product-container-top">
                     <div className="product-left">
-                        <h2 className="product-h2">Liste de produits</h2>
-                        <span>Gérer vos produits</span>
+                        <h2 className="product-h2">Liste de clients</h2>
+                        <span>Gérer vos clients</span>
                     </div>
                     <div className="product-right" onClick={() =>navigate('/productForm')}>
                         <PlusOutlined />
-                        <span className="product-btn">Ajouter un nouveau produit</span>
+                        <span className="product-btn">Ajouter un nouveau client</span>
                     </div>
                 </div>
                 <div className="product-bottom">
@@ -311,7 +263,6 @@ const Client = () => {
                             <PrinterOutlined className='product-icon-printer'/>
                         </div>
                     </div>
-                    <ProductSelects/>
                     <div className="rowChart-row-table">
                         <Table columns={columns} dataSource={data} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>

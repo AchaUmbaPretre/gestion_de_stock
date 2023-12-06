@@ -15,6 +15,7 @@ import Ventes from './pages/ventes/Ventes';
 import VentesForm from './pages/ventes/form/VentesForm';
 import Categories from './pages/categories/Categories';
 import Emplacement from './pages/emplacement/Emplacement';
+import Client from './pages/client/Client';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -72,6 +73,14 @@ function App() {
         },
         {
           path: '/ventesForm',
+          element: <VentesForm />
+        },
+        {
+          path: '/clients',
+          element: <Client />
+        },
+        {
+          path: '/clientForm',
           element: <VentesForm />
         },
       ]
