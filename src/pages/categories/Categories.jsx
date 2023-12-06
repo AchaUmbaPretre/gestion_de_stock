@@ -143,6 +143,7 @@ const Categories = () => {
       ];
 
       const columns = [
+        { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
             title: 'Categorie',
             dataIndex: 'categorie',
