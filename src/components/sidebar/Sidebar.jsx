@@ -32,8 +32,8 @@ const Sidebar = () => {
           </Link>
         </Item>
         <Item key="brands">
-          <Link to="/marques" className="sidebarLink">
-            Marques
+          <Link to="/emplacement" className="sidebarLink">
+            Emplacements
           </Link>
         </Item>
       </SubMenu>

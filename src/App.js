@@ -14,6 +14,7 @@ import ProductForm from './pages/products/form/ProductForm';
 import Ventes from './pages/ventes/Ventes';
 import VentesForm from './pages/ventes/form/VentesForm';
 import Categories from './pages/categories/Categories';
+import Emplacement from './pages/emplacement/Emplacement';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -60,6 +61,10 @@ function App() {
         {
           path: '/categories',
           element: <Categories />
+        },
+        {
+          path: '/emplacement',
+          element: <Emplacement />
         },
         {
           path: '/ventes',
