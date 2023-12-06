@@ -1,56 +1,26 @@
 import './products.scss'
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
 import ProductSelects from './productSelects/ProductSelects';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
 import photoIcon from './../../assets/logo doe.jpg'
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import config from '../../config';
 
 const Products = () => {
+    const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+    const [getProduit, setGetProduit] = useState();
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
 
-    const data = [
-        {
-          key: '1',
-          code: '1',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '300',
-        },
-        {
-          key: '2',
-          code: '2',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '350',
-        },
-        {
-          key: '3',
-          code: '3',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '200',
-        },
-        {
-          key: '4',
-          code: '4',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '250',
-        },
-      ];
 
-      const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
         setSearchText(selectedKeys[0]);
         setSearchedColumn(dataIndex);
@@ -168,27 +138,27 @@ const Products = () => {
       } */
     };
     
-      const columns = [
-        { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
-        {
-          title: 'image',
-          dataIndex: 'image',
-          key: 'image',
-          width: '10%',
-          render: (text, record) => (
-            <div className="userList">
-              <img src={photoIcon} alt="" className="userImg"  />
-            </div>
+const columns = [
+    { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
+    {
+      title: 'image',
+      dataIndex: 'img',
+      key: 'img',
+      width: '10%',
+        render: (text, record) => (
+          <div className="userList">
+            <img src={photoIcon} alt="" className="userImg"  />
+          </div>
           )
-        },
-        {
-            title: 'Nom produit',
-            dataIndex: 'nom_produit',
-            key: 'code',
-            width: '15%',
-            ...getColumnSearchProps('couleur'),
-          },
-        {
+      },
+      {
+        title: 'Nom produit',
+        dataIndex: 'nom_produit',
+        key: 'code',
+        width: '15%',
+        ...getColumnSearchProps('couleur'),
+      },
+      {
           title: 'Couleur',
           dataIndex: 'couleur',
           key: 'couleur',
@@ -269,10 +239,25 @@ const Products = () => {
               </Space>
             ),
           },
-      ];
+];
+
 const HandOpen = () =>{
   setOpen(!open)
 }
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const { data } = await axios.get(`${DOMAIN}/api/produit`);
+      setGetProduit(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  fetchData();
+}, []);
+
+
   return (
     <>
         <div className="products">
@@ -305,7 +290,7 @@ const HandOpen = () =>{
                    {open &&
                     <ProductSelects/> } 
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={data} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={getProduit} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>
