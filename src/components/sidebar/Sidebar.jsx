@@ -93,11 +93,6 @@ const Sidebar = () => {
             Utilisateurs
           </Link>
         </Item>
-        <Item key="stores">
-          <Link to="/magasins" className="sidebarLink">
-            Magasins
-          </Link>
-        </Item>
       </SubMenu>
 
       <SubMenu key="reports" title={<span className="sidebarH3">Rapports</span>} icon={<FileTextOutlined style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }}/>}>
