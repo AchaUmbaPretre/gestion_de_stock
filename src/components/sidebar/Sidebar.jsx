@@ -85,7 +85,7 @@ const Sidebar = () => {
         </Item>
         <Item key="livreur">
           <Link to="/livreur" className="sidebarLink">
-            Livreur
+            Livreurs
           </Link>
         </Item>
         <Item key="users">

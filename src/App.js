@@ -19,6 +19,8 @@ import Client from './pages/client/Client';
 import ClientForm from './pages/client/clientForm/ClientForm';
 import Livreur from './pages/livreur/Livreur';
 import LivreurForm from './pages/livreur/livreurForm/LivreurForm';
+import Utilisateurs from './pages/utilisateurs/Utilisateurs';
+import UtilisateurForm from './pages/utilisateurs/utilisateurForm/UtilisateurForm';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -93,6 +95,14 @@ function App() {
         {
           path: '/livreurForm',
           element: <LivreurForm />
+        },
+        {
+          path: '/utilisateurs',
+          element: <Utilisateurs/>
+        },
+        {
+          path: '/utilisateurForm',
+          element: <UtilisateurForm />
         },
       ]
     },
