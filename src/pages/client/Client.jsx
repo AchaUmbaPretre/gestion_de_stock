@@ -243,7 +243,7 @@ const Client = () => {
                         <h2 className="product-h2">Liste de clients</h2>
                         <span>Gérer vos clients</span>
                     </div>
-                    <div className="product-right" onClick={() =>navigate('/productForm')}>
+                    <div className="product-right" onClick={() =>navigate('/clientForm')}>
                         <PlusOutlined />
                         <span className="product-btn">Ajouter un nouveau client</span>
                     </div>
