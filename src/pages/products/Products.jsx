@@ -192,7 +192,7 @@ const Products = () => {
           title: 'Couleur',
           dataIndex: 'couleur',
           key: 'couleur',
-          width: '15%',
+          width: '10%',
           ...getColumnSearchProps('couleur'),
         },
         {
@@ -201,19 +201,6 @@ const Products = () => {
             key: 'categorie',
             width: '15%',
             ...getColumnSearchProps('categorie'),
-          },
-          {
-            title: 'Pointure',
-            dataIndex: 'pointure',
-            key: 'pointure',
-            ...getColumnSearchProps('pointure'),
-            sorter: (a, b) => a.pointure.length - b.pointure.length,
-            sortDirections: ['descend', 'ascend'],
-            render: (text) => (
-              <span>
-                {parseFloat(text)}
-              </span>
-            ),
           },
         {
           title: 'Prix',
