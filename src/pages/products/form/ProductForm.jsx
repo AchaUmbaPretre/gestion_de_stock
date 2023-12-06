@@ -17,46 +17,42 @@ const ProductForm = () => {
               <div className="product-container-bottom">
                 <div className="form-controle">
                   <label htmlFor="">Nom du produit</label>
-                  <input type="text" className="form-input" />
+                  <input type="text" name='nom_produit' className="form-input" />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Catégorie</label>
-                  <select name="" id="" className="form-input">
+                  <select id="" className="form-input" name='categorie'>
                     <option value="" disabled>Selectionnez une categorie</option>
                   </select>
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Couleur</label>
-                  <input type="text" className="form-input" />
+                  <input type="text" name='couleur' className="form-input" />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Matière</label>
-                  <input type="text" className="form-input" />
+                  <input type="text" name='matiere' className="form-input" />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Pointure</label>
-                  <input type="number" className="form-input" />
+                  <input type="number" name='pointure' className="form-input" />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Quantité</label>
-                  <input type="number" className="form-input" />
+                  <input type="number" name='quantite_stock' className="form-input" />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Emplacement</label>
-                  <input type="number" className="form-input" />
+                  <input type="number" name='emplacement' className="form-input" />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Prix</label>
-                  <input type="number" className="form-input" />
-                </div>
-                <div className="form-controle">
-                  <label htmlFor="">Date entrée</label>
-                  <input type="date" className="form-input" />
+                  <input type="number" name='prix' className="form-input" />
                 </div>
               </div>
               <div className="form-controleFile" onClick={() => document.getElementById('file-upload').click()}>
                 <label htmlFor="">Image du produit</label>
-                <input type="file" className="form-input" style={{display:"none"}} lable="Profil"
+                <input type="file" name='img' className="form-input" style={{display:"none"}} lable="Profil"
                     id='file-upload'
                     accept='.jpeg, .png, .jpg' />
                 <div className="form-file">
