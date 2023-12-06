@@ -51,7 +51,7 @@ const Sidebar = () => {
         </Item>
       </SubMenu>
 
-      <SubMenu key="purchases" title={<span className="sidebarH3">Achats</span>} icon={<ShoppingCartOutlined style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }}/>}>
+{/*       <SubMenu key="purchases" title={<span className="sidebarH3">Achats</span>} icon={<ShoppingCartOutlined style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }}/>}>
         <Item key="purchasesOrders">
           <Link to="/achats" className="sidebarLink">
             Achats
@@ -67,15 +67,15 @@ const Sidebar = () => {
             Retour d'achat
           </Link>
         </Item>
-      </SubMenu>
+      </SubMenu> */}
 
-      <SubMenu key="finance" title={<span className="sidebarH3">Finances et comptes</span>} icon={<AttachMoney style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }}/>}>
+{/*       <SubMenu key="finance" title={<span className="sidebarH3">Finances et comptes</span>} icon={<AttachMoney style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }}/>}>
         <Item key="expenses">
           <Link to="/frais" className="sidebarLink">
             Frais
           </Link>
         </Item>
-      </SubMenu>
+      </SubMenu> */}
 
       <SubMenu key="people" title={<span className="sidebarH3">Peuples</span>} icon={<UsergroupAddOutlined style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }}/>}>
         <Item key="clients">
