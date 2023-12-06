@@ -101,11 +101,6 @@ const Sidebar = () => {
             Rapport de ventes
           </Link>
         </Item>
-        <Item key="purchaseReport">
-          <Link to="/rapportAchats" className="sidebarLink">
-            Rapport d'achats
-          </Link>
-        </Item>
         <Item key="expenseReport">
           <Link to="/rapportFrais" className="sidebarLink">
             Rapport de frais
