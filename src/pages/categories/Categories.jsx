@@ -1,14 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
 import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import './categories.scss'
+import config from '../../config';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Categories = () => {
     const navigate = useNavigate();
+    const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+    const [nomCategorie, setNomCategorie] = useState();
+    const [getCategorie, setGetCategorie] = useState()
     const searchInput = useRef(null);
     const scroll = { x: 400 };
 
@@ -117,36 +123,11 @@ const Categories = () => {
           ),
       });
 
-    
-    const data = [
-        {
-          key: '2',
-          code: '2',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate"
-        },
-        {
-          key: '3',
-          code: '3',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate"
-        },
-        {
-          key: '4',
-          code: '4',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate"
-        },
-      ];
-
       const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
             title: 'Categorie',
-            dataIndex: 'categorie',
+            dataIndex: 'nom_categorie',
             key: 'categorie',
             
         },
@@ -165,9 +146,6 @@ const Categories = () => {
                 >
                   <Button icon={<EditOutlined />} style={{ color: 'green' }} />
                 </Popconfirm>
-                <Link to={`/presenceListView/${record.emp1_id}`}>
-                  <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
-                </Link>
                 <Popconfirm
                   title="Êtes-vous sûr de vouloir supprimer?"
                   onConfirm={() => handleDelete(record.id)}
@@ -181,6 +159,40 @@ const Categories = () => {
           },
       ];
 
+      const handleClick = async (e) => {
+        e.preventDefault();
+
+        try{
+          await axios.post(`${DOMAIN}/api/produit/categorie`, {nom_categorie : nomCategorie})
+          Swal.fire({
+            title: 'Success',
+            text: 'Categorie créé avec succès!',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
+          window.location.reload();
+
+        }catch(err) {
+          Swal.fire({
+            title: 'Error',
+            text: err.message,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+      }
+
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`${DOMAIN}/api/produit/categorie`);
+            setGetCategorie(data);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      }, []);
 
       const handleEdit = (id) => {
         navigate(`/presenceEdit/${id}`);
@@ -201,14 +213,14 @@ const Categories = () => {
             <div className="categories-wrapper">
                 <div className="categorie-container-top">
                     <div className="categorie-left">
-                        <h2 className="categorie-h2">Cateegorie</h2>
+                        <h2 className="categorie-h2">Categorie</h2>
                     </div>
                 </div>
                 <div className="categorie-container-bottom">
                     <div className="categorie-container-left">
                         <h2 className="categorie-title">Ajouter categorie</h2>
-                        <input type="text"  className="categorie-input" />
-                        <button className="categorie-btn">Envoyer</button>
+                        <input type="text" name='nom_categorie' onChange={(e)=> setNomCategorie(e.target.value)} className="categorie-input" />
+                        <button className="categorie-btn" onClick={handleClick}>Envoyer</button>
                     </div>
                     <div className="categorie-container-right">
                         <div className="categorie-right-top">
@@ -222,7 +234,7 @@ const Categories = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
-                            <Table columns={columns} dataSource={data} scroll={scroll} pagination={{ pageSize: 5}} />
+                            <Table columns={columns} dataSource={getCategorie} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
                 </div>

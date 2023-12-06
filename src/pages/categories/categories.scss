@@ -14,10 +14,13 @@
         padding-top: 20px;
         .categorie-container-left{
             flex: 2.5;
-            padding: 20px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             background: #fff;
+            -webkit-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
+            border-radius: 5px;
             .categorie-title{
                 font-size: .9rem;
                 color: #555;
@@ -45,8 +48,11 @@
         }
         .categorie-container-right{
             flex: 4;
-            padding: 20px;
             background: #fff;
+            -webkit-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
+            padding: 30px;
+            border-radius: 5px;
             .categorie-right-top{
                 display: flex;
                 align-items: center;
