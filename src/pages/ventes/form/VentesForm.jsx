@@ -5,31 +5,14 @@ import Select from 'react-select';
 import { useEffect } from 'react';
 import config from '../../../config';
 import axios from 'axios';
-
-const columns = [
-    {
-      title: 'Nom du produit',
-      dataIndex: 'name',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: 'Quantité',
-      dataIndex: 'age',
-    },
-    {
-      title: 'Prix',
-      dataIndex: 'address',
-    },
-    {
-        title: 'Total',
-        dataIndex: 'address',
-      },
-  ];
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 const VentesForm = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [selectionType, setSelectionType] = useState('checkbox');
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
     const [client, setClient] = useState([]);
@@ -50,6 +33,7 @@ const VentesForm = () => {
     
     setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
     };
+
 
     useEffect(() => {
       const fetchData = async () => {
@@ -89,6 +73,30 @@ const VentesForm = () => {
       };
       fetchData();
     }, []);
+
+    const handleClick = async (e) => {
+      e.preventDefault();
+  
+      try{
+        await axios.post(`${DOMAIN}/api/vente/vente`, data)
+        Swal.fire({
+          title: 'Success',
+          text: 'Vente crée avec succès!',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+        navigate('/ventes')
+        window.location.reload();
+  
+      }catch(err) {
+        Swal.fire({
+          title: 'Error',
+          text: err.message,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
+    }
 
   return (
     <>
@@ -136,7 +144,7 @@ const VentesForm = () => {
                 </div>
             </div>
             <div className="form-submit">
-                <button className="btn-submit">Soumetre</button>
+                <button className="btn-submit" onClick={handleClick}>Soumetre</button>
                 <button className="btn-submit btn-annuler">Annuler</button>
               </div>
           </div>
