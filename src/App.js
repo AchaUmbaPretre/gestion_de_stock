@@ -22,6 +22,7 @@ import LivreurForm from './pages/livreur/livreurForm/LivreurForm';
 import Utilisateurs from './pages/utilisateurs/Utilisateurs';
 import UtilisateurForm from './pages/utilisateurs/utilisateurForm/UtilisateurForm';
 import RapportVente from './pages/rapportVente.jsx/RapportVente';
+import ProductView from './pages/products/productView/ProductView';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -60,6 +61,10 @@ function App() {
         {
           path: '/products',
           element: <Products />
+        },
+        {
+          path: '/productView/:id',
+          element: <ProductView />
         },
         {
           path: '/productForm',

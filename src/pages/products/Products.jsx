@@ -217,7 +217,7 @@ const columns = [
             >
               <Button icon={<EditOutlined />} style={{ color: 'green' }} />
             </Popconfirm>
-            <Link to={`/presenceListView/${record.emp1_id}`}>
+            <Link to={`/productView/${record.id}`}>
               <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
             </Link>
             <Popconfirm
