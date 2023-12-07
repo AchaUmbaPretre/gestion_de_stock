@@ -124,7 +124,7 @@ const Emplacement = () => {
                 <div className="categorie-container-top">
                     <div className="categorie-left">
                         <h2 className="categorie-h2">Emplacement</h2>
-                        <h2 className="categorie-h2">Liste des emplacements</h2>
+                        <span>Liste des emplacements</span>
                     </div>
                 </div>
                 <div className="categorie-container-bottom">
