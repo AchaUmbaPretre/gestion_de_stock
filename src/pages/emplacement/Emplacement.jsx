@@ -12,7 +12,7 @@ const Emplacement = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const navigate = useNavigate();
     const [data, setData] = useState({});
-    const [getdata, setGetData] = useState({});
+    const [getdata, setGetData] = useState([]);
     const scroll = { x: 400 };
 
     const handleInputChange = (e) => {
@@ -86,6 +86,18 @@ const Emplacement = () => {
       } */
     };
 
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get(`${DOMAIN}/api/produit/emplacement`);
+          setGetData(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    }, []);
+
     const handleClick = async (e) => {
       e.preventDefault();
 
@@ -104,17 +116,6 @@ const Emplacement = () => {
       }
     }
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const { data } = await axios.get(`${DOMAIN}/api/produit/emplacement`);
-          setGetData(data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchData();
-    }, []);
 
   return (
     <>
@@ -150,7 +151,7 @@ const Emplacement = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
-                            <Table columns={columns} dataSource={''} scroll={scroll} pagination={{ pageSize: 5}} />
+                            <Table columns={columns} dataSource={getdata} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
                 </div>

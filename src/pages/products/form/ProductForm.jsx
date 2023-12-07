@@ -6,6 +6,7 @@ import Select from 'react-select';
 import { useEffect } from 'react';
 import axios from 'axios';
 import config from '../../../config';
+import Swal from 'sweetalert2';
 
 const ProductForm = () => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -39,7 +40,30 @@ const ProductForm = () => {
     fetchData();
   }, []);
 
-  console.log(data)
+  const handleClick = async (e) => {
+    e.preventDefault();
+
+    try{
+      await axios.post(`${DOMAIN}/api/produit/produit`, data)
+      Swal.fire({
+        title: 'Success',
+        text: 'Categorie créé avec succès!',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      });
+      window.location.reload();
+
+    }catch(err) {
+      Swal.fire({
+        title: 'Error',
+        text: err.message,
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
+  }
+
+
 
   return (
     <>
@@ -101,7 +125,7 @@ const ProductForm = () => {
                 </div>
               </div>
               <div className="form-submit">
-                <button className="btn-submit">Soumetre</button>
+                <button className="btn-submit" onClick={handleClick}>Soumetre</button>
                 <button className="btn-submit btn-annuler">Annuler</button>
               </div>
             </div>
