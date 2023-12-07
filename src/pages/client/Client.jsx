@@ -1,52 +1,21 @@
 import './client.scss'
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
-import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
-import photoIcon from './../../assets/logo doe.jpg'
+import { Button, Input, Space, Table, Popconfirm} from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
+import config from '../../config';
+import axios from 'axios';
 
 const Client = () => {
+    const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+    const [getClient, setGetClient] = useState();
+    const [loading, setLoading] = useState(true);
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
-
-    const data = [
-        {
-          key: '1',
-          code: '1',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '300',
-        },
-        {
-          key: '2',
-          code: '2',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '350',
-        },
-        {
-          key: '3',
-          code: '3',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '200',
-        },
-        {
-          key: '4',
-          code: '4',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '250',
-        },
-      ];
 
       const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -156,6 +125,18 @@ const Client = () => {
       const handleEdit = (id) => {
         navigate(`/presenceEdit/${id}`);
     };
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get(`${DOMAIN}/api/produit`);
+          setGetClient(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    }, []);
     
     const handleDelete = async (id) => {
      /*  try {
@@ -264,7 +245,7 @@ const Client = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={data} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={''} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>
