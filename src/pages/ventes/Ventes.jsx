@@ -9,44 +9,10 @@ import { Link, useNavigate } from 'react-router-dom';
 const Ventes = () => {
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+    const [loading, setLoading] = useState(true);
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
-
-    const data = [
-        {
-          key: '1',
-          code: '1',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '300',
-        },
-        {
-          key: '2',
-          code: '2',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '350',
-        },
-        {
-          key: '3',
-          code: '3',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '200',
-        },
-        {
-          key: '4',
-          code: '4',
-          nom_produit: "Ketch",
-          couleur: 'red',
-          categorie: "chaussure plate",
-          prix: '250',
-        },
-      ];
 
       const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -169,7 +135,7 @@ const Ventes = () => {
       const columns = [
         {
           title: 'image',
-          dataIndex: 'image',
+          dataIndex: 'img',
           key: 'image',
           width: '10%',
           render: (text, record) => (
@@ -311,7 +277,7 @@ const Ventes = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={data} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={''} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>
