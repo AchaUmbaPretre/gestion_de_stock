@@ -129,8 +129,9 @@ const Client = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const { data } = await axios.get(`${DOMAIN}/api/produit`);
+          const { data } = await axios.get(`${DOMAIN}/api/peuple`);
           setGetClient(data);
+          setLoading(false)
         } catch (error) {
           console.log(error);
         }
@@ -151,7 +152,7 @@ const Client = () => {
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
             title: 'Nom',
-            dataIndex: 'nom',
+            dataIndex: 'nom_produit',
             key: 'nom',
             width: '15%',
             ...getColumnSearchProps('nom'),

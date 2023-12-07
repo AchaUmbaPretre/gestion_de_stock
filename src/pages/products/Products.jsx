@@ -14,6 +14,7 @@ const Products = () => {
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const [getProduit, setGetProduit] = useState();
+    const [loading, setLoading] = useState(true);
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
@@ -130,12 +131,12 @@ const Products = () => {
     };
     
     const handleDelete = async (id) => {
-     /*  try {
-        await axios.delete(`${DOMAIN}/api/admin/presence/${id}`);
+      try {
+        await axios.put(`${DOMAIN}/api/produit/produitDelete/${id}`);
           window.location.reload();
       } catch (err) {
         console.log(err);
-      } */
+      } 
     };
     
 const columns = [
@@ -250,6 +251,7 @@ useEffect(() => {
     try {
       const { data } = await axios.get(`${DOMAIN}/api/produit`);
       setGetProduit(data);
+      setLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -290,7 +292,7 @@ useEffect(() => {
                    {open &&
                     <ProductSelects/> } 
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={getProduit} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={getProduit} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>
