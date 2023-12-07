@@ -4,7 +4,7 @@ import ProductSelects from './productSelects/ProductSelects';
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
-import photoIcon from './../../assets/logo doe.jpg'
+import { format } from 'date-fns';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../config';
@@ -145,101 +145,94 @@ const columns = [
       title: 'image',
       dataIndex: 'img',
       key: 'img',
-      width: '10%',
         render: (text, record) => (
           <div className="userList">
-            <img src={photoIcon} alt="" className="userImg"  />
+            <img src={record.img} alt="" className="userImg"  />
           </div>
           )
-      },
-      {
+    },
+    {
         title: 'Nom produit',
         dataIndex: 'nom_produit',
         key: 'code',
-        width: '15%',
         ...getColumnSearchProps('couleur'),
-      },
-      {
+    },
+    {
           title: 'Couleur',
           dataIndex: 'couleur',
           key: 'couleur',
           width: '10%',
           ...getColumnSearchProps('couleur'),
-        },
-        {
+    },
+    {
             title: 'Categorie',
             dataIndex: 'categorie',
             key: 'categorie',
-            width: '15%',
-            ...getColumnSearchProps('categorie'),
-          },
-        {
-          title: 'Prix',
-          dataIndex: 'prix',
-          key: 'prix',
-          ...getColumnSearchProps('prix'),
-          sorter: (a, b) => a.address.length - b.address.length,
-          sortDirections: ['descend', 'ascend'],
-          render: (text) => (
-            <span>
-              {parseFloat(text).toLocaleString('en-US', {
-                style: 'currency',
-                currency: 'USD',
-              })}
-            </span>
-          ),
-        },
-        {
-            title: 'Quantité',
-            dataIndex: 'quantite',
-            key: 'prix',
-            ...getColumnSearchProps('prix'),
-            sorter: (a, b) => a.quantite.length - b.quantite.length,
-            sortDirections: ['descend', 'ascend'],
-            render: (text) => (
-              <span>
-                {parseFloat(text).toLocaleString('en-US', {
-                  style: 'currency',
-                  currency: 'USD',
-                })}
-              </span>
-            ),
-          },
-          {
-            title: 'Date',
-            dataIndex: 'dateEntree',
-            key: 'date',
-            sorter: (a, b) => a.dateEntree.length - b.dateEntree.length,
-            sortDirections: ['descend', 'ascend']
-          },
-        {
-            title: 'Action',
-            key: 'action',
-            render: (text, record) => (
+            width: '15%'
+    },
+    {
+      title: 'Prix',
+      dataIndex: 'prix',
+      key: 'prix',
+        sorter: (a, b) => a.address.length - b.address.length,
+      sortDirections: ['descend', 'ascend'],
+        render: (text) => (
+          <span>
+            {parseFloat(text).toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            })}
+          </span>
+        ),
+    },
+    {
+      title: 'Quantité',
+      dataIndex: 'quantite_stock',
+      key: 'prix',
+        ...getColumnSearchProps('quantite_stock'),
+        sorter: (a, b) => a.quantite_stock.length - b.quantite_stock.length,
+      sortDirections: ['descend', 'ascend']
+    },
+    {
+      title: 'Date',
+      dataIndex: 'date_entree',
+      key: 'date',
+        sorter: (a, b) => a.date_entree.length - b.date_entree.length,
+      sortDirections: ['descend', 'ascend'],
+        render: (text) => (
+          <span>
+            {format(new Date(text), 'dd-MM-yyyy')}
+          </span>
+        ),
+    },
+    {
+      title: 'Action',
+      key: 'action',
+        render: (text, record) => (
                 
-              <Space size="middle">
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir modifier?"
-                  onConfirm={()=> handleEdit(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-                </Popconfirm>
-                <Link to={`/presenceListView/${record.emp1_id}`}>
-                  <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
-                </Link>
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir supprimer?"
-                  onConfirm={() => handleDelete(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
-                </Popconfirm>
-              </Space>
-            ),
-          },
+          <Space size="middle">
+            <Popconfirm
+              title="Êtes-vous sûr de vouloir modifier?"
+              onConfirm={()=> handleEdit(record.id)}
+              okText="Oui"
+              cancelText="Non"
+            >
+              <Button icon={<EditOutlined />} style={{ color: 'green' }} />
+            </Popconfirm>
+            <Link to={`/presenceListView/${record.emp1_id}`}>
+              <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
+            </Link>
+            <Popconfirm
+              title="Êtes-vous sûr de vouloir supprimer?"
+              onConfirm={() => handleDelete(record.id)}
+              okText="Oui"
+              cancelText="Non"
+            >
+              <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
+            </Popconfirm>
+          </Space>
+        ),
+    },
 ];
 
 const HandOpen = () =>{

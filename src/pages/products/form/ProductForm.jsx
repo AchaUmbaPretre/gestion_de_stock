@@ -7,20 +7,37 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import config from '../../../config';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const ProductForm = () => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
   const [data, setData] = useState({})
-  const [getCategorie, setGetCategorie] = useState({});
+  const [getCategorie, setGetCategorie] = useState([]);
   const [getData, setGetData] = useState([]);
+  const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
+  const handleInputChange = async (e) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
   
     let updatedValue = fieldValue;
   
-    if (fieldName === "contact_email") {
+    if (fieldName === "img") {
+      const file = e.target.files[0]; // Récupérer le fichier depuis l'input file
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        const base64File = reader.result;
+        updatedValue = base64File;
+        setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
+      };
+  
+      reader.onerror = (error) => {
+        console.error("Erreur de lecture du fichier :", error);
+      };
+  
+      reader.readAsDataURL(file);
+    } else if (fieldName === "contact_email") {
       updatedValue = fieldValue.toLowerCase();
     } else if (Number.isNaN(Number(fieldValue))) {
       updatedValue = fieldValue.charAt(0).toUpperCase() + fieldValue.slice(1);
@@ -52,6 +69,7 @@ const ProductForm = () => {
     fetchData();
   }, []);
 
+
   const handleClick = async (e) => {
     e.preventDefault();
 
@@ -64,6 +82,7 @@ const ProductForm = () => {
         confirmButtonText: 'OK',
       });
       window.location.reload();
+      navigate('/products')
 
     }catch(err) {
       Swal.fire({
@@ -75,7 +94,7 @@ const ProductForm = () => {
     }
   }
 
-
+console.log(data)
 
   return (
     <>
@@ -119,7 +138,11 @@ const ProductForm = () => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Emplacement</label>
-                  <input type="text" name='emplacement' className="form-input" onChange={handleInputChange}  />
+                  <Select
+                      name="emplacement"
+                      options={getData?.map(item => ({ value: item.id, label: item.nom }))}
+                      onChange={selectedOption => handleInputChange({ target: { name: 'emplacement', value: selectedOption.value } })}
+                    />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Prix</label>
