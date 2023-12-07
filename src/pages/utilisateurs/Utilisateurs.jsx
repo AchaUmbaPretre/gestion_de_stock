@@ -3,10 +3,16 @@ import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
+import config from '../../config';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const Utilisateurs = () => {
+    const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
+    const [data, setData] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+    const [loading, setLoading] = useState(true);
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
@@ -174,6 +180,19 @@ const Utilisateurs = () => {
           },
     ];
 
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get(`${DOMAIN}/api/peuple/utilisateur`);
+          setData(data);
+          setLoading(false)
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    }, []);
+
     const handleDelete = async (id) => {
       try {
          await axios.delete(`${DOMAIN}/api/peuple/utilisateur/${id}`);
@@ -213,7 +232,7 @@ const Utilisateurs = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={''} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={data} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>
