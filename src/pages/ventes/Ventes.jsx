@@ -1,15 +1,20 @@
 import './../products/products.scss'
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
 import photoIcon from './../../assets/logo doe.jpg'
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import config from '../../config';
+import { format } from 'date-fns';
 
 const Ventes = () => {
+    const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
@@ -146,28 +151,18 @@ const Ventes = () => {
         },
         {
             title: 'Nom produit',
-            dataIndex: 'nom_produit',
-            key: 'code',
-            width: '15%',
-            ...getColumnSearchProps('couleur'),
+            dataIndex: 'produit_id',
+            key: 'code'
           },
         {
-          title: 'Couleur',
-          dataIndex: 'couleur',
-          key: 'couleur',
-          width: '15%',
-          ...getColumnSearchProps('couleur'),
+          title: 'Client',
+          dataIndex: 'client_id',
+          key: 'client',
+          ...getColumnSearchProps('client_id'),
         },
-        {
-            title: 'Categorie',
-            dataIndex: 'categorie',
-            key: 'categorie',
-            width: '15%',
-            ...getColumnSearchProps('categorie'),
-          },
           {
-            title: 'Pointure',
-            dataIndex: 'pointure',
+            title: 'Livreur',
+            dataIndex: 'livreur_id',
             key: 'pointure',
             ...getColumnSearchProps('pointure'),
             sorter: (a, b) => a.pointure.length - b.pointure.length,
@@ -179,11 +174,10 @@ const Ventes = () => {
             ),
           },
         {
-          title: 'Prix',
-          dataIndex: 'prix',
+          title: 'Prix unitaire',
+          dataIndex: 'prix_unitaire',
           key: 'prix',
-          ...getColumnSearchProps('prix'),
-          sorter: (a, b) => a.address.length - b.address.length,
+          sorter: (a, b) => a.prix_unitaire.length - b.prix_unitaire.length,
           sortDirections: ['descend', 'ascend'],
           render: (text) => (
             <span>
@@ -198,24 +192,19 @@ const Ventes = () => {
             title: 'Quantité',
             dataIndex: 'quantite',
             key: 'prix',
-            ...getColumnSearchProps('prix'),
             sorter: (a, b) => a.quantite.length - b.quantite.length,
-            sortDirections: ['descend', 'ascend'],
-            render: (text) => (
-              <span>
-                {parseFloat(text).toLocaleString('en-US', {
-                  style: 'currency',
-                  currency: 'USD',
-                })}
-              </span>
-            ),
           },
           {
             title: 'Date',
-            dataIndex: 'dateEntree',
+            dataIndex: 'date_vente',
             key: 'date',
-            sorter: (a, b) => a.dateEntree.length - b.dateEntree.length,
-            sortDirections: ['descend', 'ascend']
+            sorter: (a, b) => a.date_vente.length - b.date_vente.length,
+            sortDirections: ['descend', 'ascend'],
+            render: (text) => (
+              <span>
+                {format(new Date(text), 'dd-MM-yyyy')}
+              </span>
+            ),
           },
         {
             title: 'Action',
@@ -247,6 +236,20 @@ const Ventes = () => {
           },
       ];
 
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`${DOMAIN}/api/vente`);
+            setData(data);
+            setLoading(false)
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      }, []);
+      
+
   return (
     <>
         <div className="products">
@@ -277,7 +280,7 @@ const Ventes = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={''} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={data} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>

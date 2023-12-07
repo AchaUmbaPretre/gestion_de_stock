@@ -97,7 +97,7 @@ const VentesForm = () => {
         });
       }
     }
-
+console.log(data)
   return (
     <>
         <div className="clientForm">
@@ -129,8 +129,8 @@ const VentesForm = () => {
                 <div className="form-controle">
                   <label htmlFor="">Produit</label>
                   <Select
-                    name='livreur_id'
-                    options={produit?.map(item => ({ value: item.id, label: item.nom_produit }))}
+                    name='produit_id'
+                    options={produit?.map(item => ({ value: item.produit_id, label: item.nom_produit }))}
                     onChange={selectedOption => handleInputChange({ target: { name: 'produit_id', value: selectedOption.value } })}
                   />
                 </div>
