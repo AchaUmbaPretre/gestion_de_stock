@@ -26,8 +26,6 @@ const ClientForm = () => {
   setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
   };
 
-  console.log(data)
-
   const handleClick = async (e) => {
     e.preventDefault();
 

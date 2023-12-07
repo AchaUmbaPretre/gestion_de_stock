@@ -152,28 +152,25 @@ const Client = () => {
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
             title: 'Nom',
-            dataIndex: 'nom_produit',
+            dataIndex: 'nom',
             key: 'nom',
-            width: '15%',
             ...getColumnSearchProps('nom'),
         },
         {
             title: 'Raison sociale',
             dataIndex: 'raison_sociale',
             key: 'raison_sociale',
-            width: '15%',
             ...getColumnSearchProps('raison_sociale'),
         },
         {
             title: 'Email',
             dataIndex: 'email',
-            key: 'email',
-            width: '15%'
+            key: 'email'
           },
           {
             title: 'Telephone',
-            dataIndex: 'pointure',
-            key: 'pointure'
+            dataIndex: 'telephone',
+            key: 'email'
           },
         {
           title: 'Ville',
@@ -246,7 +243,7 @@ const Client = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={''} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={getClient} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>
