@@ -120,16 +120,7 @@ const Utilisateurs = () => {
         navigate(`/presenceEdit/${id}`);
     };
     
-    const handleDelete = async (id) => {
-     /*  try {
-        await axios.delete(`${DOMAIN}/api/admin/presence/${id}`);
-          window.location.reload();
-      } catch (err) {
-        console.log(err);
-      } */
-    };
-    
-      const columns = [
+    const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
             title: 'Nom',
@@ -181,7 +172,16 @@ const Utilisateurs = () => {
               </Space>
             ),
           },
-      ];
+    ];
+
+    const handleDelete = async (id) => {
+      try {
+         await axios.delete(`${DOMAIN}/api/peuple/utilisateur/${id}`);
+           window.location.reload();
+       } catch (err) {
+         console.log(err);
+       }
+     };
 
   return (
     <>
