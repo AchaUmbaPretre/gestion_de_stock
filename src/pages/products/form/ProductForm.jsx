@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
 const ProductForm = () => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
   const [data, setData] = useState({})
-  const [getCategorie, setGetCategorie] = useState()
+  const [getCategorie, setGetCategorie] = useState({});
+  const [getData, setGetData] = useState([]);
 
   const handleInputChange = (e) => {
     const fieldName = e.target.name;
@@ -33,6 +34,17 @@ const ProductForm = () => {
       try {
         const { data } = await axios.get(`${DOMAIN}/api/produit/categorie`);
         setGetCategorie(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`${DOMAIN}/api/produit/emplacement`);
+        setGetData(data);
       } catch (error) {
         console.log(error);
       }
