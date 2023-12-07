@@ -1,12 +1,17 @@
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
-import React, { useRef, useState } from 'react';
+import React, { useEffect,useState,useRef } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import config from '../../config';
 
 const Livreur = () => {
+    const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+    const [getLivreur, setGetLivreur] = useState([]);
+    const [loading, setLoading] = useState(true);
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
@@ -147,8 +152,8 @@ const Livreur = () => {
         },
         {
             title: 'Telephone',
-            dataIndex: 'telephone',
-            key: 'telephone'
+            dataIndex: 'numero',
+            key: 'numero'
         },
         {
           title: 'Adresse',
@@ -186,6 +191,19 @@ const Livreur = () => {
           },
       ];
 
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`${DOMAIN}/api/peuple/livreur`);
+            setGetLivreur(data);
+            setLoading(false)
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      }, []);
+
   return (
     <>
         <div className="products">
@@ -216,7 +234,7 @@ const Livreur = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={''} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={getLivreur} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>

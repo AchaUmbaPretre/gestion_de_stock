@@ -1,6 +1,5 @@
 import React, { useEffect,useState } from 'react';
 import './clientForm.scss'
-import { CloudUploadOutlined  } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -80,11 +79,11 @@ const ClientForm = () => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Telephone</label>
-                  <input type="tel" name='telephone' className="form-input" onChange={handleInputChange} />
+                  <input type="tel" name='telephone' className="form-input" onChange={handleInputChange} required />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Ville</label>
-                  <input type="text" name="ville" className="form-input" onChange={handleInputChange} />
+                  <input type="text" name="ville" className="form-input" onChange={handleInputChange} required/>
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Adresse</label>
