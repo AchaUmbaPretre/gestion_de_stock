@@ -133,17 +133,15 @@ const Utilisateurs = () => {
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
             title: 'Nom',
-            dataIndex: 'nom',
+            dataIndex: 'username',
             key: 'nom',
             width: '15%',
-            ...getColumnSearchProps('nom'),
+            ...getColumnSearchProps('username'),
         },
         {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
-            width: '15%',
-            ...getColumnSearchProps('email'),
         },
         {
             title: 'Mot de passe',
@@ -152,9 +150,8 @@ const Utilisateurs = () => {
         },
         {
           title: 'Permission',
-          dataIndex: 'permission',
-          key: 'permission',
-          ...getColumnSearchProps('permission')
+          dataIndex: 'role',
+          key: 'role'
         },
         {
             title: 'Action',
