@@ -158,17 +158,16 @@ const columns = [
         ...getColumnSearchProps('couleur'),
     },
     {
-          title: 'Couleur',
-          dataIndex: 'couleur',
-          key: 'couleur',
-          width: '10%',
-          ...getColumnSearchProps('couleur'),
+      title: 'Couleur',
+      dataIndex: 'couleur',
+      key: 'couleur',
+      width: '10%',
+        ...getColumnSearchProps('couleur'),
     },
     {
-            title: 'Categorie',
-            dataIndex: 'categorie',
-            key: 'categorie',
-            width: '15%'
+      title: 'Categorie',
+      dataIndex: 'nom_categorie',
+      key: 'categorie',
     },
     {
       title: 'Prix',
@@ -189,7 +188,6 @@ const columns = [
       title: 'Quantité',
       dataIndex: 'quantite_stock',
       key: 'prix',
-        ...getColumnSearchProps('quantite_stock'),
         sorter: (a, b) => a.quantite_stock.length - b.quantite_stock.length,
       sortDirections: ['descend', 'ascend']
     },
