@@ -214,6 +214,7 @@ const Categories = () => {
                 <div className="categorie-container-top">
                     <div className="categorie-left">
                         <h2 className="categorie-h2">Categorie</h2>
+                        <span>Liste des categories</span>
                     </div>
                 </div>
                 <div className="categorie-container-bottom">
