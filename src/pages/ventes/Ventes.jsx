@@ -125,7 +125,7 @@ const Ventes = () => {
       });
 
       const handleEdit = (id) => {
-        navigate(`/presenceEdit/${id}`);
+        navigate(`/ventesForm/${id}`);
     };
     
     const handleDelete = async (id) => {

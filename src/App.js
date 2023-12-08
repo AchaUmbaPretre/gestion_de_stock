@@ -96,11 +96,19 @@ function App() {
           element: <VentesForm />
         },
         {
+          path: '/ventesForm/:id',
+          element: <VentesForm />
+        },
+        {
           path: '/retour',
           element: <Retour/>
         },
         {
           path: '/retourForm',
+          element: <RetourForm />
+        },
+        {
+          path: '/retourForm/:id',
           element: <RetourForm />
         },
         {

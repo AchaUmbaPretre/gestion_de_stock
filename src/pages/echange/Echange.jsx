@@ -122,7 +122,7 @@ const Echange = () => {
       });
 
       const handleEdit = (id) => {
-        navigate(`/presenceEdit/${id}`);
+        navigate(`/retourForm/${id}`);
     };
 
     useEffect(() => {
@@ -157,9 +157,14 @@ const Echange = () => {
         },
         {
             title: 'Produit',
-            dataIndex: 'nom_produit',
-            key: 'produit',
-            ...getColumnSearchProps('nom_produit'),
+            dataIndex: 'img',
+            key: 'img',
+              render: (text, record) => (
+                <div className="userList">
+                  <img src={record.img} alt="" className="userImg"  />
+                  <span>{record.nom_produit}</span>
+                </div>
+            )
         },
         {
             title: 'Quantité',

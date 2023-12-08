@@ -95,6 +95,9 @@
             }
             .rowChart-row-table{
                 .userList{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
                     .userImg{
                         height: 50px;
                         width: 50px;
