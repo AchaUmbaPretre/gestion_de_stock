@@ -92,6 +92,10 @@ function App() {
           element: <Emplacement />
         },
         {
+          path: '/emplacement/:id',
+          element: <Emplacement />
+        },
+        {
           path: '/ventes',
           element: <Ventes />
         },

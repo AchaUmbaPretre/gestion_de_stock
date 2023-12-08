@@ -18,7 +18,7 @@ const Sidebar = () => {
       <div className="sidebarWrapper">
         
       </div>
-      <Item key="/personnel" icon={<HomeOutlined style={{ fontSize: '22px', color: '#fafafa' }} />}>
+      <Item key="/" icon={<HomeOutlined style={{ fontSize: '22px', color: '#fafafa' }} />}>
         <Link to="/" className="sidebarH3" style={{fontSize: "14px", color: '#fafafa'}}>
           Accueil
         </Link>

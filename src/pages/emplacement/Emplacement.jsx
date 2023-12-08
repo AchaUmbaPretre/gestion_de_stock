@@ -74,7 +74,7 @@ const Emplacement = () => {
 
 
     const handleEdit = (id) => {
-        navigate(`/presenceEdit/${id}`);
+        navigate(`/emplacement/${id}`);
     };
     
     const handleDelete = async (id) => {

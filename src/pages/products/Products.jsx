@@ -16,6 +16,7 @@ const Products = () => {
     const [getProduit, setGetProduit] = useState();
     const [loading, setLoading] = useState(true);
     const searchInput = useRef(null);
+    const [searchValue, setSearchValue] = useState('');
     const scroll = { x: 400 };
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
@@ -154,8 +155,8 @@ const columns = [
     {
         title: 'Nom produit',
         dataIndex: 'nom_produit',
-        key: 'code',
-        ...getColumnSearchProps('couleur'),
+        key: 'nom_produit',
+        ...getColumnSearchProps('nom_produit'),
     },
     {
       title: 'Couleur',
@@ -250,6 +251,10 @@ useEffect(() => {
   fetchData();
 }, []);
 
+const filteredData = getProduit?.filter((item) =>
+item.nom_produit.toLowerCase().includes(searchValue.toLowerCase()) ||
+item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
+);
 
   return (
     <>
@@ -271,7 +276,7 @@ useEffect(() => {
                             <SisternodeOutlined className='product-icon' onClick={HandOpen} />
                             <div className="product-row-search">
                                 <SearchOutlined className='product-icon-plus'/>
-                                <input type="search" name="" id="" placeholder='Recherche...' className='product-search' />
+                                <input type="search" name="" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder='Recherche...' className='product-search' />
                             </div>
                         </div>
                         <div className="product-bottom-right">
@@ -283,7 +288,7 @@ useEffect(() => {
                    {open &&
                     <ProductSelects/> } 
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={getProduit} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={filteredData} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>
