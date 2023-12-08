@@ -174,16 +174,16 @@ const columns = [
       title: 'Prix',
       dataIndex: 'prix',
       key: 'prix',
-        sorter: (a, b) => a.address.length - b.address.length,
-      sortDirections: ['descend', 'ascend'],
-        render: (text) => (
-          <span>
-            {parseFloat(text).toLocaleString('en-US', {
-              style: 'currency',
-              currency: 'USD',
-            })}
-          </span>
-        ),
+      sorter: (a, b) => a.prix.length - b.prix.length,
+      sortDirections: ['descendre', 'monter'],
+      render: (text) => (
+        <span>
+          {parseFloat(text).toLocaleString('fr-FR', {
+            style: 'currency',
+            currency: 'USD',
+          })}
+        </span>
+      ),
     },
     {
       title: 'Quantité',
