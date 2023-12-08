@@ -10,7 +10,6 @@ const Retour = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
-    const [getClient, setGetClient] = useState();
     const [loading, setLoading] = useState(true);
     const [retour, setRetour] = useState([]);
     const searchInput = useRef(null);
@@ -187,9 +186,6 @@ const Retour = () => {
                 >
                   <Button icon={<EditOutlined />} style={{ color: 'green' }} />
                 </Popconfirm>
-                <Link to={`/presenceListView/${record.id}`}>
-                  <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
-                </Link>
                 <Popconfirm
                   title="Êtes-vous sûr de vouloir supprimer?"
                   onConfirm={() => handleDelete(record.id)}
