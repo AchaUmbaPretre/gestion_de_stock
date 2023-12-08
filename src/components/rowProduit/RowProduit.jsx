@@ -5,37 +5,16 @@ import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover } from 'antd';
 import { Link } from 'react-router-dom';
 import photoIcon from './../../assets/logo doe.jpg'
-
-const data = [
-  {
-    key: '1',
-    code: '1',
-    produit: "Ketch",
-    prix: '300',
-  },
-  {
-    key: '2',
-    code: '2',
-    produit: "Ketch",
-    prix: '350',
-  },
-  {
-    key: '3',
-    code: '3',
-    produit: "Ketch",
-    prix: '200',
-  },
-  {
-    key: '4',
-    code: '4',
-    produit: "Ketch",
-    prix: '250',
-  },
-];
+import axios from 'axios';
+import { useEffect } from 'react';
+import config from '../../config';
 
 const RowProduit = () => {
+  const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
+  const [produit, setProduit] = useState([]);
+  const [loading, setLoading] = useState(false);
   const searchInput = useRef(null);
   const scroll = { x: 400 };
 
@@ -155,36 +134,49 @@ const RowProduit = () => {
     { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
     {
       title: 'image',
-      dataIndex: 'image',
-      key: 'image',
+      dataIndex: 'img',
+      key: 'img',
       render: (text, record) => (
         <div className="userList">
-          <img src={photoIcon} alt="" className="userImg"  />
+          <img src={record.img} alt="" className="userImg"  />
         </div>
       )
     },
     {
       title: 'Produits',
-      dataIndex: 'produit',
-      key: 'produit',
-      ...getColumnSearchProps('produits'),
+      dataIndex: 'nom_produit',
+      key: 'nom_produit',
+      ...getColumnSearchProps('nom_produit'),
     },
     {
       title: 'Prix',
       dataIndex: 'prix',
       key: 'prix',
       sorter: (a, b) => a.prix.length - b.prix.length,
-      sortDirections: ['descend', 'ascend'],
+      sortDirections: ['descendre', 'monter'],
       render: (text) => (
         <span>
-          {parseFloat(text).toLocaleString('en-US', {
+          {parseFloat(text).toLocaleString('fr-FR', {
             style: 'currency',
             currency: 'USD',
           })}
         </span>
       ),
-    },
+    }
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`${DOMAIN}/api/produit`);
+        setProduit(data);
+        setLoading(false)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
 
   return (
@@ -200,7 +192,7 @@ const RowProduit = () => {
                     </div>
                 </div>
                 <div className="rowChart-row-table">
-                  <Table columns={columns} dataSource={data} scroll={scroll} pagination={{ pageSize: 3}} />
+                  <Table columns={columns} dataSource={produit} loading={loading} scroll={scroll} pagination={{ pageSize: 3}} />
                 </div>
             </div>
         </div>
