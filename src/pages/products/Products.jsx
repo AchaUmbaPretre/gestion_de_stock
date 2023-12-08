@@ -127,7 +127,7 @@ const Products = () => {
       });
 
       const handleEdit = (id) => {
-        navigate(`/produitForm/${id}`);
+        navigate(`/productForm/${id}`);
     };
     
     const handleDelete = async (id) => {

@@ -76,6 +76,10 @@ function App() {
           element: <ProductForm />
         },
         {
+          path: '/productForm/:id',
+          element: <ProductForm />
+        },
+        {
           path: '/categories',
           element: <Categories />
         },
@@ -120,6 +124,10 @@ function App() {
           element: <EchangeForm/>
         },
         {
+          path: '/echangeForm/:id',
+          element: <EchangeForm/>
+        },
+        {
           path: '/clients',
           element: <Client />
         },
@@ -137,6 +145,10 @@ function App() {
         },
         {
           path: '/livreurForm',
+          element: <LivreurForm />
+        },
+        {
+          path: '/livreurForm/:id',
           element: <LivreurForm />
         },
         {
