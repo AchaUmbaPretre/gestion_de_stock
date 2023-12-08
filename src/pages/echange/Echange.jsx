@@ -151,13 +151,13 @@ const Echange = () => {
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width: '5%' },
         {
             title: 'Client',
-            dataIndex: 'client_id',
+            dataIndex: 'nom',
             key: 'nom',
             ...getColumnSearchProps('nom'),
         },
         {
             title: 'Produit',
-            dataIndex: 'produit_id',
+            dataIndex: 'nom_produit',
             key: 'produit',
             ...getColumnSearchProps('nom_produit'),
         },
@@ -168,7 +168,7 @@ const Echange = () => {
         },
         {
             title: 'Produit échange',
-            dataIndex: 'produit_echange_id',
+            dataIndex: 'nom_produit_echange',
             key: 'motif',
         },
         {
