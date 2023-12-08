@@ -84,6 +84,10 @@ function App() {
           element: <Categories />
         },
         {
+          path: '/categories/:id',
+          element: <Categories />
+        },
+        {
           path: '/emplacement',
           element: <Emplacement />
         },

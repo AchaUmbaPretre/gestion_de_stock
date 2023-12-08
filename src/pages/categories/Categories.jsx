@@ -101,7 +101,7 @@ const Categories = () => {
       }, []);
 
       const handleEdit = (id) => {
-        navigate(`/presenceEdit/${id}`);
+        navigate(`/categories/${id}`);
     };
     
     const handleDelete = async (id) => {
