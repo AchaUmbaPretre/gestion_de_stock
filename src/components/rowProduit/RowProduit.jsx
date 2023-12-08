@@ -152,19 +152,11 @@ const RowProduit = () => {
   });
 
   const columns = [
-    {
-      title: 'code',
-      dataIndex: 'code',
-      key: 'code',
-      width: '15%',
-      ...getColumnSearchProps('code'),
-    },
+    { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
     {
       title: 'image',
       dataIndex: 'image',
       key: 'image',
-      width: '30%',
-      ...getColumnSearchProps('code'),
       render: (text, record) => (
         <div className="userList">
           <img src={photoIcon} alt="" className="userImg"  />
@@ -175,15 +167,13 @@ const RowProduit = () => {
       title: 'Produits',
       dataIndex: 'produit',
       key: 'produit',
-      width: '20%',
       ...getColumnSearchProps('produits'),
     },
     {
       title: 'Prix',
       dataIndex: 'prix',
       key: 'prix',
-      ...getColumnSearchProps('prix'),
-      sorter: (a, b) => a.address.length - b.address.length,
+      sorter: (a, b) => a.prix.length - b.prix.length,
       sortDirections: ['descend', 'ascend'],
       render: (text) => (
         <span>

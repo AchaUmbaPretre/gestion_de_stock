@@ -22,7 +22,7 @@ const RowTotalDetail = () => {
                 <div className="rowTotalDetail-row" style={{background: 'rgb(131, 159, 241)'}}>
                     <div className="rowTotalDetail-left">
                         <h2 className="rowTotal-h2">50</h2>
-                        <span className="rowTotal-span">Fournisseurs</span>
+                        <span className="rowTotal-span">Livreurs</span>
                     </div>
                     <div className="rowTotalDetail-right">
                     <UsergroupAddOutlined className='rowTotalIcon'/>
@@ -31,7 +31,7 @@ const RowTotalDetail = () => {
                 <div className="rowTotalDetail-row" style={{background: 'rgba(53, 52, 52, 0.719)'}}>
                     <div className="rowTotalDetail-left">
                         <h2 className="rowTotal-h2">150</h2>
-                        <span className="rowTotal-span">Facture d'achat</span>
+                        <span className="rowTotal-span">Produits</span>
                     </div>
                     <div className="rowTotalDetail-right">
                         <SnippetsOutlined className='rowTotalIcon'/>

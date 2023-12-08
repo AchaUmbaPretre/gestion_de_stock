@@ -3,12 +3,14 @@ import './clientForm.scss'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Select from 'react-select';
 import config from '../../../config';
 
 const ClientForm = () => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
   const [data, setData] = useState({})
   const navigate = useNavigate();
+  const [province, setProvince] = useState([]);
 
   const handleInputChange = (e) => {
     const fieldName = e.target.name;
@@ -49,6 +51,17 @@ const ClientForm = () => {
     }
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`${DOMAIN}/api/peuple/province`);
+        setProvince(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <>
         <div className="clientForm">
@@ -67,7 +80,7 @@ const ClientForm = () => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Raison sociale</label>
-                  <select id="" className="form-input" name="raison_sociale" onChange={handleInputChange}>
+                  <select id="" className="form-input" name="raison_sociale" onChange={handleInputChange} required>
                     <option value="" disabled>Selectionnez une raison sociale</option>
                     <option value="Client VIP">client VIP</option>
                     <option value="Client Normal">client Normal</option>
@@ -83,7 +96,11 @@ const ClientForm = () => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Ville</label>
-                  <input type="text" name="ville" className="form-input" onChange={handleInputChange} required/>
+                  <Select
+                    name="ville"
+                    options={province?.map(item => ({ value: item.id, label: item.nom }))}
+                    onChange={selectedOption => handleInputChange({ target: { name: 'ville', value: selectedOption.value } })}
+                  />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Adresse</label>

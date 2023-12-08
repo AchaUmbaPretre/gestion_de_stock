@@ -78,12 +78,12 @@ const Emplacement = () => {
     };
     
     const handleDelete = async (id) => {
-     /*  try {
-        await axios.delete(`${DOMAIN}/api/admin/presence/${id}`);
+     try {
+        await axios.delete(`${DOMAIN}/api/produit/emplacement/${id}`);
           window.location.reload();
       } catch (err) {
         console.log(err);
-      } */
+      }
     };
 
     useEffect(() => {
@@ -132,11 +132,11 @@ const Emplacement = () => {
                         <h2 className="categorie-title">Ajouter emplacement</h2>
                         <div className="categorie-form">
                             <label htmlFor="">Nom</label>
-                            <input type="text" className="input-form" name='nom' onChange={handleInputChange} />
+                            <input type="text" className="input-form" name='nom' placeholder='Entrer le nom...' onChange={handleInputChange} />
                         </div>
                         <div className="categorie-form">
                             <label htmlFor="">Capacité maximale</label>
-                            <input type="number" className="input-form" name='capacite' onChange={handleInputChange} />
+                            <input type="number" className="input-form" name='capacite' placeholder='ex: 10' onChange={handleInputChange} />
                         </div>
                         <button className="categorie-btn" onClick={handleClick} >Envoyer</button>
                     </div>

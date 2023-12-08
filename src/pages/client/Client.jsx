@@ -140,12 +140,12 @@ const Client = () => {
     }, []);
     
     const handleDelete = async (id) => {
-     /*  try {
-        await axios.delete(`${DOMAIN}/api/admin/presence/${id}`);
+     try {
+        await axios.put(`${DOMAIN}/api/peuple/clientDelete/${id}`);
           window.location.reload();
       } catch (err) {
         console.log(err);
-      } */
+      } 
     };
     
       const columns = [
@@ -174,9 +174,9 @@ const Client = () => {
           },
         {
           title: 'Ville',
-          dataIndex: 'ville',
-          key: 'ville',
-          ...getColumnSearchProps('ville')
+          dataIndex: 'nom',
+          key: 'nom',
+          ...getColumnSearchProps('nom')
         },
         {
             title: 'Adresse',
@@ -197,7 +197,7 @@ const Client = () => {
                 >
                   <Button icon={<EditOutlined />} style={{ color: 'green' }} />
                 </Popconfirm>
-                <Link to={`/presenceListView/${record.emp1_id}`}>
+                <Link to={`/presenceListView/${record.id}`}>
                   <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
                 </Link>
                 <Popconfirm

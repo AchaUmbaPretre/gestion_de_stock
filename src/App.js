@@ -23,6 +23,9 @@ import Utilisateurs from './pages/utilisateurs/Utilisateurs';
 import UtilisateurForm from './pages/utilisateurs/utilisateurForm/UtilisateurForm';
 import RapportVente from './pages/rapportVente.jsx/RapportVente';
 import ProductView from './pages/products/productView/ProductView';
+import VenteView from './pages/ventes/venteView/VenteView';
+import RetourForm from './pages/retour/retourForm/RetourForm';
+import Retour from './pages/retour/Retour';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -83,8 +86,20 @@ function App() {
           element: <Ventes />
         },
         {
+          path: '/venteView/:id',
+          element: <VenteView />
+        },
+        {
           path: '/ventesForm',
           element: <VentesForm />
+        },
+        {
+          path: '/retour',
+          element: <Retour/>
+        },
+        {
+          path: '/retourForm',
+          element: <RetourForm />
         },
         {
           path: '/clients',

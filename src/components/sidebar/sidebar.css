@@ -1,23 +1,25 @@
 .sidebar{
-    flex: 1.8;
+    flex: 1.5;
     height: calc(100vh - 65px);
-    background: white;
+    background:rgba(1, 35, 138, 0.952);
     top:50px;
     position: sticky;
     border-right: 1px solid #c2c2c2;
     color: #8b8b8b;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 .sidebarWrapper{
-    padding: 20px 10px;
-    color: #555;
+    
 }
 .sidebarMenu{
     margin-bottom: 10px;
 }
 .sidebarH3{
-    font-size: 15px;
-    color: rgb(1, 35, 138);
+    font-size: 14px;
+    color: #fafafa;
 }
 .sidebarH2{
     font-size: 15px;

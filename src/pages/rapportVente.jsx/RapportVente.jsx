@@ -63,6 +63,7 @@ const RapportVente = () => {
                 <div className="product-container-top">
                     <div className="product-left">
                         <h2 className="product-h2">Rapport de ventes</h2>
+                        <span>Voir le rapport des ventes</span>
                     </div>
                     <div className="product-right">
                         <span className="product-text">Selectionnez un mois</span>

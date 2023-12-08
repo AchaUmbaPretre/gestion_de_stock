@@ -58,7 +58,7 @@ const Ventes = () => {
                   width: 90,
                 }}
               >
-                Search
+                Recherche
               </Button>
               <Button
                 onClick={() => clearFilters && handleReset(clearFilters)}
@@ -67,7 +67,7 @@ const Ventes = () => {
                   width: 90,
                 }}
               >
-                Reset
+                Supprimer
               </Button>
               <Button
                 type="link"
@@ -129,50 +129,43 @@ const Ventes = () => {
     };
     
     const handleDelete = async (id) => {
-     /*  try {
-        await axios.delete(`${DOMAIN}/api/admin/presence/${id}`);
+    try {
+        await axios.put(`${DOMAIN}/api/vente/venteDelete/${id}`);
           window.location.reload();
       } catch (err) {
         console.log(err);
-      } */
+      }
     };
     
       const columns = [
+        { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width:"3%"},
         {
           title: 'image',
           dataIndex: 'img',
           key: 'image',
-          width: '10%',
           render: (text, record) => (
             <div className="userList">
-              <img src={photoIcon} alt="" className="userImg"  />
+              <img src={record.img} alt="" className="userImg"  />
             </div>
           )
         },
         {
             title: 'Nom produit',
-            dataIndex: 'produit_id',
+            dataIndex: 'nom_produit',
             key: 'code'
           },
         {
           title: 'Client',
-          dataIndex: 'client_id',
+          dataIndex: 'nom_client',
           key: 'client',
-          ...getColumnSearchProps('client_id'),
+          ...getColumnSearchProps('nom_client'),
         },
-          {
-            title: 'Livreur',
-            dataIndex: 'livreur_id',
-            key: 'pointure',
-            ...getColumnSearchProps('pointure'),
-            sorter: (a, b) => a.pointure.length - b.pointure.length,
-            sortDirections: ['descend', 'ascend'],
-            render: (text) => (
-              <span>
-                {parseFloat(text)}
-              </span>
-            ),
-          },
+        {
+          title: 'Livreur',
+          dataIndex: 'prenom',
+          key: 'prenom',
+            ...getColumnSearchProps('prenom')
+        },
         {
           title: 'Prix unitaire',
           dataIndex: 'prix_unitaire',
@@ -220,7 +213,7 @@ const Ventes = () => {
                 >
                   <Button icon={<EditOutlined />} style={{ color: 'green' }} />
                 </Popconfirm>
-                <Link to={`/presenceListView/${record.emp1_id}`}>
+                <Link to={`/venteView/${record.id}`}>
                   <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
                 </Link>
                 <Popconfirm

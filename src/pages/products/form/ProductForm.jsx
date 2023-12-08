@@ -121,7 +121,7 @@ const ProductForm = () => {
               <div className="product-container-bottom">
                 <div className="form-controle">
                   <label htmlFor="">Nom du produit</label>
-                  <input type="text" name='nom_produit' className="form-input" onChange={handleInputChange} />
+                  <input type="text" name='nom_produit' className="form-input" placeholder='Entrer le nom...' onChange={handleInputChange} />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Catégorie</label>
@@ -145,11 +145,11 @@ const ProductForm = () => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Pointure</label>
-                  <input type="number" name='pointure' className="form-input" onChange={handleInputChange}  />
+                  <input type="number" name='pointure' className="form-input" placeholder='ex: 40' onChange={handleInputChange}  />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Quantité</label>
-                  <input type="number" name='quantite_stock' className="form-input" onChange={handleInputChange}  />
+                  <input type="number" name='quantite_stock' className="form-input" placeholder='ex: 10' onChange={handleInputChange}  />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Emplacement</label>
@@ -161,7 +161,7 @@ const ProductForm = () => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Prix</label>
-                  <input type="number" name='prix' className="form-input" onChange={handleInputChange} />
+                  <input type="number" name='prix' className="form-input" placeholder='ex: 100$' onChange={handleInputChange} />
                 </div>
               </div>
               <div className="form-controleFile" onClick={() => document.getElementById('file-upload').click()}>

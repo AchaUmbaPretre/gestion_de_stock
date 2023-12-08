@@ -136,11 +136,11 @@ console.log(data)
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Quantité</label>
-                  <input type="number" className="form-input" name='quantite' onChange={handleInputChange}  required/>
+                  <input type="number" className="form-input" name='quantite' onChange={handleInputChange} placeholder='ex: 10'  required/>
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Prix unitaire</label>
-                  <input type="number" className="form-input" name='prix_unitaire' onChange={handleInputChange}  required/>
+                  <input type="number" className="form-input" name='prix_unitaire' placeholder='ex: 100$' onChange={handleInputChange}  required/>
                 </div>
             </div>
             <div className="form-submit">
