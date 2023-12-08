@@ -41,8 +41,8 @@ const RowProduit = () => {
 
   const content = (
     <div className='popOverSous' style={{display: 'flex', flexDirection: "column", gap: "10px"}}>
-      <Link>Liste des produits</Link>
-      <Link>Ajouter un produit</Link>
+      <Link to={'/products'}>Liste des produits</Link>
+      <Link to="/productForm" >Ajouter un produit</Link>
     </div>
   )
 
