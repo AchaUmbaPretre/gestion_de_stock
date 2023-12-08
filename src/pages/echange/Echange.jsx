@@ -11,7 +11,7 @@ const Echange = () => {
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const [loading, setLoading] = useState(true);
-    const [retour, setRetour] = useState([]);
+    const [echange, setEchange] = useState([]);
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
@@ -128,8 +128,8 @@ const Echange = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const { data } = await axios.get(`${DOMAIN}/api/vente/retour`);
-          setRetour(data);
+          const { data } = await axios.get(`${DOMAIN}/api/vente/echange`);
+          setEchange(data);
           setLoading(false)
         } catch (error) {
           console.log(error);
@@ -140,7 +140,7 @@ const Echange = () => {
     
     const handleDelete = async (id) => {
      try {
-        await axios.put(`${DOMAIN}/api/peuple/clientDelete/${id}`);
+        await axios.put(`${DOMAIN}/api/vente/echangeDelete/${id}`);
           window.location.reload();
       } catch (err) {
         console.log(err);
@@ -151,13 +151,13 @@ const Echange = () => {
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width: '5%' },
         {
             title: 'Client',
-            dataIndex: 'nom',
+            dataIndex: 'client_id',
             key: 'nom',
             ...getColumnSearchProps('nom'),
         },
         {
             title: 'Produit',
-            dataIndex: 'nom_produit',
+            dataIndex: 'produit_id',
             key: 'produit',
             ...getColumnSearchProps('nom_produit'),
         },
@@ -167,8 +167,8 @@ const Echange = () => {
             key: 'quantite'
         },
         {
-            title: 'Motif',
-            dataIndex: 'motif',
+            title: 'Produit échange',
+            dataIndex: 'produit_echange_id',
             key: 'motif',
         },
         {
@@ -186,9 +186,6 @@ const Echange = () => {
                 >
                   <Button icon={<EditOutlined />} style={{ color: 'green' }} />
                 </Popconfirm>
-                <Link to={`/presenceListView/${record.id}`}>
-                  <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
-                </Link>
                 <Popconfirm
                   title="Êtes-vous sûr de vouloir supprimer?"
                   onConfirm={() => handleDelete(record.id)}
@@ -208,12 +205,12 @@ const Echange = () => {
             <div className="product-container">
                 <div className="product-container-top">
                     <div className="product-left">
-                        <h2 className="product-h2">Liste des retours</h2>
-                        <span>Gérer des retours</span>
+                        <h2 className="product-h2">Liste des échanges</h2>
+                        <span>Gérer vos échanges</span>
                     </div>
-                    <div className="product-right" onClick={() =>navigate('/retourForm')}>
+                    <div className="product-right" onClick={() =>navigate('/echangeForm')}>
                         <PlusOutlined />
-                        <span className="product-btn">Ajouter un nouveau retour</span>
+                        <span className="product-btn">Ajouter un nouveau échange</span>
                     </div>
                 </div>
                 <div className="product-bottom">
@@ -232,7 +229,7 @@ const Echange = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={retour} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={echange} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>

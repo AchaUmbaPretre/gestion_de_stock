@@ -62,7 +62,7 @@ const EchangeForm = () => {
     e.preventDefault();
 
     try{
-      await axios.post(`${DOMAIN}/api/vente/retour`, data)
+      await axios.post(`${DOMAIN}/api/vente/echange`, data)
       Swal.fire({
         title: 'Success',
         text: 'Retour créé avec succès!',
@@ -70,7 +70,7 @@ const EchangeForm = () => {
         confirmButtonText: 'OK',
       });
 
-      navigate('/retour')
+      navigate('/echange')
       window.location.reload();
 
     }catch(err) {
@@ -89,8 +89,8 @@ const EchangeForm = () => {
           <div className="product-container">
             <div className="product-container-top">
               <div className="product-left">
-                <h2 className="product-h2">Ajouter un retour</h2>
-                <span>Créer un nouveau retour</span>
+                <h2 className="product-h2">Ajouter un échange</h2>
+                <span>Créer un nouveau échange</span>
               </div>
             </div>
             <div className="product-wrapper">
@@ -116,8 +116,12 @@ const EchangeForm = () => {
                   <input type="number" name='quantite' className="form-input" placeholder='ex: 2' onChange={handleInputChange}  />
                 </div>
                 <div className="form-controle">
-                  <label htmlFor="">Motif</label>
-                  <input type="text" name='motif' className="form-input" placeholder='Entrer le motif...' onChange={handleInputChange}  />
+                  <label htmlFor="">Produit échange</label>
+                  <Select
+                      name="produit_echange_id "
+                      options={produit?.map(item => ({ value: item.produit_id, label: `${item.nom_produit} de couleur ${item.couleur}` }))}
+                      onChange={selectedOption => handleInputChange({ target: { name: 'produit_echange_id', value: selectedOption.value } })}
+                  />
                 </div>
               </div>
               <div className="form-submit">
