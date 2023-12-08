@@ -26,6 +26,8 @@ import ProductView from './pages/products/productView/ProductView';
 import VenteView from './pages/ventes/venteView/VenteView';
 import RetourForm from './pages/retour/retourForm/RetourForm';
 import Retour from './pages/retour/Retour';
+import Echange from './pages/echange/Echange';
+import EchangeForm from './pages/echange/echangeForm/EchangeForm';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -100,6 +102,14 @@ function App() {
         {
           path: '/retourForm',
           element: <RetourForm />
+        },
+        {
+          path: '/echange',
+          element: <Echange/>
+        },
+        {
+          path: '/echangeForm',
+          element: <EchangeForm/>
         },
         {
           path: '/clients',

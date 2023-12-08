@@ -10,7 +10,6 @@ const Echange = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
-    const [getClient, setGetClient] = useState();
     const [loading, setLoading] = useState(true);
     const [retour, setRetour] = useState([]);
     const searchInput = useRef(null);
