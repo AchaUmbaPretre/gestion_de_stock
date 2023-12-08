@@ -14,7 +14,7 @@ const { SubMenu, Item } = Menu;
 
 const Sidebar = () => {
   return (
-    <Menu mode="vertical" theme="light" className="sidebar">
+    <Menu mode="vertical" theme="dark" className="sidebar">
       <div className="sidebarWrapper">
         
       </div>

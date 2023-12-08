@@ -21,7 +21,7 @@
     font-style:oblique;
     font-weight: bold;
     cursor: pointer;
-    color: rgb(1, 35, 138);
+    color: rgba(1, 35, 138, 0.952);
 }
 .topbar-right{
     display: flex;
