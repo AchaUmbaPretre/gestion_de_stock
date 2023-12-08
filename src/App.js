@@ -128,6 +128,10 @@ function App() {
           element: <ClientForm />
         },
         {
+          path: '/clientForm/:id',
+          element: <ClientForm />
+        },
+        {
           path: '/livreur',
           element: <Livreur />
         },

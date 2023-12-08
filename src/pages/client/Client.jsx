@@ -123,7 +123,7 @@ const Client = () => {
       });
 
       const handleEdit = (id) => {
-        navigate(`/presenceEdit/${id}`);
+        navigate(`/clientForm/${id}`);
     };
 
     useEffect(() => {
