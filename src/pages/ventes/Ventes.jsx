@@ -171,10 +171,10 @@ const Ventes = () => {
           dataIndex: 'prix_unitaire',
           key: 'prix',
           sorter: (a, b) => a.prix_unitaire.length - b.prix_unitaire.length,
-          sortDirections: ['descend', 'ascend'],
+          sortDirections: ['descendre', 'monter'],
           render: (text) => (
             <span>
-              {parseFloat(text).toLocaleString('en-US', {
+              {parseFloat(text).toLocaleString('fr-FR', {
                 style: 'currency',
                 currency: 'USD',
               })}
