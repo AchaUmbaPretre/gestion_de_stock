@@ -160,10 +160,10 @@ const columns = [
     },
     {
       title: 'Couleur',
-      dataIndex: 'couleur',
-      key: 'couleur',
+      dataIndex: 'nom_couleur',
+      key: 'nom_couleur',
       width: '10%',
-        ...getColumnSearchProps('couleur'),
+        ...getColumnSearchProps('nom_couleur'),
     },
     {
       title: 'Categorie',
