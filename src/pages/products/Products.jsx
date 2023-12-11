@@ -137,7 +137,7 @@ const Products = () => {
           window.location.reload();
       } catch (err) {
         console.log(err);
-      } 
+      }
     };
     
 const columns = [
@@ -212,18 +212,18 @@ const columns = [
           <Space size="middle">
             <Popconfirm
               title="Êtes-vous sûr de vouloir modifier?"
-              onConfirm={()=> handleEdit(record.id)}
+              onConfirm={()=> handleEdit(record.produit_id)}
               okText="Oui"
               cancelText="Non"
             >
               <Button icon={<EditOutlined />} style={{ color: 'green' }} />
             </Popconfirm>
-            <Link to={`/productView/${record.id}`}>
+            <Link to={`/productView/${record.produit_id}`}>
               <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
             </Link>
             <Popconfirm
               title="Êtes-vous sûr de vouloir supprimer?"
-              onConfirm={() => handleDelete(record.id)}
+              onConfirm={() => handleDelete(record.produit_id)}
               okText="Oui"
               cancelText="Non"
             >

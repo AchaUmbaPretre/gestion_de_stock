@@ -103,7 +103,7 @@ const ProductForm = () => {
       await axios.post(`${DOMAIN}/api/produit/produit`, data)
       Swal.fire({
         title: 'Success',
-        text: 'Categorie créé avec succès!',
+        text: 'Produit créé avec succès!',
         icon: 'success',
         confirmButtonText: 'OK',
       });
