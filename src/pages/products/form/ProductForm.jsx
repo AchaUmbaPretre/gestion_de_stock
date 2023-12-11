@@ -171,10 +171,10 @@ const ProductForm = () => {
                 <div className="form-controle">
                   <label htmlFor="">Emplacement</label>
                   <Select
-                      name="emplacement"
-                      options={getData?.map(item => ({ value: item.id, label: item.nom }))}
-                      onChange={selectedOption => handleInputChange({ target: { name: 'emplacement', value: selectedOption.value } })}
-                    />
+                    name="emplacement"
+                    options={getData?.map(item => ({ value: item.id, label: item.nom }))}
+                    onChange={selectedOption => handleInputChange({ target: { name: 'emplacement', value: selectedOption.value } })}
+                  />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Prix</label>
