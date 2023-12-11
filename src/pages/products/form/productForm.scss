@@ -47,6 +47,31 @@
                     outline: none;
                     border: 1px solid #c5c5c5;
                     border-radius: 5px;
+                    &:focus{
+                        border: 1px solid rgba(36, 36, 250, 0.418);
+                    }
+                }
+            }
+        }
+        .form-controle-desc{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            label{
+                margin-top: 20px;
+                font-size: .9rem;
+                color: #797979;
+            }
+            textarea{
+                padding: 10px;
+                border: none;
+                outline: none;
+                border: 1px solid #c5c5c5;
+                border-radius: 5px;
+                resize: none;
+                height: 120px;
+                &:focus{
+                    border: 1px solid rgba(36, 36, 250, 0.418);
                 }
             }
         }
@@ -72,6 +97,9 @@
                 gap: 10px;
                 border-radius: 5px;
                 cursor: pointer;
+                &:focus{
+                    border: 1px solid rgba(36, 36, 250, 0.418);
+                }
                 label{
                     font-size: .9rem;
                     color: #797979;

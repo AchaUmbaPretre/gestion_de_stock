@@ -181,6 +181,10 @@ const ProductForm = () => {
                   <input type="number" name='prix' className="form-input" placeholder='ex: 100$' onChange={handleInputChange} />
                 </div>
               </div>
+              <div className="form-controle-desc">
+                <label htmlFor="">Description</label>
+                <textarea name="" id="" cols="30" rows="10" placeholder='Description.....'></textarea>
+              </div>
               <div className="form-controleFile" onClick={() => document.getElementById('file-upload').click()}>
                 <label htmlFor="">Image du produit</label>
                 <input type="file" name='img' className="form-input" style={{display:"none"}} lable="Profil"

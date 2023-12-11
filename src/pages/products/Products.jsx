@@ -174,8 +174,8 @@ const columns = [
       title: 'Prix',
       dataIndex: 'prix',
       key: 'prix',
-      sorter: (a, b) => a.prix.length - b.prix.length,
-      sortDirections: ['descendre', 'monter'],
+      sorter: (a, b) => a.prix - b.prix,
+      sortDirections: ['descend', 'ascend'],
       render: (text) => (
         <span>
           {parseFloat(text).toLocaleString('fr-FR', {
@@ -189,14 +189,14 @@ const columns = [
       title: 'Quantité',
       dataIndex: 'quantite_stock',
       key: 'prix',
-        sorter: (a, b) => a.quantite_stock.length - b.quantite_stock.length,
+        sorter: (a, b) => a.quantite_stock - b.quantite_stock,
       sortDirections: ['descend', 'ascend']
     },
     {
       title: 'Date',
       dataIndex: 'date_entree',
       key: 'date',
-        sorter: (a, b) => a.date_entree.length - b.date_entree.length,
+        sorter: (a, b) => a.date_entree - b.date_entree,
       sortDirections: ['descend', 'ascend'],
         render: (text) => (
           <span>
