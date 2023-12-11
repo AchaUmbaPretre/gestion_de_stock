@@ -183,13 +183,13 @@ const ProductForm = () => {
               </div>
               <div className="form-controle-desc">
                 <label htmlFor="">Description</label>
-                <textarea name="description" id="" placeholder='Description.....'></textarea>
+                <textarea name="description" id="" placeholder='Description.....' onChange={handleInputChange}></textarea>
               </div>
               <div className="form-controleFile" onClick={() => document.getElementById('file-upload').click()}>
                 <label htmlFor="">Image du produit</label>
                 <input type="file" name='img' className="form-input" style={{display:"none"}} lable="Profil"
-                    id='file-upload'
-                    accept='.jpeg, .png, .jpg' onChange={handleInputChange} />
+                  id='file-upload'
+                  accept='.jpeg, .png, .jpg' onChange={handleInputChange} />
                 <div className="form-file">
                   <CloudUploadOutlined className='cloud-icon' />
                   <span>Glissez et déposez un fichier à télécharger</span>
