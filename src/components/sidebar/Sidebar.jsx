@@ -23,10 +23,10 @@ const Sidebar = () => {
           Accueil
         </Link>
       </Item>
-      <SubMenu key="products" title={<span className="sidebarH3">Products</span>} icon={<ShoppingCartOutlined style={{ fontSize: '19px', color: '#fafafa' }} />}>
+      <SubMenu key="products" title={<span className="sidebarH3">Produits</span>} icon={<ShoppingCartOutlined style={{ fontSize: '19px', color: '#fafafa' }} />}>
         <Item key="allProducts">
           <Link to="/products" className="sidebarLink">
-            Products
+            Produits
           </Link>
         </Item>
         <Item key="productForm">
@@ -42,6 +42,11 @@ const Sidebar = () => {
         <Item key="brands">
           <Link to="/emplacement" className="sidebarLink">
             Emplacements
+          </Link>
+        </Item>
+        <Item key="brands">
+          <Link to="/matiere" className="sidebarLink">
+            Matières
           </Link>
         </Item>
       </SubMenu>
