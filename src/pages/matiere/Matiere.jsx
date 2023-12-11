@@ -30,9 +30,9 @@ const Matiere = () => {
       const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width: '8%' },
         {
-            title: 'Categorie',
-            dataIndex: 'nom_categorie',
-            key: 'categorie',
+            title: 'Matiere',
+            dataIndex: 'nom',
+            key: 'nom',
             
         },
         {
