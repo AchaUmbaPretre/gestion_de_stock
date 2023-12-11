@@ -107,8 +107,8 @@ const ProductForm = () => {
         icon: 'success',
         confirmButtonText: 'OK',
       });
-      window.location.reload();
       navigate('/products')
+      window.location.reload();
 
     }catch(err) {
       Swal.fire({
