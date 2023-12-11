@@ -11,8 +11,8 @@ const Matiere = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
-    const [nomCategorie, setNomCategorie] = useState();
-    const [getCategorie, setGetCategorie] = useState()
+    const [nomMatiere, setNomMatiere] = useState();
+    const [getMatiere, setGetMatiere] = useState()
     const searchInput = useRef(null);
     const scroll = { x: 400 };
 
@@ -22,6 +22,11 @@ const Matiere = () => {
         setSearchedColumn(dataIndex);
       };
   
+      const handleInputChange = (e) => {
+        const value = e.target.value;
+        const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
+        setNomMatiere(capitalizedValue);
+      };
 
       const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width: '8%' },
@@ -63,7 +68,7 @@ const Matiere = () => {
         e.preventDefault();
 
         try{
-          await axios.post(`${DOMAIN}/api/produit/categorie`, {nom_categorie : nomCategorie})
+          await axios.post(`${DOMAIN}/api/produit/matiere`, {nom : nomMatiere})
           Swal.fire({
             title: 'Success',
             text: 'Categorie créé avec succès!',
@@ -85,8 +90,8 @@ const Matiere = () => {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const { data } = await axios.get(`${DOMAIN}/api/produit/categorie`);
-            setGetCategorie(data);
+            const { data } = await axios.get(`${DOMAIN}/api/produit/matiere`);
+            setGetMatiere(data);
           } catch (error) {
             console.log(error);
           }
@@ -95,12 +100,12 @@ const Matiere = () => {
       }, []);
 
       const handleEdit = (id) => {
-        navigate(`/categories/${id}`);
+        navigate(`/matiere/${id}`);
     };
     
     const handleDelete = async (id) => {
      try {
-        await axios.delete(`${DOMAIN}/api/produit/categorie/${id}`);
+        await axios.delete(`${DOMAIN}/api/produit/matiere/${id}`);
           window.location.reload();
       } catch (err) {
         console.log(err);
@@ -120,7 +125,7 @@ const Matiere = () => {
                 <div className="categorie-container-bottom">
                     <div className="categorie-container-left">
                         <h2 className="categorie-title">Ajouter une matière</h2>
-                        <input type="text" name='nom_categorie' onChange={(e)=> setNomCategorie(e.target.value)} placeholder='Entrer une matière...' className="categorie-input" />
+                        <input type="text" name='nom' onChange={handleInputChange} value={nomMatiere} placeholder='Entrer une matière...' className="categorie-input" />
                         <button className="categorie-btn" onClick={handleClick}>Envoyer</button>
                     </div>
                     <div className="categorie-container-right">
@@ -135,7 +140,7 @@ const Matiere = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
-                            <Table columns={columns} dataSource={getCategorie} scroll={scroll} pagination={{ pageSize: 5}} />
+                            <Table columns={columns} dataSource={getMatiere} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
                 </div>
