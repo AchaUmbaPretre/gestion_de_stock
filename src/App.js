@@ -28,6 +28,7 @@ import RetourForm from './pages/retour/retourForm/RetourForm';
 import Retour from './pages/retour/Retour';
 import Echange from './pages/echange/Echange';
 import EchangeForm from './pages/echange/echangeForm/EchangeForm';
+import Matiere from './pages/matiere/Matiere';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -94,6 +95,10 @@ function App() {
         {
           path: '/emplacement/:id',
           element: <Emplacement />
+        },
+        {
+          path: '/matiere',
+          element: <Matiere />
         },
         {
           path: '/ventes',
