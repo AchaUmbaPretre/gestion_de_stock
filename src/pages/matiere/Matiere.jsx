@@ -140,7 +140,7 @@ const Matiere = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
-                            <Table columns={columns} dataSource={getMatiere} scroll={scroll} pagination={{ pageSize: 5}} />
+                            <Table columns={columns} dataSource={getMatiere} scroll={scroll} pagination={{ pageSize: 3}} />
                         </div>
                     </div>
                 </div>

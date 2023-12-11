@@ -15,6 +15,7 @@ const ProductForm = () => {
   const [getCategorie, setGetCategorie] = useState([]);
   const [getData, setGetData] = useState([]);
   const [couleur, setCouleur] = useState([]);
+  const [getMatiere, setGetMatiere] = useState([]);
   const navigate = useNavigate();
 
   const handleInputChange = async (e) => {
@@ -82,6 +83,18 @@ const ProductForm = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`${DOMAIN}/api/produit/matiere`);
+        setGetMatiere(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -141,7 +154,11 @@ const ProductForm = () => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Matière</label>
-                  <input type="text" name='matiere' className="form-input" onChange={handleInputChange}  />
+                  <Select
+                    name='matiere'
+                    options={getMatiere?.map(item => ({ value: item.id, label: item.nom }))}
+                    onChange={selectedOption => handleInputChange({ target: { name: 'matiere', value: selectedOption.value } })}
+                  />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Pointure</label>
