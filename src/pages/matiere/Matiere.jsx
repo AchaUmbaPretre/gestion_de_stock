@@ -71,7 +71,7 @@ const Matiere = () => {
           await axios.post(`${DOMAIN}/api/produit/matiere`, {nom : nomMatiere})
           Swal.fire({
             title: 'Success',
-            text: 'Categorie créé avec succès!',
+            text: 'Matière créé avec succès!',
             icon: 'success',
             confirmButtonText: 'OK',
           });
