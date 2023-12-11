@@ -183,7 +183,7 @@ const ProductForm = () => {
               </div>
               <div className="form-controle-desc">
                 <label htmlFor="">Description</label>
-                <textarea name="" id="" cols="30" rows="10" placeholder='Description.....'></textarea>
+                <textarea name="description" id="" placeholder='Description.....'></textarea>
               </div>
               <div className="form-controleFile" onClick={() => document.getElementById('file-upload').click()}>
                 <label htmlFor="">Image du produit</label>
