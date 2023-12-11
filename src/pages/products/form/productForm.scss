@@ -115,10 +115,24 @@
                 }
             }
         }
+        .form-img{
+            height: 150px;
+            width: 150px;
+            border: 1px solid #c5c5c5;
+            position: relative;
+            overflow: hidden;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .capture-img{
+                height: 100%;
+            }
+        }
         .form-submit{
             display: flex;
             gap: 10px;
-            padding-top: 10px;
+            margin-top: 15px;
             .btn-submit{
                 padding: 15px 20px;
                 border: none;

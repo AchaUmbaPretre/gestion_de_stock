@@ -99,7 +99,7 @@ const Matiere = () => {
         fetchData();
       }, []);
 
-      const handleEdit = (id) => {
+    const handleEdit = (id) => {
         navigate(`/matiere/${id}`);
     };
     

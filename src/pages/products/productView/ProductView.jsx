@@ -13,8 +13,6 @@ const ProductView = () => {
                         <h2 className="product-h2">Detail du produit</h2>
                         <span>Voir les details</span>
                     </div>
-                    <div className="product-right" onClick={() =>navigate('/productForm')}>
-                    </div>
                 </div>
             </div>
         </div>

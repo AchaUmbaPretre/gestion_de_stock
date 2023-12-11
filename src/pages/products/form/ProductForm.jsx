@@ -195,6 +195,9 @@ const ProductForm = () => {
                   <span>Glissez et déposez un fichier à télécharger</span>
                 </div>
               </div>
+              <div className='form-img'>
+                <img src={data.img} alt="" className='capture-img'/>
+              </div>
               <div className="form-submit">
                 <button className="btn-submit" onClick={handleClick}>Soumetre</button>
                 <button className="btn-submit btn-annuler">Annuler</button>
