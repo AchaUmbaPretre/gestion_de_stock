@@ -1,5 +1,5 @@
 import './products.scss'
-import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
+import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined,CheckCircleOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
 import ProductSelects from './productSelects/ProductSelects';
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../config';
+import { Tag } from 'antd';
 
 const Products = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -163,7 +164,30 @@ const columns = [
       dataIndex: 'nom_couleur',
       key: 'nom_couleur',
       width: '10%',
-        ...getColumnSearchProps('nom_couleur'),
+      ...getColumnSearchProps('nom_couleur'),
+      render: (nom_couleur) => {
+        let color = '';
+  
+        switch (nom_couleur) {
+          case 'Noir':
+            color = 'black';
+            break;
+          case 'Marron':
+            color = 'brown';
+            break;
+          case 'Gris':
+            color = 'gray';
+            break;
+          case 'Blanc':
+            color = 'white';
+            break;
+          default:
+            color = 'default';
+            break;
+        }
+  
+        return <Tag color={color}>{nom_couleur}</Tag>;
+      },
     },
     {
       title: 'Categorie',
@@ -188,9 +212,23 @@ const columns = [
     {
       title: 'Quantité',
       dataIndex: 'quantite_stock',
-      key: 'prix',
-        sorter: (a, b) => a.quantite_stock - b.quantite_stock,
-      sortDirections: ['descend', 'ascend']
+      key: 'quantite_stock',
+      sorter: (a, b) => a.quantite_stock - b.quantite_stock,
+      sortDirections: ['descend', 'ascend'],
+      render: (quantite_stock) => (
+        <Tag color={quantite_stock > 0 ? 'green' : 'red'}>{quantite_stock}</Tag>
+      ),
+    },
+    {
+      title: 'Statut',
+      dataIndex: 'statut',
+      key: 'statut',
+      render: (statut) => (
+        <Tag color={statut === 'Actif' ? 'green' : 'red'}>
+          {statut === 'Actif' ? <CheckCircleOutlined style={{paddingRight: "5px"}}/> : null}
+          {statut}
+        </Tag>
+      ),
     },
     {
       title: 'Date',

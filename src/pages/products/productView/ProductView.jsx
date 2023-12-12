@@ -14,7 +14,6 @@ const ProductView = () => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
     const id = pathname.split('/')[2]
-    const {nom_produit,nom_categorie,pointure, nom_couleur,quantite_stock,prix,date_entree,description,img} = getProduit
 
     useEffect(() => {
         const fetchData = async () => {
@@ -49,39 +48,39 @@ const ProductView = () => {
                             </tr>
                             <tr>
                                 <th scope="row">Produit</th>
-                                <td>{nom_produit}</td>
+                                <td>{getProduit?.nom_produit}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Catégorie</th>
-                                <td>{nom_categorie}</td>
+                                <td>{getProduit?.nom_categorie}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Matière</th>
-                                <td>9</td>
+                                <td>{getProduit?.nom_matiere}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Pointure</th>
-                                <td>{pointure}</td>
+                                <td>{getProduit?.pointure}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Couleur</th>
-                                <td>{nom_couleur}</td>
+                                <td>{getProduit?.nom_couleur}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Quantité</th>
-                                <td>{quantite_stock}</td>
+                                <td>{getProduit?.quantite_stock}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Prix</th>
-                                <td>{prix} $</td>
+                                <td>{getProduit?.prix} $</td>
                             </tr>
                             <tr>
                                 <th scope="row">Marque</th>
-                                <td>9</td>
+                                <td>{getProduit?.nom_marque}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Emplacement</th>
-                                <td>9</td>
+                                <td>{getProduit?.nom_emplacement}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Date d'entrée</th>
@@ -93,13 +92,13 @@ const ProductView = () => {
                             </tr>
                             <tr>
                                 <th scope="row">Description</th>
-                                <td>{description}</td>
+                                <td>{getProduit?.description}</td>
                             </tr>
                         </table>
                     </div>
                     <div className="product-view-right">
                         <div className="product-img-row">
-                            <img src={img} alt="" className="product-img" />
+                            <img src={getProduit?.img} alt="" className="product-img" />
                         </div>
                     </div>
                 </div>
