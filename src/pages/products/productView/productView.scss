@@ -26,7 +26,7 @@
             gap: 20px;
             .product-view-left{
                 flex: 4;
-                padding: 20px;
+                padding: 30px;
                 background: #fff;
                 -webkit-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
                 box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
@@ -35,33 +35,29 @@
                 table{
                     width: 100%;
                     border-collapse: collapse;
-                    border: 2px solid rgb(200, 200, 200);
+                    border: 2px solid rgb(224, 224, 224);
                     letter-spacing: 1px;
                     font-family: sans-serif;
                     font-size: 0.8rem;
-                    caption{
-                        padding: 10px;
-                    }
                     tr{
                         &:nth-child(even) {
                             background-color: #eee;
                           }
                         
                         td,th{
-                            border: 1px solid rgb(190, 190, 190);
+                            border: 1px solid rgb(216, 216, 216);
                             padding: 15px;
                             td {
                                 text-align: center;
                               }
                         }
                         th[scope='col'] {
-                            background-color: #ebebeb;
-                            color: #444444;
+                            background:rgba(1, 41, 160, 0.726);
+                            color: #FFF;
                             font-weight: 600;
                           }
                           
                           th[scope='row'] {
-                            background-color: #d7d9f2;
                             color: #444444;
                             width: 30%;
                             font-weight: 500;
@@ -71,12 +67,30 @@
             }
             .product-view-right{
                 flex: 2;
-                padding: 20px;
+                padding: 30px;
                 background: #fff;
                 -webkit-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
                 box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
                 margin-bottom: 20px;
                 border-radius: 5px;
+                height: max-content;
+                display: flex;
+                    align-items: center;
+                    justify-content: center;
+                .product-img-row{
+                    height: 200px;
+                    width: 200px;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #e7e6e6;
+                    .product-img{
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
             }
         }
     }
