@@ -49,9 +49,9 @@ const Sidebar = () => {
             Matières
           </Link>
         </Item>
-        <Item key="marque">
+        <Item key="marques">
           <Link to="/marque" className="sidebarLink">
-            Marque
+            Marques
           </Link>
         </Item>
       </SubMenu>

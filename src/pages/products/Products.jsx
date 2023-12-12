@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../config';
-import { Tag } from 'antd';
+import { Tag, Popconfir } from 'antd';
 
 const Products = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -248,25 +248,31 @@ const columns = [
         render: (text, record) => (
                 
           <Space size="middle">
-            <Popconfirm
-              title="Êtes-vous sûr de vouloir modifier?"
-              onConfirm={()=> handleEdit(record.produit_id)}
-              okText="Oui"
-              cancelText="Non"
-            >
-              <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-            </Popconfirm>
-            <Link to={`/productView/${record.produit_id}`}>
-              <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
-            </Link>
-            <Popconfirm
-              title="Êtes-vous sûr de vouloir supprimer?"
-              onConfirm={() => handleDelete(record.produit_id)}
-              okText="Oui"
-              cancelText="Non"
-            >
-              <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
-            </Popconfirm>
+            <Popover title="Modifier" trigger="hover">
+              <Popconfirm
+                title="Êtes-vous sûr de vouloir modifier?"
+                onConfirm={()=> handleEdit(record.produit_id)}
+                okText="Oui"
+                cancelText="Non"
+              >
+                <Button icon={<EditOutlined />} style={{ color: 'green' }} />
+              </Popconfirm>
+            </Popover>
+            <Popover title="Voir le détail" trigger="hover">
+              <Link to={`/productView/${record.produit_id}`}>
+                <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
+              </Link>
+            </Popover>
+            <Popover title="Supprimer" trigger="hover">
+              <Popconfirm
+                title="Êtes-vous sûr de vouloir supprimer?"
+                onConfirm={() => handleDelete(record.produit_id)}
+                okText="Oui"
+                cancelText="Non"
+              >
+                <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
+              </Popconfirm>
+            </Popover>
           </Space>
         ),
     },
