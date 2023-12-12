@@ -42,8 +42,8 @@ const ProductView = () => {
                                 Alien football stars
                             </caption>
                             <tr>
-                                <th scope="col">Player</th>
-                                <th scope="col">Gloobles</th>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Détail</th>
                             </tr>
                             <tr>
                                 <th scope="row">TR-7</th>
