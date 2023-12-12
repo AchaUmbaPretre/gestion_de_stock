@@ -3,7 +3,7 @@ import { SearchOutlined,MoreOutlined } from '@ant-design/icons';
 import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import photoIcon from './../../assets/logo doe.jpg'
 import axios from 'axios';
 import { useEffect } from 'react';
@@ -16,6 +16,7 @@ const RowProduit = () => {
   const [produit, setProduit] = useState([]);
   const [loading, setLoading] = useState(false);
   const searchInput = useRef(null);
+  const navigate = useNavigate();
   const scroll = { x: 400 };
 
   const content = (
@@ -137,7 +138,7 @@ const RowProduit = () => {
       dataIndex: 'img',
       key: 'img',
       render: (text, record) => (
-        <div className="userList">
+        <div className="userList" onClick={()=> navigate(`/productView/${record.produit_id}`)}>
           <img src={record.img} alt="" className="userImg"  />
         </div>
       )
@@ -168,7 +169,7 @@ const RowProduit = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`${DOMAIN}/api/produit`);
+        const { data } = await axios.get(`${DOMAIN}/api/produit/produitRecement`);
         setProduit(data);
         setLoading(false)
       } catch (error) {
