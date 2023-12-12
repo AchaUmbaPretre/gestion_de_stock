@@ -88,7 +88,7 @@ const ProductView = () => {
                             </tr>
                             <tr>
                                 <th scope="row">Statut</th>
-                                <td>9</td>
+                                <td>{getProduit?.statut}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Description</th>
@@ -97,6 +97,7 @@ const ProductView = () => {
                         </table>
                     </div>
                     <div className="product-view-right">
+                        <h2 className="product-h2">L'image du produit {getProduit?.nom_produit}</h2>
                         <div className="product-img-row">
                             <img src={getProduit?.img} alt="" className="product-img" />
                         </div>
