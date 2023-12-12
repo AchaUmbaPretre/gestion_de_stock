@@ -16,6 +16,7 @@ const ProductForm = () => {
   const [getData, setGetData] = useState([]);
   const [couleur, setCouleur] = useState([]);
   const [getMatiere, setGetMatiere] = useState([]);
+  const [getMarque, setGetMarque] = useState();
   const navigate = useNavigate();
 
   const handleInputChange = async (e) => {
@@ -88,6 +89,18 @@ const ProductForm = () => {
       try {
         const { data } = await axios.get(`${DOMAIN}/api/produit/matiere`);
         setGetMatiere(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`${DOMAIN}/api/produit/marque`);
+        setGetMarque(data);
       } catch (error) {
         console.log(error);
       }
@@ -174,6 +187,14 @@ const ProductForm = () => {
                     name="emplacement"
                     options={getData?.map(item => ({ value: item.id, label: item.nom }))}
                     onChange={selectedOption => handleInputChange({ target: { name: 'emplacement', value: selectedOption.value } })}
+                  />
+                </div>
+                <div className="form-controle">
+                  <label htmlFor="">Marque</label>
+                  <Select
+                    name="marque"
+                    options={getMarque?.map(item => ({ value: item.id, label: item.nom }))}
+                    onChange={selectedOption => handleInputChange({ target: { name: 'marque', value: selectedOption.value } })}
                   />
                 </div>
                 <div className="form-controle">

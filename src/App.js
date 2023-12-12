@@ -29,6 +29,7 @@ import Retour from './pages/retour/Retour';
 import Echange from './pages/echange/Echange';
 import EchangeForm from './pages/echange/echangeForm/EchangeForm';
 import Matiere from './pages/matiere/Matiere';
+import Marque from './pages/marque/Marque';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -99,6 +100,10 @@ function App() {
         {
           path: '/matiere',
           element: <Matiere />
+        },
+        {
+          path: '/marque',
+          element: <Marque />
         },
         {
           path: '/ventes',
