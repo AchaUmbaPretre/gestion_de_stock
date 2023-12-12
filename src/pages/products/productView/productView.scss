@@ -49,7 +49,7 @@
                         
                         td,th{
                             border: 1px solid rgb(190, 190, 190);
-                            padding: 10px;
+                            padding: 15px;
                             td {
                                 text-align: center;
                               }
@@ -57,12 +57,14 @@
                         th[scope='col'] {
                             background-color: #ebebeb;
                             color: #444444;
+                            font-weight: 600;
                           }
                           
                           th[scope='row'] {
                             background-color: #d7d9f2;
                             color: #444444;
                             width: 30%;
+                            font-weight: 500;
                           }
                     }
                 }

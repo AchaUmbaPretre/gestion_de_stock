@@ -39,12 +39,12 @@ const Sidebar = () => {
             Categories
           </Link>
         </Item>
-        <Item key="brands">
+        <Item key="emplacement">
           <Link to="/emplacement" className="sidebarLink">
             Emplacements
           </Link>
         </Item>
-        <Item key="brands">
+        <Item key="matiere">
           <Link to="/matiere" className="sidebarLink">
             Matières
           </Link>

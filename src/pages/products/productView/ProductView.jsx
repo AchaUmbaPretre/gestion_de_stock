@@ -38,23 +38,44 @@ const ProductView = () => {
                 <div className="product-bottom">
                     <div className="product-view-left">
                         <table>
-                            <caption>
-                                Alien football stars
-                            </caption>
                             <tr>
                                 <th scope="col">Titre</th>
                                 <th scope="col">Détail</th>
                             </tr>
                             <tr>
-                                <th scope="row">TR-7</th>
+                                <th scope="row">Produit</th>
                                 <td>7</td>
                             </tr>
                             <tr>
-                                <th scope="row">Khiresh Odo</th>
+                                <th scope="row">Catégorie</th>
                                 <td>7</td>
                             </tr>
                             <tr>
-                                <th scope="row">Mia Oolong</th>
+                                <th scope="row">Matière</th>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Couleur</th>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Quantité</th>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Prix</th>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Marque</th>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Status</th>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Description</th>
                                 <td>9</td>
                             </tr>
                         </table>
