@@ -1,20 +1,92 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
-import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
+import { Button, Input, Space, Table, Popover,Popconfirm,Modal} from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import './categories.scss'
 import config from '../../config';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import FormCategorie from './formCategorie/FormCategorie';
 
 const Categories = () => {
     const navigate = useNavigate();
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [nomCategorie, setNomCategorie] = useState();
-    const [getCategorie, setGetCategorie] = useState()
+    const [getCategorie, setGetCategorie] = useState();
+    const [putCategorie, setPutCategorie] = useState()
     const searchInput = useRef(null);
-    const scroll = { x: 400 };;
+    const scroll = { x: 400 };
+    const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
+    const [result, setResult] = useState({});
+    const {pathname} = useLocation();
+    const [initialData, setInitialData] = useState({});
+    const id = pathname.split('/')[2]
+    const [loading, setLoading] = useState(true);
+    
+
+    const showModal = (id) => {
+      setOpen(true);
+      navigate(`/categories/${id}`);
+    };
+
+    const handleOk  = async (e) => {
+      e.preventDefault();
+  
+      Swal.fire({
+        title: 'Confirmation',
+        text: 'Voulez-vous vraiment modifier ?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Oui',
+        cancelButtonText: 'Non',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const hasChanged = hasDataChanged();
+          if (hasChanged) {
+            handleClick2();
+          } else {
+            Swal.fire({
+              icon: 'info',
+              title: 'Aucune modification',
+              text: 'Vous aviez rien modifié.',
+            });
+            setOpen(false);
+          }
+        }
+      });
+    };
+  
+    const hasDataChanged = () => {
+      return putCategorie.nom_categorie !== initialData.nom_categorie;
+    };
+  
+    const handleClick2 = async (e) => {
+        try{
+          await axios.put(`${DOMAIN}/api/produit/categorie/${id}`,{nom_categorie : putCategorie})
+      
+          setModalText('The modal will be closed after two seconds');
+          setConfirmLoading(true);
+          setTimeout(() => {
+          setOpen(false);
+          setConfirmLoading(false);
+      }, 2000);
+          window.location.reload();
+
+        }catch(err) {
+          Swal.fire({
+            title: 'Error',
+            text: err.message,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+    };
+    const handleCancel = () => {
+      setOpen(false);
+    };
   
 
       const columns = [
@@ -23,7 +95,6 @@ const Categories = () => {
             title: 'Categorie',
             dataIndex: 'nom_categorie',
             key: 'categorie',
-            
         },
         {
             title: 'Action',
@@ -32,21 +103,14 @@ const Categories = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir modifier?"
-                  onConfirm={()=> handleEdit(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-                </Popconfirm>
+                  <Button icon={<EditOutlined />} style={{ color: 'green' }} onClick={()=>showModal(record.id)} />
                 <Popconfirm
                   title="Êtes-vous sûr de vouloir supprimer?"
                   onConfirm={() => handleDelete(record.id)}
                   okText="Oui"
                   cancelText="Non"
                 >
-                  <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
+                  <Button icon={<DeleteOutlined />} style={{ color: 'red' }}  />
                 </Popconfirm>
               </Space>
             ),
@@ -81,6 +145,7 @@ const Categories = () => {
           try {
             const { data } = await axios.get(`${DOMAIN}/api/produit/categorie`);
             setGetCategorie(data);
+            setLoading(false)
           } catch (error) {
             console.log(error);
           }
@@ -88,9 +153,18 @@ const Categories = () => {
         fetchData();
       }, []);
 
-      const handleEdit = (id) => {
-        navigate(`/categories/${id}`);
-    };
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`${DOMAIN}/api/produit/categorieOne/${id}`);
+            setPutCategorie(data[0]);
+            setInitialData(data[0]);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      }, [])
     
     const handleDelete = async (id) => {
      try {
@@ -129,7 +203,18 @@ const Categories = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
-                            <Table columns={columns} dataSource={getCategorie} scroll={scroll} pagination={{ pageSize: 5}} />
+                            <Modal
+                              title="Modifier la categorie"
+                              open={open}
+                              onOk={handleOk}
+                              confirmLoading={confirmLoading}
+                              onCancel={handleCancel}
+                              okText="Confirmer"
+                              cancelText="Annuler"
+                            >
+                              <FormCategorie getUpdata={setPutCategorie} getUpdataOne={putCategorie} handleOk={handleOk} />
+                            </Modal>
+                            <Table columns={columns} loading={loading} dataSource={getCategorie} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
                 </div>
