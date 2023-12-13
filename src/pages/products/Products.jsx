@@ -330,7 +330,7 @@ item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
                         </div>
                     </div>
                    {open &&
-                    <ProductSelects/> } 
+                    <ProductSelects getProduits={setGetProduit}/> } 
                     <div className="rowChart-row-table">
                         <Table columns={columns} dataSource={filteredData} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
