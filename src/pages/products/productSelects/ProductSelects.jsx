@@ -4,11 +4,12 @@ import { SearchOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import config from './../../../config';
 import Select from 'react-select';
+import Swal from 'sweetalert2';
 
 const ProductSelects = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [produit, setProduit] = useState([]);
-    const [data, setData] = useState([]);
+    const [datas, setDatas] = useState({});
     const [loading, setLoading] = useState(true);
     
 
@@ -24,7 +25,7 @@ const ProductSelects = () => {
           updatedValue = fieldValue.charAt(0).toUpperCase() + fieldValue.slice(1);
         }
       
-      setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
+      setDatas((prev) => ({ ...prev, [fieldName]: updatedValue }));
       };
 
   useEffect(() => {
@@ -40,7 +41,36 @@ const ProductSelects = () => {
     fetchData();
   }, []);
 
-  console.log(data)
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+
+    if (!datas.produit_id || !datas.categorie ) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Veuillez remplir tous les champs requis',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+    try {
+      const {data} = await axios.get(`${DOMAIN}/api/produit/produitSelect?nom_produit=${datas.nom_produit}&categorie=${datas.categorie}&couleur=${datas.couleur}`);
+      setProduit(data)
+      setLoading(false)
+    } catch (err) {
+      Swal.fire({
+        title: 'Error',
+        text: err.message,
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+
+      console.log(err);
+    }
+}
+
+  console.log(datas)
 
   return (
     <>
@@ -49,8 +79,8 @@ const ProductSelects = () => {
                 <Select
                     className="product-input-select"
                     name='produit_id'
-                    options={produit?.map(item => ({ value: item.produit_id, label: item.nom_produit }))}
-                    onChange={selectedOption => handleInputChange({ target: { name: 'produit_id', value: selectedOption.value } })}
+                    options={produit?.map(item => ({ value: item.nom_produit, label: item.nom_produit }))}
+                    onChange={selectedOption => handleInputChange({ target: { name: 'nom_produit', value: selectedOption.value } })}
                     placeholder="Choisir un produit"
                 />
                  <Select
@@ -75,7 +105,7 @@ const ProductSelects = () => {
                     placeholder="Prix"
                 />
                 <div className="select-btn">
-                    <SearchOutlined className='select-search-btn' />
+                    <SearchOutlined className='select-search-btn' onClick={handleClick} />
                 </div>
             </div>
         </div>
