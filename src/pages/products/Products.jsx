@@ -293,6 +293,8 @@ item.nom_produit.toLowerCase().includes(searchValue.toLowerCase()) ||
 item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
 );
 
+
+
   return (
     <>
         <div className="products">

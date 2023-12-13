@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import config from '../../../config';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ProductForm = () => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -17,6 +17,9 @@ const ProductForm = () => {
   const [couleur, setCouleur] = useState([]);
   const [getMatiere, setGetMatiere] = useState([]);
   const [getMarque, setGetMarque] = useState();
+  const [formData, setFormData] = useState({})
+  const {pathname} = useLocation();
+  const id = pathname.split('/')[2]
   const navigate = useNavigate();
 
   const handleInputChange = async (e) => {
@@ -132,6 +135,17 @@ const ProductForm = () => {
       });
     }
   }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`${DOMAIN}/api/produit/produitView/${id}`);
+        setFormData(data[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
