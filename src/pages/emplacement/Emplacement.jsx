@@ -17,7 +17,7 @@ const Emplacement = () => {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
-    const [putEmplacement, setEmplacement] = useState('');
+    const [putEmplacement, setPutEmplacement] = useState({});
     const {pathname} = useLocation();
     const [initialData, setInitialData] = useState({});
     const id = pathname.split('/')[2]
@@ -106,6 +106,18 @@ const Emplacement = () => {
       fetchData();
     }, []);
 
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get(`${DOMAIN}/api/produit/emplacementOne/${id}`);
+          setPutEmplacement(data[0]);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    }, [])
+
     const handleClick = async (e) => {
       e.preventDefault();
 
@@ -191,7 +203,7 @@ const Emplacement = () => {
                               okText="Confirmer"
                               cancelText="Annuler"
                             >
-                              <FormEmplacement />
+                              <FormEmplacement  setUpdata={setPutEmplacement} getUpdataOne={putEmplacement} />
                             </Modal>
                             <Table columns={columns} dataSource={getdata} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>

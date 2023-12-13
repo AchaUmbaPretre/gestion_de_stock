@@ -20,7 +20,6 @@ const Categories = () => {
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
-    const [result, setResult] = useState({});
     const {pathname} = useLocation();
     const [initialData, setInitialData] = useState({});
     const id = pathname.split('/')[2]
@@ -212,7 +211,7 @@ const Categories = () => {
                               okText="Confirmer"
                               cancelText="Annuler"
                             >
-                              <FormCategorie getUpdata={setPutCategorie} getUpdataOne={putCategorie} handleOk={handleOk} />
+                              <FormCategorie getUpdata={setPutCategorie} getUpdataOne={putCategorie} />
                             </Modal>
                             <Table columns={columns} loading={loading} dataSource={getCategorie} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
