@@ -30,6 +30,7 @@ import Echange from './pages/echange/Echange';
 import EchangeForm from './pages/echange/echangeForm/EchangeForm';
 import Matiere from './pages/matiere/Matiere';
 import Marque from './pages/marque/Marque';
+import FormProduitEdit from './pages/products/formEdit/FormProduitEdit';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -79,7 +80,7 @@ function App() {
         },
         {
           path: '/productForm/:id',
-          element: <ProductForm />
+          element: <FormProduitEdit />
         },
         {
           path: '/categories',
