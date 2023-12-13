@@ -1,12 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
-import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {  FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
+import { Button, Input, Space, Table, Popover,Popconfirm,Modal} from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
-import Highlighter from 'react-highlight-words';
 import './emplacement.scss'
 import axios from 'axios';
 import config from '../../config';
 import Swal from 'sweetalert2';
+import FormEmplacement from './formEmplacement/FormEmplacement';
 
 const Emplacement = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -14,6 +14,21 @@ const Emplacement = () => {
     const [data, setData] = useState({});
     const [getdata, setGetData] = useState([]);
     const scroll = { x: 400 };
+    const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
+    const [putEmplacement, setEmplacement] = useState('');
+    const {pathname} = useLocation();
+    const [initialData, setInitialData] = useState({});
+    const id = pathname.split('/')[2]
+
+    const showModal = (id) => {
+      setOpen(true);
+      navigate(`/emplacement/${id}`);
+    };
+    const handleCancel = () => {
+      setOpen(false);
+    };
 
     const handleInputChange = (e) => {
       const fieldName = e.target.name;
@@ -51,14 +66,7 @@ const Emplacement = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir modifier?"
-                  onConfirm={()=> handleEdit(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-                </Popconfirm>
+                  <Button icon={<EditOutlined />} style={{ color: 'green' }}  onClick={()=>showModal(record.id)} />
                 <Popconfirm
                   title="Êtes-vous sûr de vouloir supprimer?"
                   onConfirm={() => handleDelete(record.id)}
@@ -116,6 +124,28 @@ const Emplacement = () => {
       }
     }
 
+    const handleOk = async (e) => {
+      try{
+        await axios.put(`${DOMAIN}/api/produit/categorie/${id}`,{nom_categorie : putEmplacement})
+    
+        setModalText('The modal will be closed after two seconds');
+        setConfirmLoading(true);
+        setTimeout(() => {
+        setOpen(false);
+        setConfirmLoading(false);
+    }, 2000);
+        window.location.reload();
+
+      }catch(err) {
+        Swal.fire({
+          title: 'Error',
+          text: err.message,
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
+  };
+
 
   return (
     <>
@@ -152,6 +182,17 @@ const Emplacement = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
+                            <Modal
+                              title="Modifier la categorie"
+                              open={open}
+                              onOk={handleOk}
+                              confirmLoading={confirmLoading}
+                              onCancel={handleCancel}
+                              okText="Confirmer"
+                              cancelText="Annuler"
+                            >
+                              <FormEmplacement />
+                            </Modal>
                             <Table columns={columns} dataSource={getdata} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
