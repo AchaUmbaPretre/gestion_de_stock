@@ -1,5 +1,5 @@
 import './products.scss'
-import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined,CheckCircleOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
+import { PlusOutlined, SearchOutlined, CloseOutlined,SisternodeOutlined,EyeOutlined, FilePdfOutlined,CheckCircleOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
 import ProductSelects from './productSelects/ProductSelects';
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
@@ -231,7 +231,7 @@ const columns = [
       ),
     },
     {
-      title: 'Date',
+      title: "Date d'entrée",
       dataIndex: 'date_entree',
       key: 'date',
         sorter: (a, b) => a.date_entree - b.date_entree,
@@ -249,14 +249,7 @@ const columns = [
                 
           <Space size="middle">
             <Popover title="Modifier" trigger="hover">
-              <Popconfirm
-                title="Êtes-vous sûr de vouloir modifier?"
-                onConfirm={()=> handleEdit(record.produit_id)}
-                okText="Oui"
-                cancelText="Non"
-              >
-                <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-              </Popconfirm>
+              <Button icon={<EditOutlined />} style={{ color: 'green' }} onClick={()=> handleEdit(record.produit_id)} />
             </Popover>
             <Popover title="Voir le détail" trigger="hover">
               <Link to={`/productView/${record.produit_id}`}>
@@ -317,7 +310,7 @@ item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
                 <div className="product-bottom">
                     <div className="product-bottom-top">
                         <div className="product-bottom-left">
-                            <SisternodeOutlined className='product-icon' onClick={HandOpen} />
+                            {open ?<CloseOutlined className='product-icon2' onClick={HandOpen} /> : <SisternodeOutlined className='product-icon' onClick={HandOpen} />}
                             <div className="product-row-search">
                                 <SearchOutlined className='product-icon-plus'/>
                                 <input type="search" name="" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder='Recherche...' className='product-search' />

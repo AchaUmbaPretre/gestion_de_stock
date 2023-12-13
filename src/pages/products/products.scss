@@ -61,6 +61,19 @@
                         padding: 10px;
                         border-radius: 5px;
                         font-size: 18px;
+                        cursor: pointer;
+                        transition: .5s;
+                        &:hover{
+                            background:rgb(6, 60, 223);
+                        }
+                    }
+                    .product-icon2{
+                        color: #fff;
+                        background:rgba(255, 0, 0, 0.815);
+                        padding: 10px;
+                        border-radius: 5px;
+                        font-size: 18px;
+                        cursor: pointer;
                     }
                     .product-row-search{
                         border: 1px solid #c7c7c7;
