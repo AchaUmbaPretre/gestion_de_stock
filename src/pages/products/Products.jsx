@@ -169,13 +169,13 @@ const columns = [
         let color = '';
   
         switch (nom_couleur) {
-          case 'Noir':
+          case 'Noire':
             color = 'black';
             break;
           case 'Marron':
             color = 'brown';
             break;
-          case 'Gris':
+          case 'Grise':
             color = 'gray';
             break;
           case 'Blanc':

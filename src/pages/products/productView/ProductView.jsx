@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { format } from 'date-fns'
 import moment from 'moment';
+import { Image } from 'antd';
 
 const ProductView = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -99,7 +100,13 @@ const ProductView = () => {
                     <div className="product-view-right">
                         <h2 className="product-h2">L'image du produit {getProduit?.nom_produit}</h2>
                         <div className="product-img-row">
-                            <img src={getProduit?.img} alt="" className="product-img" />
+                            <Image
+                                className="product-img"
+                                width={200}
+                                height={200}
+                                src="error"
+                                fallback={getProduit?.img}
+                            />
                         </div>
                     </div>
                 </div>
