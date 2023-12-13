@@ -43,6 +43,7 @@ const Emplacement = () => {
       }
     
     setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
+    setPutEmplacement((prev) => ({ ...prev, [fieldName]: updatedValue }))
     };
 
     const columns = [
@@ -138,7 +139,15 @@ const Emplacement = () => {
 
     const handleOk = async (e) => {
       try{
-        await axios.put(`${DOMAIN}/api/produit/categorie/${id}`,{nom_categorie : putEmplacement})
+        await axios.put(`${DOMAIN}/api/produit/emplacementPut/${id}`,putEmplacement)
+
+        Swal.fire({
+          title: 'Success',
+          text: "L'emplacement a été modifié avec succès!",
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+        window.location.reload();
     
         setModalText('The modal will be closed after two seconds');
         setConfirmLoading(true);
@@ -203,7 +212,7 @@ const Emplacement = () => {
                               okText="Confirmer"
                               cancelText="Annuler"
                             >
-                              <FormEmplacement  setUpdata={setPutEmplacement} getUpdataOne={putEmplacement} />
+                              <FormEmplacement  setUpdata={setPutEmplacement} getUpdataOne={putEmplacement} OnchangePut={handleInputChange} />
                             </Modal>
                             <Table columns={columns} dataSource={getdata} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>

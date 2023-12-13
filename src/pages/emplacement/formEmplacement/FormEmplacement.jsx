@@ -5,7 +5,7 @@ import config from '../../../config';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-const FormEmplacement = ({setUpdata,getUpdataOne}) => {
+const FormEmplacement = ({setUpdata,getUpdataOne,OnchangePut}) => {
     const navigate = useNavigate();
 
   return (
@@ -14,8 +14,8 @@ const FormEmplacement = ({setUpdata,getUpdataOne}) => {
             <div className="formCategorie-wrapper">
                 <div className="categorie-container-left">
                     <h2 className="categorie-title">Ajouter une categorie</h2>
-                    <input type="text" name='nom_categorie' value={getUpdataOne?.nom} onChange={(e)=> setUpdata(e.target.value)} placeholder='Entrer un emplacement...' className="categorie-input" />
-                    <input type="text" name='nom_categorie' value={getUpdataOne?.capacite} onChange={(e)=> setUpdata(e.target.value)} placeholder="Entrer la capacité de l'emplacement..." className="categorie-input" />
+                    <input type="text" name='nom' value={getUpdataOne?.nom} onChange={OnchangePut} placeholder='Entrer un emplacement...' className="categorie-input" />
+                    <input type="text" name='capacite' value={getUpdataOne?.capacite} onChange={OnchangePut} placeholder="Entrer la capacité de l'emplacement..." className="categorie-input" />
                 </div>
             </div>
         </div>
