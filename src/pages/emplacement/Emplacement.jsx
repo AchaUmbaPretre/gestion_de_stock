@@ -136,6 +136,7 @@ const Emplacement = () => {
         
       }
     }
+    console.log(putEmplacement)
 
     const handleOk = async (e) => {
       try{

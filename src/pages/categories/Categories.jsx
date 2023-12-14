@@ -64,7 +64,7 @@ const Categories = () => {
   
     const handleClick2 = async (e) => {
         try{
-          await axios.put(`${DOMAIN}/api/produit/categorie/${id}`,{nom_categorie : putCategorie})
+          await axios.put(`${DOMAIN}/api/produit/categoriePut/${id}`,{nom_categorie : putCategorie})
       
           setModalText('The modal will be closed after two seconds');
           setConfirmLoading(true);
@@ -164,6 +164,8 @@ const Categories = () => {
         };
         fetchData();
       }, [])
+
+      console.log(putCategorie)
     
     const handleDelete = async (id) => {
      try {
