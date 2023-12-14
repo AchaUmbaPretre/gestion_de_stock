@@ -167,7 +167,7 @@ const columns = [
       ...getColumnSearchProps('nom_couleur'),
       render: (nom_couleur) => {
         let color = '';
-  
+    
         switch (nom_couleur) {
           case 'Noire':
             color = 'black';
@@ -181,12 +181,19 @@ const columns = [
           case 'Blanc':
             color = 'white';
             break;
+            case 'Rouge':
+            color = 'red';
+            break;
           default:
             color = 'default';
             break;
         }
-  
-        return <Tag color={color}>{nom_couleur}</Tag>;
+    
+        return (
+          <Tag className={`custom-tag color-${color}`} style={{ borderColor: color }}>
+            <span className={`text-${color}`}>{nom_couleur}</span>
+          </Tag>
+        );
       },
     },
     {
@@ -202,12 +209,13 @@ const columns = [
       sortDirections: ['descend', 'ascend'],
       render: (text) => (
         <span>
-          <Tag color={'green'}>
+        <Tag color={'green'}>
           {parseFloat(text).toLocaleString('fr-FR', {
-              style: 'currency',
-              currency: 'USD',
-            })}
-          </Tag>
+            style: 'currency',
+            currency: 'USD',
+          })}
+        </Tag>
+        
         </span>
       ),
     },
