@@ -163,7 +163,7 @@ const columns = [
       title: 'Couleur',
       dataIndex: 'nom_couleur',
       key: 'nom_couleur',
-      width: '10%',
+      width: '9%',
       ...getColumnSearchProps('nom_couleur'),
       render: (nom_couleur) => {
         let color = '';
