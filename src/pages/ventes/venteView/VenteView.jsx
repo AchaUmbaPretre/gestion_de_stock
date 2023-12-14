@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './venteView.scss'
+import { useLocation } from 'react-router-dom';
+import config from '../../../config';
+import axios from 'axios';
 
 const VenteView = () => {
-  
+  const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
+  const [getVente, setGetVente] = useState([]);
+  const {pathname} = useLocation();
+  const id = pathname.split('/')[2]
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`${DOMAIN}/api/vente/venteOne/${id}`);
+        setGetVente(data[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [id]);
   return (
     <>
         <div className="venteView">
