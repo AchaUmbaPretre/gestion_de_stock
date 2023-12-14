@@ -258,9 +258,7 @@ const Ventes = () => {
           }
         };
         fetchData();
-      }, []);
-
-      
+      }, [id]);
 
   return (
     <>
