@@ -1,6 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
-import { Button, Space, Table, Popconfirm} from 'antd';
+import { Button, Input, Space, Table, Popover,Popconfirm,Modal} from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import config from '../../config';
 import Swal from 'sweetalert2';
@@ -13,21 +13,29 @@ const Matiere = () => {
     const [searchedColumn, setSearchedColumn] = useState('');
     const [nomMatiere, setNomMatiere] = useState();
     const [getMatiere, setGetMatiere] = useState()
+    const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
+    const [putMatiere, setPutMatiere] = useState({});
     const searchInput = useRef(null);
     const scroll = { x: 400 };
+    const [initialData, setInitialData] = useState({});
+    const {pathname} = useLocation();
+    const id = pathname.split('/')[2]
 
-    const handleSearch = (selectedKeys, confirm, dataIndex) => {
-        confirm();
-        setSearchText(selectedKeys[0]);
-        setSearchedColumn(dataIndex);
-      };
+    const showModal = (id) => {
+      setOpen(true);
+      navigate(`/matiere/${id}`);
+    };
   
       const handleInputChange = (e) => {
         const value = e.target.value;
         const capitalizedValue = value.charAt(0).toUpperCase() + value.slice(1);
         setNomMatiere(capitalizedValue);
+        setPutMatiere(capitalizedValue)
       };
 
+      console.log(putMatiere)
       const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width: '8%' },
         {
@@ -43,14 +51,7 @@ const Matiere = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir modifier?"
-                  onConfirm={()=> handleEdit(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-                </Popconfirm>
+                <Button icon={<EditOutlined />} style={{ color: 'green' }}  onClick={()=>showModal(record.id)} />
                 <Popconfirm
                   title="Êtes-vous sûr de vouloir supprimer?"
                   onConfirm={() => handleDelete(record.id)}
@@ -63,6 +64,18 @@ const Matiere = () => {
             ),
           },
       ];
+
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`${DOMAIN}/api/produit/matiereOne/${id}`);
+            setPutMatiere(data[0]);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      }, [])
 
       const handleClick = async (e) => {
         e.preventDefault();

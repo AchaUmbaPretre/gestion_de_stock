@@ -104,6 +104,10 @@ function App() {
           element: <Matiere />
         },
         {
+          path: '/matiere/:id',
+          element: <Matiere />
+        },
+        {
           path: '/marque',
           element: <Marque />
         },
