@@ -93,7 +93,7 @@ const Matiere = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-                <Button icon={<EditOutlined />} style={{ color: 'green' }}  onClick={()=>showModal(record.id)} />
+                <Button icon={<EditOutlined />} style={{ color: 'green' }} onClick={()=>showModal(record.id)} />
                 <Popconfirm
                   title="Êtes-vous sûr de vouloir supprimer?"
                   onConfirm={() => handleDelete(record.id)}
@@ -184,7 +184,7 @@ const Matiere = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
-                          <Modal
+                            <Modal
                               title="Modifier une matière"
                               open={open}
                               onOk={handleOk}

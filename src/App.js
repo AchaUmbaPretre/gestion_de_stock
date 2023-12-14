@@ -112,6 +112,10 @@ function App() {
           element: <Marque />
         },
         {
+          path: '/marque/:id',
+          element: <Marque />
+        },
+        {
           path: '/ventes',
           element: <Ventes />
         },
