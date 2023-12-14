@@ -5,7 +5,7 @@ import config from '../../../config';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-const FormEmplacement = ({setUpdata,getUpdataOne,OnchangePut}) => {
+const FormEmplacement = ({getUpdataOne,OnchangePut}) => {
     const navigate = useNavigate();
 
   return (
