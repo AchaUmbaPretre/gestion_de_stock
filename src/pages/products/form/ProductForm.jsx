@@ -1,6 +1,6 @@
 import React from 'react'
 import './productForm.scss'
-import { CloudUploadOutlined  } from '@ant-design/icons';
+import { CloudUploadOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import Select from 'react-select';
 import { useEffect } from 'react';
@@ -26,7 +26,7 @@ const ProductForm = () => {
     let updatedValue = fieldValue;
   
     if (fieldName === "img") {
-      const file = e.target.files[0]; // Récupérer le fichier depuis l'input file
+      const file = e.target.files[0];
       const reader = new FileReader();
   
       reader.onload = () => {
@@ -132,8 +132,6 @@ const ProductForm = () => {
       });
     }
   }
-
-  console.log(data)
 
   return (
     <>

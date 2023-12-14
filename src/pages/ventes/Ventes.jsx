@@ -2,7 +2,7 @@ import './../products/products.scss'
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
-import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
+import { Button, Input, Space, Table, Popover,Popconfirm, Tag} from 'antd';
 import photoIcon from './../../assets/logo doe.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -173,20 +173,26 @@ const Ventes = () => {
           sorter: (a, b) => a.prix_unitaire.length - b.prix_unitaire.length,
           sortDirections: ['descendre', 'monter'],
           render: (text) => (
-            <span style={{background: '#47C419', color: "#fff", padding: "7px 8px", borderRadius: "10px", fontSize: "12px"}}>
-              {parseFloat(text).toLocaleString('fr-FR', {
+            <span>
+            <Tag color={'green'}>
+            {parseFloat(text).toLocaleString('fr-FR', {
                 style: 'currency',
                 currency: 'USD',
               })}
-            </span>
+            </Tag>
+          </span>
           ),
         },
         {
-            title: 'Quantité',
-            dataIndex: 'quantite',
-            key: 'prix',
-            sorter: (a, b) => a.quantite.length - b.quantite.length,
-          },
+          title: 'Quantité',
+          dataIndex: 'quantite',
+          key: 'quantite',
+          sorter: (a, b) => a.quantite - b.quantite,
+          sortDirections: ['descend', 'ascend'],
+          render: (quantite) => (
+            <Tag color={quantite > 0 ? 'green' : 'red'}>{quantite}</Tag>
+          ),
+        },
           {
             title: 'Date',
             dataIndex: 'date_vente',

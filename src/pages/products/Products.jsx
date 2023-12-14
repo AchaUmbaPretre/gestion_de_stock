@@ -202,10 +202,12 @@ const columns = [
       sortDirections: ['descend', 'ascend'],
       render: (text) => (
         <span>
+          <Tag color={'green'}>
           {parseFloat(text).toLocaleString('fr-FR', {
-            style: 'currency',
-            currency: 'USD',
-          })}
+              style: 'currency',
+              currency: 'USD',
+            })}
+          </Tag>
         </span>
       ),
     },
