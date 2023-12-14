@@ -165,12 +165,12 @@ const Marque = () => {
                     <div className="categorie-container-right">
                         <div className="categorie-right-top">
                             <div className="categorie-left">
-                                <FilePdfOutlined className='product-icon-pdf' />
-                                <FileExcelOutlined className='product-icon-excel'/>
-                                <PrinterOutlined className='product-icon-printer'/>
+                              <FilePdfOutlined className='product-icon-pdf' />
+                              <FileExcelOutlined className='product-icon-excel'/>
+                              <PrinterOutlined className='product-icon-printer'/>
                             </div>
                             <div className="categorie-right">
-                                <input type="search" name="" id="" placeholder='Recherche...' className='categorie-search' />
+                              <input type="search" name="" id="" placeholder='Recherche...' className='categorie-search' />
                             </div>
                         </div>
                         <div className="categorie-right-bottom">

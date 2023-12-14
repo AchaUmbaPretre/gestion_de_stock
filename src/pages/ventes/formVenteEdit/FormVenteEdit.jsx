@@ -14,7 +14,7 @@ const FormVenteEdit = ({getVente,setGetVente}) => {
     const [client, setClient] = useState([]);
     const [livreur, setLivreur] = useState([]);
     const [produit, setProduit] = useState([]);
-    const {} = getVente;
+    
 
     const handleInputChange = (e) => {
       const fieldName = e.target.name;

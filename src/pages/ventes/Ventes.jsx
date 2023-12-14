@@ -9,6 +9,7 @@ import axios from 'axios';
 import config from '../../config';
 import { format } from 'date-fns';
 import FormVenteEdit from './formVenteEdit/FormVenteEdit';
+import Swal from 'sweetalert2';
 
 const Ventes = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -23,6 +24,8 @@ const Ventes = () => {
     const id = pathname.split('/')[2]
     const [getVente, setGetVente] = useState({});
     const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
 
       const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -136,14 +139,14 @@ const Ventes = () => {
         setOpen(false);
       };
     
-    const handleDelete = async (id) => {
-    try {
-        await axios.put(`${DOMAIN}/api/vente/venteDelete/${id}`);
-          window.location.reload();
-      } catch (err) {
-        console.log(err);
-      }
-    };
+      const handleDelete = async (id) => {
+      try {
+          await axios.put(`${DOMAIN}/api/vente/venteDelete/${id}`);
+            window.location.reload();
+        } catch (err) {
+          console.log(err);
+        }
+      };
     
       const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width:"3%"},
@@ -260,6 +263,35 @@ const Ventes = () => {
         fetchData();
       }, [id]);
 
+      const handleOk = async (e) => {
+        try{
+          await axios.put(`${DOMAIN}/api/vente/vente/${id}`,getVente)
+  
+          Swal.fire({
+            title: 'Success',
+            text: "La vente a été modifiée avec succès!",
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
+      
+          setModalText('The modal will be closed after two seconds');
+          setConfirmLoading(true);
+          setTimeout(() => {
+          setOpen(false);
+          setConfirmLoading(false);
+      }, 2000);
+          window.location.reload();
+  
+        }catch(err) {
+          Swal.fire({
+            title: 'Error',
+            text: err.message,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+    };
+
   return (
     <>
         <div className="products">
@@ -294,9 +326,9 @@ const Ventes = () => {
                           title="Modifier la vente"
                           centered
                           open={open}
-                          onOk={() => setOpen(false)}
+                          onOk={handleOk}
                           onCancel={() => setOpen(false)}
-                          width={850}
+                          width={860}
                           okText="Soumettre"
                           cancelText="Annuler"
                         >
