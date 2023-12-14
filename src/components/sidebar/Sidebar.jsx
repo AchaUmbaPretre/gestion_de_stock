@@ -125,7 +125,7 @@ const Sidebar = () => {
 
       <SubMenu key="reports" title={<span className="sidebarH3">Rapports</span>} icon={<FileTextOutlined style={{ fontSize: '19px', color: '#fafafa' }}/>}>
         <Item key="salesReport">
-          <Link to="/rapportVentes" className="sidebarLink">
+          <Link to="/rapportVente" className="sidebarLink">
             Rapport de ventes
           </Link>
         </Item>

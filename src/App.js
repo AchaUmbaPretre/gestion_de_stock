@@ -21,7 +21,6 @@ import Livreur from './pages/livreur/Livreur';
 import LivreurForm from './pages/livreur/livreurForm/LivreurForm';
 import Utilisateurs from './pages/utilisateurs/Utilisateurs';
 import UtilisateurForm from './pages/utilisateurs/utilisateurForm/UtilisateurForm';
-import RapportVente from './pages/rapportVente.jsx/RapportVente';
 import ProductView from './pages/products/productView/ProductView';
 import VenteView from './pages/ventes/venteView/VenteView';
 import RetourForm from './pages/retour/retourForm/RetourForm';
@@ -31,7 +30,8 @@ import EchangeForm from './pages/echange/echangeForm/EchangeForm';
 import Matiere from './pages/matiere/Matiere';
 import Marque from './pages/marque/Marque';
 import FormProduitEdit from './pages/products/formEdit/FormProduitEdit';
-import FormCategorie from './pages/categories/formCategorie/FormCategorie';
+import RapportVenteChart from './pages/rapport/rapportVenteChart.jsx/RapportVenteChart';
+import RapportVente from './pages/rapport/rapportVente/RapportVente';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -188,8 +188,12 @@ function App() {
           element: <UtilisateurForm />
         },
         {
-          path: '/rapportVentes',
+          path: '/rapportVente',
           element: <RapportVente/>
+        },
+        {
+          path: '/rapportVentesChart',
+          element: <RapportVenteChart/>
         },
       ]
     },

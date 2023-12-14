@@ -1,5 +1,5 @@
 import React from 'react'
-import './rapportVente.scss'
+import './rapportVenteChart.scss'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -54,7 +54,7 @@ import { PlusOutlined } from '@ant-design/icons';
   };
 
 
-const RapportVente = () => {
+const RapportVenteChart = () => {
     const navigate = useNavigate();
   return (
     <>
@@ -84,4 +84,4 @@ const RapportVente = () => {
   )
 }
 
-export default RapportVente
+export default RapportVenteChart
