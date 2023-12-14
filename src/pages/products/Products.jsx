@@ -299,8 +299,9 @@ useEffect(() => {
 }, []);
 
 const filteredData = getProduit?.filter((item) =>
-item.nom_produit.toLowerCase().includes(searchValue.toLowerCase()) ||
-item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
+  item.nom_produit.toLowerCase().includes(searchValue.toLowerCase()) ||
+  item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase()) ||
+  item.nom_couleur.toLowerCase().includes(searchValue.toLowerCase())
 );
 
 
