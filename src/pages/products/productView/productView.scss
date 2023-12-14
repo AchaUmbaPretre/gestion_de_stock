@@ -39,8 +39,8 @@
                     letter-spacing: 1px;
                     font-size: 0.8rem;
                     tr{
-                        &:nth-child(even) {
-                            background-color: #eee;
+                        &:nth-child(odd) {
+                            background-color: #eeeeeecb;
                           }
                         
                         td,th{
@@ -91,6 +91,7 @@
                     align-items: center;
                     justify-content: center;
                     background: #e7e6e6;
+                    border-radius: 3px;
                     .product-img{
                         height: 100%;
                         width: 100%;
