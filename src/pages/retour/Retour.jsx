@@ -1,7 +1,7 @@
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
-import { Button, Input, Space, Table, Popconfirm} from 'antd';
+import { Button, Input, Space, Table, Popconfirm, Popover} from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config';
 import axios from 'axios';
@@ -178,22 +178,26 @@ const Retour = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir modifier?"
-                  onConfirm={()=> handleEdit(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-                </Popconfirm>
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir supprimer?"
-                  onConfirm={() => handleDelete(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
-                </Popconfirm>
+                <Popover title="Modifier" trigger="hover">
+                  <Popconfirm
+                    title="Êtes-vous sûr de vouloir modifier?"
+                    onConfirm={()=> handleEdit(record.id)}
+                    okText="Oui"
+                    cancelText="Non"
+                  >
+                    <Button icon={<EditOutlined />} style={{ color: 'green' }} />
+                  </Popconfirm>
+                </Popover>
+                <Popover title="Supprimer" trigger="hover">
+                  <Popconfirm
+                    title="Êtes-vous sûr de vouloir supprimer?"
+                    onConfirm={() => handleDelete(record.id)}
+                    okText="Oui"
+                    cancelText="Non"
+                  >
+                    <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
+                  </Popconfirm>
+                </Popover>
               </Space>
             ),
           },

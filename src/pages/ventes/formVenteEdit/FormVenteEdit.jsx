@@ -120,11 +120,11 @@ const FormVenteEdit = ({getVente,setGetVente}) => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Quantité</label>
-                  <input type="number" value={getVente.quantite} className="form-input" name='quantite' onChange={handleInputChange} placeholder='ex: 10'  required/>
+                  <input type="number" value={getVente?.quantite} className="form-input" name='quantite' onChange={handleInputChange} placeholder='ex: 10'  required/>
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Prix unitaire</label>
-                  <input type="number" value={getVente.prix_unitaire} className="form-input" name='prix_unitaire' placeholder='ex: 100$' onChange={handleInputChange}  required/>
+                  <input type="number" value={getVente?.prix_unitaire} className="form-input" name='prix_unitaire' placeholder='ex: 100$' onChange={handleInputChange}  required/>
                 </div>
             </div>
           </div>
