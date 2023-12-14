@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import './ventesForm.scss'
-import { Divider, Radio, Table } from 'antd';
 import Select from 'react-select';
 import { useEffect } from 'react';
 import config from '../../../config';
@@ -9,7 +7,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
 
-const FormVenteEdit = () => {
+const FormVenteEdit = ({getVente, setGetVente}) => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [selectionType, setSelectionType] = useState('checkbox');
     const navigate = useNavigate();
@@ -97,17 +95,11 @@ const FormVenteEdit = () => {
         });
       }
     }
-console.log(data)
+
   return (
     <>
         <div className="clientForm">
           <div className="product-container">
-            <div className="product-container-top">
-              <div className="product-left">
-                <h2 className="product-h2">Ajouter une nouvelle vente</h2>
-                <span>Créer une nouvelle vente</span>
-              </div>
-            </div>
             <div className="product-wrapper">
               <div className="product-container-bottom">
                 <div className="form-controle">
@@ -143,10 +135,6 @@ console.log(data)
                   <input type="number" className="form-input" name='prix_unitaire' placeholder='ex: 100$' onChange={handleInputChange}  required/>
                 </div>
             </div>
-            <div className="form-submit">
-                <button className="btn-submit" onClick={handleClick}>Soumetre</button>
-                <button className="btn-submit btn-annuler">Annuler</button>
-              </div>
           </div>
         </div>
         </div>

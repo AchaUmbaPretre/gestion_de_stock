@@ -128,8 +128,8 @@ function App() {
           element: <VentesForm />
         },
         {
-          path: '/ventesForm/:id',
-          element: <VentesForm />
+          path: '/ventes/:id',
+          element: <Ventes />
         },
         {
           path: '/retour',

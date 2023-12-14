@@ -2,12 +2,13 @@ import './../products/products.scss'
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
-import { Button, Input, Space, Table, Popover,Popconfirm, Tag} from 'antd';
+import { Button, Input, Space, Table, Popover,Popconfirm, Tag, Modal} from 'antd';
 import photoIcon from './../../assets/logo doe.jpg'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import config from '../../config';
 import { format } from 'date-fns';
+import FormVenteEdit from './formVenteEdit/FormVenteEdit';
 
 const Ventes = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -18,6 +19,10 @@ const Ventes = () => {
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
+    const {pathname} = useLocation();
+    const id = pathname.split('/')[2]
+    const [getVente, setGetVente] = useState({});
+    const [open, setOpen] = useState(false);
 
       const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -28,7 +33,6 @@ const Ventes = () => {
         clearFilters();
         setSearchText('');
       };
-    
       const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
           <div
@@ -124,9 +128,13 @@ const Ventes = () => {
           ),
       });
 
-      const handleEdit = (id) => {
-        navigate(`/ventesForm/${id}`);
-    };
+      const showModal = (id) => {
+        setOpen(true);
+        navigate(`/ventes/${id}`);
+      };
+      const handleCancel = () => {
+        setOpen(false);
+      };
     
     const handleDelete = async (id) => {
     try {
@@ -211,14 +219,7 @@ const Ventes = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir modifier?"
-                  onConfirm={()=> handleEdit(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-                </Popconfirm>
+                  <Button icon={<EditOutlined />} style={{ color: 'green' }} onClick={()=>showModal(record.id)} />
                 <Link to={`/venteView/${record.id}`}>
                   <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
                 </Link>
@@ -241,6 +242,17 @@ const Ventes = () => {
             const { data } = await axios.get(`${DOMAIN}/api/vente`);
             setData(data);
             setLoading(false)
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      }, []);
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`${DOMAIN}/api/vente/venteOne/${id}`);
+            setGetVente(data[0]);
           } catch (error) {
             console.log(error);
           }
@@ -279,6 +291,18 @@ const Ventes = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
+                        <Modal
+                          title="Modifier la vente"
+                          centered
+                          open={open}
+                          onOk={() => setOpen(false)}
+                          onCancel={() => setOpen(false)}
+                          width={850}
+                          okText="Soumettre"
+                          cancelText="Annuler"
+                        >
+                         <FormVenteEdit getVente={getVente} setGetVente={setGetVente} />
+                        </Modal>
                         <Table columns={columns} dataSource={data} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
