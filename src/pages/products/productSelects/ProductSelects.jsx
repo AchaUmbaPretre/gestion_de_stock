@@ -11,6 +11,8 @@ const ProductSelects = ({getProduits}) => {
     const [produit, setProduit] = useState([]);
     const [datas, setDatas] = useState({});
     const [loading, setLoading] = useState(true);
+    const [getCategorie, setGetCategorie] = useState([]);
+    const [couleur, setCouleur] = useState([]);
     
 
     const handleInputChange = (e) => {
@@ -34,6 +36,30 @@ const ProductSelects = ({getProduits}) => {
         const { data } = await axios.get(`${DOMAIN}/api/produit`);
         setProduit(data);
         setLoading(false)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`${DOMAIN}/api/produit/couleur`);
+        setCouleur(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`${DOMAIN}/api/produit/categorie`);
+        setGetCategorie(data);
       } catch (error) {
         console.log(error);
       }
@@ -84,14 +110,14 @@ const ProductSelects = ({getProduits}) => {
                  <Select
                     className="product-input-select"
                     name='categorie'
-                    options={produit?.map(item => ({ value: item.categorie, label: item.nom_categorie }))}
+                    options={getCategorie?.map(item => ({ value: item.id, label: item.nom_categorie }))}
                     onChange={selectedOption => handleInputChange({ target: { name: 'categorie', value: selectedOption.value } })}
                     placeholder="Choisir une categorie"
                 />
                 <Select
                     className="product-input-select"
                     name='couleur'
-                    options={produit?.map(item => ({ value: item.couleur, label: item.nom_couleur }))}
+                    options={couleur?.map(item => ({ value: item.id, label: item.nom_couleur }))}
                     onChange={selectedOption => handleInputChange({ target: { name: 'couleur', value: selectedOption.value } })}
                     placeholder="Choisir une couleur"
                 />
