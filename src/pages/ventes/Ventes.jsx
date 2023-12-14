@@ -173,7 +173,7 @@ const Ventes = () => {
           sorter: (a, b) => a.prix_unitaire.length - b.prix_unitaire.length,
           sortDirections: ['descendre', 'monter'],
           render: (text) => (
-            <span style={{background: '#47C419', color: "#fff", padding: "7px 8px", borderRadius: "10px", fontSize: "11px"}}>
+            <span style={{background: '#47C419', color: "#fff", padding: "7px 8px", borderRadius: "10px", fontSize: "12px"}}>
               {parseFloat(text).toLocaleString('fr-FR', {
                 style: 'currency',
                 currency: 'USD',
