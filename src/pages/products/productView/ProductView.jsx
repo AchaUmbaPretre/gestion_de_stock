@@ -26,7 +26,7 @@ const ProductView = () => {
           }
         };
         fetchData();
-      }, []);
+      }, [id]);
 
       const formattedDatEntrant = moment(getProduit?.date_entree).format('DD-MM-YYYY');
 
