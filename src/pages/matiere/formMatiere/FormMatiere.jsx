@@ -1,8 +1,6 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';;
 
 const FormMatiere = ({getUpdataOne,OnchangePut}) => {
-    const navigate = useNavigate();
 
   return (
     <>

@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import config from '../../config';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import FormMatiere from './formMatiere/FormMatiere';
 
 const Matiere = () => {
     const navigate = useNavigate();
@@ -27,6 +28,9 @@ const Matiere = () => {
       setOpen(true);
       navigate(`/matiere/${id}`);
     };
+    const handleCancel = () => {
+      setOpen(false);
+    };
   
       const handleInputChange = (e) => {
         const value = e.target.value;
@@ -35,7 +39,45 @@ const Matiere = () => {
         setPutMatiere(capitalizedValue)
       };
 
-      console.log(putMatiere)
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`${DOMAIN}/api/produit/matiereOne/${id}`);
+            setPutMatiere(data[0]);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      }, [id])
+      const handleOk = async (e) => {
+        try{
+          await axios.put(`${DOMAIN}/api/produit/matiereUpdate/${id}`,{nom : putMatiere})
+  
+          Swal.fire({
+            title: 'Success',
+            text: "La matière a été modifiée avec succès!",
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
+      
+          setModalText('The modal will be closed after two seconds');
+          setConfirmLoading(true);
+          setTimeout(() => {
+          setOpen(false);
+          setConfirmLoading(false);
+      }, 2000);
+          window.location.reload();
+  
+        }catch(err) {
+          Swal.fire({
+            title: 'Error',
+            text: err.message,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+    };
       const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width: '8%' },
         {
@@ -65,17 +107,6 @@ const Matiere = () => {
           },
       ];
 
-      useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const { data } = await axios.get(`${DOMAIN}/api/produit/matiereOne/${id}`);
-            setPutMatiere(data[0]);
-          } catch (error) {
-            console.log(error);
-          }
-        };
-        fetchData();
-      }, [])
 
       const handleClick = async (e) => {
         e.preventDefault();
@@ -153,6 +184,17 @@ const Matiere = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
+                          <Modal
+                              title="Modifier une matière"
+                              open={open}
+                              onOk={handleOk}
+                              confirmLoading={confirmLoading}
+                              onCancel={handleCancel}
+                              okText="Confirmer"
+                              cancelText="Annuler"
+                            >
+                              <FormMatiere  setUpdata={setPutMatiere} getUpdataOne={putMatiere} OnchangePut={handleInputChange} />
+                            </Modal>
                             <Table columns={columns} dataSource={getMatiere} scroll={scroll} pagination={{ pageSize: 3}} />
                         </div>
                     </div>
