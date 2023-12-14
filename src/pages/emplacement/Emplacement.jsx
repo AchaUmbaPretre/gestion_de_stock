@@ -147,7 +147,6 @@ const Emplacement = () => {
           icon: 'success',
           confirmButtonText: 'OK',
         });
-        window.location.reload();
     
         setModalText('The modal will be closed after two seconds');
         setConfirmLoading(true);
