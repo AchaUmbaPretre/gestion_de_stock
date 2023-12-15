@@ -62,20 +62,32 @@ const EchangeEdit = ({getEchange, setGetEchange}) => {
             <div className="product-wrapper">
               <div className="product-container-bottom">
                 <div className="form-controle">
-                  <label htmlFor="">Client</label>
-                  <Select
-                    name="client_id"
-                    options={client?.map(item => ({ value: item.id, label: item.nom }))}
-                    onChange={selectedOption => handleInputChange({ target: { name: 'client_id', value: selectedOption.value } })}
-                  />
+                    <label htmlFor="">Client</label>
+                    <select
+                        value={getEchange?.client_id }
+                        name="client_id"
+                        className="form-input"
+                        onChange={handleInputChange}
+                    >
+                        <option value="" disabled>Sélectionnez un client</option>
+                            {client?.map((item) => (
+                        <option key={item.id} value={item.id}>{item.nom }</option>
+                            ))}
+                    </select>
                 </div>
                 <div className="form-controle">
-                  <label htmlFor="">Produit</label>
-                  <Select
-                      name="produit_id"
-                      options={produit?.map(item => ({ value: item.produit_id, label: `${item.nom_produit} de couleur ${item.couleur}` }))}
-                      onChange={selectedOption => handleInputChange({ target: { name: 'produit_id', value: selectedOption.value } })}
-                  />
+                    <label htmlFor="">Produit</label>
+                    <select
+                        value={getEchange?.produit_id}
+                        name='produit_id'
+                        className="form-input"
+                        onChange={handleInputChange}
+                    >
+                        <option disabled>Sélectionnez un produit</option>
+                            {produit?.map((item) => (
+                        <option key={item.id} value={item.produit_id}>{item.nom_produit }</option>
+                            ))}
+                    </select>
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Quantité</label>
