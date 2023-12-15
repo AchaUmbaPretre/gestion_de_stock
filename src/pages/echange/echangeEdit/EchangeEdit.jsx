@@ -55,31 +55,6 @@ const EchangeEdit = ({getEchange, setGetEchange}) => {
     fetchData();
   }, []);
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-
-    try{
-      await axios.post(`${DOMAIN}/api/vente/echange`, data)
-      Swal.fire({
-        title: 'Success',
-        text: 'Retour créé avec succès!',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      });
-
-      navigate('/echange')
-      window.location.reload();
-
-    }catch(err) {
-      Swal.fire({
-        title: 'Error',
-        text: err.message,
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-    }
-  }
-
   return (
     <>
         <div className="retourForm">
