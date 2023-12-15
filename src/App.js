@@ -32,6 +32,7 @@ import Marque from './pages/marque/Marque';
 import FormProduitEdit from './pages/products/formEdit/FormProduitEdit';
 import RapportVenteChart from './pages/rapport/rapportVenteChart.jsx/RapportVenteChart';
 import RapportVente from './pages/rapport/rapportVente/RapportVente';
+import RapportDachats from './pages/rapport/rapportDachat/RapportDachats';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -194,6 +195,10 @@ function App() {
         {
           path: '/rapportVentesChart',
           element: <RapportVenteChart/>
+        },
+        {
+          path: '/rapportDachats',
+          element: <RapportDachats/>
         },
       ]
     },
