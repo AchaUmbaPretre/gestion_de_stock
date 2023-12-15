@@ -91,7 +91,7 @@ const EchangeEdit = ({getEchange, setGetEchange}) => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Quantité</label>
-                  <input type="number" name='quantite' className="form-input" placeholder='ex: 2' onChange={handleInputChange}  />
+                  <input type="number" name='quantite' value={getEchange?.quantite} className="form-input" placeholder='ex: 2' onChange={handleInputChange}  />
                 </div>
                 <div className="form-controle">
                     <label htmlFor="">Produit échange</label>
