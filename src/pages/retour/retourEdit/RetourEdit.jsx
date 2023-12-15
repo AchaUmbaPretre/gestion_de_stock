@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 const RetourEdit = () => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
   const [data, setData] = useState({})
-  const [getCategorie, setGetCategorie] = useState([]);
   const [client, setClient] = useState([]);
   const [produit, setProduit] = useState([]);
   const [loading, setLoading] = useState([]);
