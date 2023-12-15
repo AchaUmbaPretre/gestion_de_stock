@@ -65,19 +65,31 @@ const RetourEdit = ({getRetour,setGetRetour}) => {
               <div className="product-container-bottom">
                 <div className="form-controle">
                   <label htmlFor="">Client</label>
-                  <Select
-                    name="client_id"
-                    options={client?.map(item => ({ value: item.id, label: item.nom }))}
-                    onChange={selectedOption => handleInputChange({ target: { name: 'client_id', value: selectedOption.value } })}
-                  />
+                  <select
+                        value={getRetour?.nom }
+                        name="client_id"
+                        className="form-input"
+                        onChange={handleInputChange}
+                    >
+                        <option value="" disabled>Sélectionnez un client</option>
+                            {client?.map((item) => (
+                        <option key={item.id} value={item.id}>{item.nom }</option>
+                            ))}
+                    </select>
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Produit</label>
-                  <Select
-                      name="produit_id"
-                      options={produit?.map(item => ({ value: item.produit_id, label: `${item.nom_produit} de couleur ${item.couleur}` }))}
-                      onChange={selectedOption => handleInputChange({ target: { name: 'produit_id', value: selectedOption.value } })}
-                  />
+                    <select
+                        value={getRetour?.nom_produit}
+                        name='produit_id'
+                        className="form-input"
+                        onChange={handleInputChange}
+                    >
+                        <option value="" disabled>Sélectionnez un produit</option>
+                            {produit?.map((item) => (
+                        <option key={item.id} value={item.produit_id}>{item.nom_produit }</option>
+                            ))}
+                    </select>
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Quantité</label>
@@ -85,7 +97,7 @@ const RetourEdit = ({getRetour,setGetRetour}) => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Motif</label>
-                  <input type="text" name='motif' className="form-input" placeholder='Entrer le motif...' onChange={handleInputChange}  />
+                  <input type="text" name='motif' value={getRetour?.motif} className="form-input" placeholder='Entrer le motif...' onChange={handleInputChange}  />
                 </div>
               </div>
             </div>

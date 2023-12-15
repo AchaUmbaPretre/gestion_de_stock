@@ -281,7 +281,7 @@ const Retour = () => {
                     </div>
                     <div className="rowChart-row-table">
                       <Modal
-                          title="Modifier la vente"
+                          title="Modifier le retour"
                           centered
                           open={open}
                           onOk={handleOk}
