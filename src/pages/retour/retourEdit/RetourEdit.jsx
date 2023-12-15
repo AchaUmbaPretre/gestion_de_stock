@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 const RetourEdit = ({getRetour,setGetRetour}) => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
-  const [data, setData] = useState({})
   const [client, setClient] = useState([]);
   const [produit, setProduit] = useState([]);
   const [loading, setLoading] = useState([]);
@@ -26,7 +25,7 @@ const RetourEdit = ({getRetour,setGetRetour}) => {
       updatedValue = fieldValue.charAt(0).toUpperCase() + fieldValue.slice(1);
     }
   
-    setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
+    setGetRetour((prev) => ({ ...prev, [fieldName]: updatedValue }));
   };
 
   useEffect(() => {
@@ -66,7 +65,7 @@ const RetourEdit = ({getRetour,setGetRetour}) => {
                 <div className="form-controle">
                   <label htmlFor="">Client</label>
                   <select
-                        value={getRetour?.nom }
+                        value={getRetour?.client_id }
                         name="client_id"
                         className="form-input"
                         onChange={handleInputChange}
@@ -80,12 +79,12 @@ const RetourEdit = ({getRetour,setGetRetour}) => {
                 <div className="form-controle">
                   <label htmlFor="">Produit</label>
                     <select
-                        value={getRetour?.nom_produit}
+                        value={getRetour?.produit_id}
                         name='produit_id'
                         className="form-input"
                         onChange={handleInputChange}
                     >
-                        <option value="" disabled>Sélectionnez un produit</option>
+                        <option disabled>Sélectionnez un produit</option>
                             {produit?.map((item) => (
                         <option key={item.id} value={item.produit_id}>{item.nom_produit }</option>
                             ))}
