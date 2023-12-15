@@ -189,14 +189,7 @@ const Retour = () => {
                 
               <Space size="middle">
                 <Popover title="Modifier" trigger="hover">
-                  <Popconfirm
-                    title="Êtes-vous sûr de vouloir modifier?"
-                    onConfirm={()=> handleEdit(record.id)}
-                    okText="Oui"
-                    cancelText="Non"
-                  >
-                    <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-                  </Popconfirm>
+                    <Button icon={<EditOutlined />} style={{ color: 'green' }}  onClick={()=>showModal(record.id)} />
                 </Popover>
                 <Popover title="Supprimer" trigger="hover">
                   <Popconfirm
