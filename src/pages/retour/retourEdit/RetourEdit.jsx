@@ -30,8 +30,6 @@ const RetourEdit = () => {
     setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
   };
 
-  console.log(data)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -87,12 +85,6 @@ const RetourEdit = () => {
     <>
         <div className="retourForm">
           <div className="product-container">
-            <div className="product-container-top">
-              <div className="product-left">
-                <h2 className="product-h2">Ajouter un retour</h2>
-                <span>Créer un nouveau retour</span>
-              </div>
-            </div>
             <div className="product-wrapper">
               <div className="product-container-bottom">
                 <div className="form-controle">
@@ -119,10 +111,6 @@ const RetourEdit = () => {
                   <label htmlFor="">Motif</label>
                   <input type="text" name='motif' className="form-input" placeholder='Entrer le motif...' onChange={handleInputChange}  />
                 </div>
-              </div>
-              <div className="form-submit">
-                <button className="btn-submit" onClick={handleClick}>Soumetre</button>
-                <button className="btn-submit btn-annuler">Annuler</button>
               </div>
             </div>
           </div>

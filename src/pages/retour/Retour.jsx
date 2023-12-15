@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import config from '../../config';
 import axios from 'axios';
 import RetourEdit from './retourEdit/RetourEdit';
+import Swal from 'sweetalert2';
 
 const Retour = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -130,7 +131,7 @@ const Retour = () => {
 
       const showModal = (id) => {
         setOpen(true);
-        navigate(`/ventes/${id}`);
+        navigate(`/retour/${id}`);
       };
 
       const handleEdit = (id) => {
@@ -220,6 +221,35 @@ const Retour = () => {
           },
       ];
 
+      const handleOk = async (e) => {
+        try{
+          await axios.put(`${DOMAIN}/api/vente/retour/${id}`,getRetour)
+  
+          Swal.fire({
+            title: 'Success',
+            text: "Le retour a été modifié avec succès!",
+            icon: 'success',
+            confirmButtonText: 'OK',
+          });
+      
+          setModalText('The modal will be closed after two seconds');
+          setConfirmLoading(true);
+          setTimeout(() => {
+          setOpen(false);
+          setConfirmLoading(false);
+      }, 2000);
+          window.location.reload();
+  
+        }catch(err) {
+          Swal.fire({
+            title: 'Error',
+            text: err.message,
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
+    };
+
   return (
     <>
         <div className="products">
@@ -250,7 +280,18 @@ const Retour = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
-                        <RetourEdit getRetour={getRetour} setGetRetour={setGetRetour} />
+                      <Modal
+                          title="Modifier la vente"
+                          centered
+                          open={open}
+                          onOk={handleOk}
+                          onCancel={() => setOpen(false)}
+                          width={860}
+                          okText="Soumettre"
+                          cancelText="Annuler"
+                        >
+                          <RetourEdit getRetour={getRetour} setGetRetour={setGetRetour} />
+                        </Modal>
                         <Table columns={columns} dataSource={retour} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
