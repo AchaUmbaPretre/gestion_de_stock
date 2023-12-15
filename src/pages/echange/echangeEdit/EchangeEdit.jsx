@@ -7,7 +7,7 @@ import config from '../../../config';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-const EchangeEdit = () => {
+const EchangeEdit = ({getEchange, setGetEchange}) => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
   const [data, setData] = useState({})
   const [getCategorie, setGetCategorie] = useState([]);
@@ -26,8 +26,7 @@ const EchangeEdit = () => {
     } else if (Number.isNaN(Number(fieldValue))) {
       updatedValue = fieldValue.charAt(0).toUpperCase() + fieldValue.slice(1);
     }
-  
-    setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
+    setGetEchange((prev) => ({ ...prev, [fieldName]: updatedValue }));
   };
 
   useEffect(() => {
@@ -110,9 +109,9 @@ const EchangeEdit = () => {
                 <div className="form-controle">
                   <label htmlFor="">Produit échange</label>
                   <Select
-                      name="produit_echange_id "
-                      options={produit?.map(item => ({ value: item.produit_id, label: `${item.nom_produit} de couleur ${item.couleur}` }))}
-                      onChange={selectedOption => handleInputChange({ target: { name: 'produit_echange_id', value: selectedOption.value } })}
+                    name="produit_echange_id "
+                    options={produit?.map(item => ({ value: item.produit_id, label: `${item.nom_produit} de couleur ${item.couleur}` }))}
+                    onChange={selectedOption => handleInputChange({ target: { name: 'produit_echange_id', value: selectedOption.value } })}
                   />
                 </div>
               </div>
