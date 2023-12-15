@@ -5,6 +5,7 @@ import { Button, Input, Space, Table, Popconfirm, Popover, Tag, Modal} from 'ant
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import config from '../../config';
 import axios from 'axios';
+import RetourEdit from './retourEdit/RetourEdit';
 
 const Retour = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -148,6 +149,18 @@ const Retour = () => {
       };
       fetchData();
     }, []);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get(`${DOMAIN}/api/vente/venteOne/${id}`);
+          setGetRetour(data[0]);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    }, [id]);
     
     const handleDelete = async (id) => {
      try {
@@ -237,6 +250,7 @@ const Retour = () => {
                         </div>
                     </div>
                     <div className="rowChart-row-table">
+                        <RetourEdit getRetour={getRetour} setGetRetour={setGetRetour} />
                         <Table columns={columns} dataSource={retour} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
