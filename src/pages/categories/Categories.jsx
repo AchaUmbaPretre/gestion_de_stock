@@ -24,6 +24,7 @@ const Categories = () => {
     const [initialData, setInitialData] = useState({});
     const id = pathname.split('/')[2]
     const [loading, setLoading] = useState(true);
+    const [searchValue, setSearchValue] = useState('');
     
 
     const showModal = (id) => {
@@ -164,8 +165,6 @@ const Categories = () => {
         };
         fetchData();
       }, [])
-
-      console.log(putCategorie)
     
     const handleDelete = async (id) => {
      try {
@@ -175,6 +174,10 @@ const Categories = () => {
         console.log(err);
       }
     };
+
+    const filteredData = getCategorie?.filter((item) =>
+  item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
+);
 
   return (
     <>
@@ -200,7 +203,7 @@ const Categories = () => {
                                 <PrinterOutlined className='product-icon-printer'/>
                             </div>
                             <div className="categorie-right">
-                                <input type="search" name="" id="" placeholder='Recherche...' className='categorie-search' />
+                                <input type="search" name="" id="" placeholder='Recherche...' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} className='categorie-search' />
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
@@ -215,7 +218,7 @@ const Categories = () => {
                             >
                               <FormCategorie getUpdata={setPutCategorie} getUpdataOne={putCategorie} />
                             </Modal>
-                            <Table columns={columns} loading={loading} dataSource={getCategorie} scroll={scroll} pagination={{ pageSize: 5}} />
+                            <Table columns={columns} loading={loading} dataSource={filteredData} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
                 </div>

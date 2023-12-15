@@ -179,7 +179,7 @@ const Emplacement = () => {
                         <h2 className="categorie-title">Ajouter emplacement</h2>
                         <div className="categorie-form">
                             <label htmlFor="">Nom</label>
-                            <input type="search" className="input-form" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder='Entrer le nom...' onChange={handleInputChange} />
+                            <input type="text" className="input-form" placeholder='Entrer le nom...' onChange={handleInputChange} />
                         </div>
                         <div className="categorie-form">
                             <label htmlFor="">Capacité maximale</label>
@@ -195,7 +195,7 @@ const Emplacement = () => {
                                 <PrinterOutlined className='product-icon-printer'/>
                             </div>
                             <div className="categorie-right">
-                                <input type="search" name="" id="" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder='Recherche...' className='categorie-search' />
+                                <input type="search"  value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder='Recherche...' className='categorie-search' />
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
