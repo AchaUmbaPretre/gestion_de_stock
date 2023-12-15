@@ -120,34 +120,8 @@ const Client = () => {
             text
           ),
       });
-
-      const handleEdit = (id) => {
-        navigate(`/clientForm/${id}`);
-    };
-
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const { data } = await axios.get(`${DOMAIN}/api/peuple`);
-          setGetClient(data);
-          setLoading(false)
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchData();
-    }, []);
-    
-    const handleDelete = async (id) => {
-     try {
-        await axios.put(`${DOMAIN}/api/peuple/clientDelete/${id}`);
-          window.location.reload();
-      } catch (err) {
-        console.log(err);
-      } 
-    };
-    
-    const columns = [
+          
+      const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
             title: 'Nom',
@@ -210,7 +184,33 @@ const Client = () => {
               </Space>
             ),
           },
-    ];
+      ];
+
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`${DOMAIN}/api/peuple`);
+            setGetClient(data);
+            setLoading(false)
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      }, []);
+
+      const handleEdit = (id) => {
+        navigate(`/clientForm/${id}`);
+      };
+    
+      const handleDelete = async (id) => {
+      try {
+          await axios.put(`${DOMAIN}/api/peuple/clientDelete/${id}`);
+            window.location.reload();
+        } catch (err) {
+          console.log(err);
+        } 
+      };
 
   return (
     <>
