@@ -7,6 +7,7 @@ import config from '../../config';
 import axios from 'axios';
 import EchangeEdit from './echangeEdit/EchangeEdit';
 import Swal from 'sweetalert2';
+import { format, parseISO } from 'date-fns';
 
 const Echange = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
@@ -189,12 +190,29 @@ const Echange = () => {
         {
             title: 'Quantité',
             dataIndex: 'quantite',
-            key: 'quantite'
+            key: 'quantite',
+            sorter: (a, b) => a.quantite - b.quantite,
+            sortDirections: ['descend', 'ascend'],
+            render: (quantite) => (
+              <Tag color={quantite > 0 ? 'green' : 'red'}>{quantite}</Tag>
+            ),
         },
         {
-            title: 'Produit échange',
+            title: "Produit d'échange",
             dataIndex: 'nom_produit_echange',
-            key: 'motif',
+            key: 'nom_produit_echange',
+        },
+        {
+          title: "Date d'échange",
+          dataIndex: 'date_echange',
+          key: 'date',
+          sorter: (a, b) => a.date_vente - b.date_vente,
+          sortDirections: ['descend', 'ascend'],
+          render: (text) => (
+            <span>
+              {format(parseISO(text), 'dd-MM-yyyy')}
+            </span>
+          ),
         },
         {
             title: 'Action',
