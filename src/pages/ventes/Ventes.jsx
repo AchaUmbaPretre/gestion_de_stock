@@ -204,18 +204,18 @@ const Ventes = () => {
             <Tag color={quantite > 0 ? 'green' : 'red'}>{quantite}</Tag>
           ),
         },
-          {
+        {
             title: 'Date',
             dataIndex: 'date_vente',
             key: 'date',
-            sorter: (a, b) => a.date_vente.length - b.date_vente.length,
+            sorter: (a, b) => a.date_vente - b.date_vente,
             sortDirections: ['descend', 'ascend'],
             render: (text) => (
               <span>
                 {format(new Date(text), 'dd-MM-yyyy')}
               </span>
             ),
-          },
+        },
         {
             title: 'Action',
             key: 'action',
