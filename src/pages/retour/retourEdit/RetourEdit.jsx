@@ -55,6 +55,8 @@ const RetourEdit = ({getRetour,setGetRetour}) => {
     fetchData();
   }, []);
 
+  console.log(getRetour)
+
   return (
     <>
         <div className="retourForm">
@@ -79,7 +81,7 @@ const RetourEdit = ({getRetour,setGetRetour}) => {
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Quantité</label>
-                  <input type="number" name='quantite' className="form-input" placeholder='ex: 2' onChange={handleInputChange}  />
+                  <input type="number" value={getRetour?.quantite} name='quantite' className="form-input" placeholder='ex: 2' onChange={handleInputChange}  />
                 </div>
                 <div className="form-controle">
                   <label htmlFor="">Motif</label>

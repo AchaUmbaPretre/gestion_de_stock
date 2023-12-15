@@ -154,7 +154,7 @@ const Retour = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const { data } = await axios.get(`${DOMAIN}/api/vente/venteOne/${id}`);
+          const { data } = await axios.get(`${DOMAIN}/api/vente/retourOne/${id}`);
           setGetRetour(data[0]);
         } catch (error) {
           console.log(error);
