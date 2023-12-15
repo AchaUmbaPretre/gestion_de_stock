@@ -175,6 +175,16 @@ const Retour = () => {
       const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width: '5%' },
         {
+          title: 'image',
+          dataIndex: 'img',
+          key: 'img',
+            render: (text, record) => (
+              <div className="userList">
+                <img src={record.img} alt="" className="userImg"  />
+              </div>
+              )
+        },
+        {
             title: 'Client',
             dataIndex: 'nom',
             key: 'nom',
@@ -189,7 +199,10 @@ const Retour = () => {
         {
             title: 'Quantité',
             dataIndex: 'quantite',
-            key: 'quantite'
+            key: 'quantite',
+            render: (quantite) => (
+              <Tag color={quantite > 0 ? 'green' : 'red'}>{quantite}</Tag>
+            ),
         },
         {
             title: 'Motif',
