@@ -12,7 +12,7 @@ const RapportDachats = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
-    const [getRapport, setGetRapport] = useState([]);
+    const [getRapportDachat, setGetRapportDachat] = useState([]);
     const [loading, setLoading] = useState(true);
     const searchInput = useRef(null);
     const [searchValue, setSearchValue] = useState('');
@@ -145,25 +145,15 @@ const columns = [
         ...getColumnSearchProps('nom_produit'),
     },
     {
-      title: 'Categorie',
-      dataIndex: 'nom_categorie',
-      key: 'categorie',
-    },
-    {
-      title: 'Marque',
-      dataIndex: 'nom',
-      key: 'nom',
-    },
-    {
-      title: 'Montant vendu',
-      dataIndex: 'montant_total',
-      key: 'montant_total',
-      sorter: (a, b) => a.montant_total - b.montant_total,
+      title: "Montant total d'achats",
+      dataIndex: 'montant_total_achat',
+      key: 'montant_total_achat',
+      sorter: (a, b) => a.montant_total_achat - b.montant_total_achat,
       sortDirections: ['descend', 'ascend'],
-      render: (montant_total) => (
+      render: (montant_total_achat) => (
         <span>
         <Tag color={'green'}>
-          {parseFloat(montant_total).toLocaleString('fr-FR', {
+          {parseFloat(montant_total_achat).toLocaleString('fr-FR', {
             style: 'currency',
             currency: 'USD',
           })}
@@ -173,23 +163,23 @@ const columns = [
       ),
     },
     {
-      title: 'Quantité vendue',
-      dataIndex: 'quantite_vendue',
-      key: 'quantite_vendue',
-      sorter: (a, b) => a.quantite_vendue - b.quantite_vendue,
+      title: 'Quantité achetée',
+      dataIndex: 'quantite_totale_achetee',
+      key: 'quantite_totale_achetee',
+      sorter: (a, b) => a.quantite_totale_achetee - b.quantite_totale_achetee,
       sortDirections: ['descend', 'ascend'],
-      render: (quantite_vendue) => (
-        <Tag color={quantite_vendue > 0 ? 'green' : 'red'}>{quantite_vendue}</Tag>
+      render: (quantite_totale_achetee) => (
+        <Tag color={quantite_totale_achetee > 0 ? 'green' : 'red'}>{quantite_totale_achetee}</Tag>
       ),
     },
     {
         title: 'Qté en stock',
-        dataIndex: 'quantite_restante',
-        key: 'quantite_restante',
-        sorter: (a, b) => a.quantite_restante - b.quantite_restante,
+        dataIndex: 'quantite_en_stock',
+        key: 'quantite_en_stock',
+        sorter: (a, b) => a.quantite_en_stock - b.quantite_en_stock,
         sortDirections: ['descend', 'ascend'],
-        render: (quantite_restante) => (
-          <Tag color={quantite_restante > 0 ? 'green' : 'red'}>{quantite_restante}</Tag>
+        render: (quantite_en_stock) => (
+          <Tag color={quantite_en_stock > 0 ? 'green' : 'red'}>{quantite_en_stock}</Tag>
         ),
       }
 ];
@@ -201,8 +191,8 @@ const HandOpen = () =>{
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const { data } = await axios.get(`${DOMAIN}/api/rapport`);
-      setGetRapport(data);
+      const { data } = await axios.get(`${DOMAIN}/api/rapport/rapportDachats`);
+      setGetRapportDachat(data);
       setLoading(false)
     } catch (error) {
       console.log(error);
@@ -211,10 +201,8 @@ useEffect(() => {
   fetchData();
 }, []);
 
- const filteredData = getRapport?.filter((item) =>
-item.nom_produit.toLowerCase().includes(searchValue.toLowerCase()) ||
-item.nom.toLowerCase().includes(searchValue.toLowerCase())
-)
+ const filteredData = getRapportDachat?.filter((item) =>
+item.nom_produit.toLowerCase().includes(searchValue.toLowerCase()))
 
   return (
     <>
@@ -222,7 +210,7 @@ item.nom.toLowerCase().includes(searchValue.toLowerCase())
             <div className="product-container">
                 <div className="product-container-top">
                     <div className="product-left">
-                        <h2 className="product-h2">Rapport de ventes</h2>
+                        <h2 className="product-h2">Rapport d'achats</h2>
                     </div>
                 </div>
                 <div className="product-bottom">
