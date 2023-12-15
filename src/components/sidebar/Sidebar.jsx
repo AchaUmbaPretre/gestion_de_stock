@@ -129,6 +129,11 @@ const Sidebar = () => {
             Rapport de ventes
           </Link>
         </Item>
+        <Item key="rapportdAchats">
+          <Link to="/rapportDachats" className="sidebarLink">
+            Rapport d'achats
+          </Link>
+        </Item>
       </SubMenu>
 {/* 
       <SubMenu key="settings" title={<span className="sidebarH3">Paramètres</span>} icon={<SettingOutlined style={{ fontSize: '20px', color: 'rgb(1, 35, 138)' }}/>}>
