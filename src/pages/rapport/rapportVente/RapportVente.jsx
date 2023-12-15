@@ -13,7 +13,7 @@ const RapportVente = () => {
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
-    const [getProduit, setGetProduit] = useState();
+    const [getRapport, setGetRapport] = useState([]);
     const [loading, setLoading] = useState(true);
     const searchInput = useRef(null);
     const [searchValue, setSearchValue] = useState('');
@@ -126,19 +126,6 @@ const RapportVente = () => {
             text
           ),
       });
-
-      const handleEdit = (id) => {
-        navigate(`/productForm/${id}`);
-    };
-    
-/*     const handleDelete = async (id) => {
-      try {
-        await axios.put(`${DOMAIN}/api/produit/produitDelete/${id}`);
-          window.location.reload();
-      } catch (err) {
-        console.log(err);
-      }
-    }; */
     
 const columns = [
     { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
@@ -165,14 +152,14 @@ const columns = [
     },
     {
       title: 'Montant vendu',
-      dataIndex: 'montant',
-      key: 'montant',
-      sorter: (a, b) => a.montant - b.montant,
+      dataIndex: 'montant_total',
+      key: 'montant_total',
+      sorter: (a, b) => a.montant_total - b.montant_total,
       sortDirections: ['descend', 'ascend'],
-      render: (text) => (
+      render: (montant_total) => (
         <span>
         <Tag color={'green'}>
-          {parseFloat(text).toLocaleString('fr-FR', {
+          {parseFloat(montant_total).toLocaleString('fr-FR', {
             style: 'currency',
             currency: 'USD',
           })}
@@ -183,59 +170,47 @@ const columns = [
     },
     {
       title: 'Quantité vendue',
-      dataIndex: 'quantite_stock',
-      key: 'quantite_stock',
-      sorter: (a, b) => a.quantite_stock - b.quantite_stock,
+      dataIndex: 'quantite_vendue',
+      key: 'quantite_vendue',
+      sorter: (a, b) => a.quantite_vendue - b.quantite_vendue,
       sortDirections: ['descend', 'ascend'],
-      render: (quantite_stock) => (
-        <Tag color={quantite_stock > 0 ? 'green' : 'red'}>{quantite_stock}</Tag>
+      render: (quantite_vendue) => (
+        <Tag color={quantite_vendue > 0 ? 'green' : 'red'}>{quantite_vendue}</Tag>
       ),
     },
     {
         title: 'Qté en stock',
-        dataIndex: 'quantite_stock',
-        key: 'quantite_stock',
-        sorter: (a, b) => a.quantite_stock - b.quantite_stock,
+        dataIndex: 'quantite_restante',
+        key: 'quantite_restante',
+        sorter: (a, b) => a.quantite_restante - b.quantite_restante,
         sortDirections: ['descend', 'ascend'],
-        render: (quantite_stock) => (
-          <Tag color={quantite_stock > 0 ? 'green' : 'red'}>{quantite_stock}</Tag>
+        render: (quantite_restante) => (
+          <Tag color={quantite_restante > 0 ? 'green' : 'red'}>{quantite_restante}</Tag>
         ),
-      },
-    {
-      title: "Date d'entrée",
-      dataIndex: 'date_entree',
-      key: 'date',
-        sorter: (a, b) => a.date_entree - b.date_entree,
-      sortDirections: ['descend', 'ascend'],
-        render: (text) => (
-          <span>
-            {format(new Date(text), 'dd-MM-yyyy')}
-          </span>
-        ),
-    }
+      }
 ];
 
 const HandOpen = () =>{
   setOpen(!open)
 }
 
-/* useEffect(() => {
+useEffect(() => {
   const fetchData = async () => {
     try {
-      const { data } = await axios.get(`${DOMAIN}/api/produit`);
-      setGetProduit(data);
+      const { data } = await axios.get(`${DOMAIN}/api/rapport`);
+      setGetRapport(data);
       setLoading(false)
     } catch (error) {
       console.log(error);
     }
   };
   fetchData();
-}, []); */
+}, []);
 
-const filteredData = getProduit?.filter((item) =>
+/* const filteredData = getRapport?.filter((item) =>
 item.nom_produit.toLowerCase().includes(searchValue.toLowerCase()) ||
 item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
-);
+) */;
 
 
 
@@ -266,7 +241,7 @@ item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
 {/*                    {open &&
                     <ProductSelects getProduits={setGetProduit}/> }  */}
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={filteredData} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={getRapport} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>
