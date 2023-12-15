@@ -176,8 +176,8 @@ const Categories = () => {
     };
 
     const filteredData = getCategorie?.filter((item) =>
-  item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
-);
+    item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
+    );
 
   return (
     <>

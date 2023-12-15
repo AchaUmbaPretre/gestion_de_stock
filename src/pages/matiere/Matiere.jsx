@@ -10,19 +10,15 @@ import FormMatiere from './formMatiere/FormMatiere';
 const Matiere = () => {
     const navigate = useNavigate();
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
-    const [searchText, setSearchText] = useState('');
-    const [searchedColumn, setSearchedColumn] = useState('');
     const [nomMatiere, setNomMatiere] = useState();
     const [getMatiere, setGetMatiere] = useState()
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
     const [putMatiere, setPutMatiere] = useState({});
-    const searchInput = useRef(null);
     const scroll = { x: 400 };
-    const [initialData, setInitialData] = useState({});
     const {pathname} = useLocation();
     const id = pathname.split('/')[2]
+    const [searchValue, setSearchValue] = useState('');
 
     const showModal = (id) => {
       setOpen(true);
@@ -60,8 +56,6 @@ const Matiere = () => {
             icon: 'success',
             confirmButtonText: 'OK',
           });
-      
-          setModalText('The modal will be closed after two seconds');
           setConfirmLoading(true);
           setTimeout(() => {
           setOpen(false);
@@ -77,7 +71,7 @@ const Matiere = () => {
             confirmButtonText: 'OK',
           });
         }
-    };
+      };
       const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width: '8%' },
         {
@@ -142,10 +136,6 @@ const Matiere = () => {
         };
         fetchData();
       }, []);
-
-    const handleEdit = (id) => {
-        navigate(`/matiere/${id}`);
-    };
     
     const handleDelete = async (id) => {
      try {
@@ -155,6 +145,10 @@ const Matiere = () => {
         console.log(err);
       }
     };
+
+    const filteredData = getMatiere?.filter((item) =>
+    item.nom.toLowerCase().includes(searchValue.toLowerCase())
+    );
 
   return (
     <>
@@ -180,7 +174,7 @@ const Matiere = () => {
                                 <PrinterOutlined className='product-icon-printer'/>
                             </div>
                             <div className="categorie-right">
-                                <input type="search" name="" id="" placeholder='Recherche...' className='categorie-search' />
+                                <input type="search" name="" id="" placeholder='Recherche...' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} className='categorie-search' />
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
@@ -195,7 +189,7 @@ const Matiere = () => {
                             >
                               <FormMatiere  setUpdata={setPutMatiere} getUpdataOne={putMatiere} OnchangePut={handleInputChange} />
                             </Modal>
-                            <Table columns={columns} dataSource={getMatiere} scroll={scroll} pagination={{ pageSize: 3}} />
+                            <Table columns={columns} dataSource={filteredData} scroll={scroll} pagination={{ pageSize: 3}} />
                         </div>
                     </div>
                 </div>
