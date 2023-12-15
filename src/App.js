@@ -148,6 +148,10 @@ function App() {
           element: <Echange/>
         },
         {
+          path: '/echange/:id',
+          element: <Echange/>
+        },
+        {
           path: '/echangeForm',
           element: <EchangeForm/>
         },
