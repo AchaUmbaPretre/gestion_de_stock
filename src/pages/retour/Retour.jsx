@@ -134,10 +134,6 @@ const Retour = () => {
         navigate(`/retour/${id}`);
       };
 
-      const handleEdit = (id) => {
-        navigate(`/retourForm/${id}`);
-    };
-
     useEffect(() => {
       const fetchData = async () => {
         try {
