@@ -165,11 +165,11 @@ const Livreur = () => {
               </Popover>
               <Popover title="Supprimer" trigger="hover">
                 <Popconfirm
-                    title="Êtes-vous sûr de vouloir supprimer?"
-                    onConfirm={() => handleDelete(record.id)}
-                    okText="Oui"
-                    cancelText="Non"
-                  >
+                  title="Êtes-vous sûr de vouloir supprimer?"
+                  onConfirm={() => handleDelete(record.id)}
+                  okText="Oui"
+                  cancelText="Non"
+                >
                   <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
                 </Popconfirm>
               </Popover>
