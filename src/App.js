@@ -156,10 +156,6 @@ function App() {
           element: <EchangeForm/>
         },
         {
-          path: '/echangeForm/:id',
-          element: <EchangeForm/>
-        },
-        {
           path: '/clients',
           element: <Client />
         },

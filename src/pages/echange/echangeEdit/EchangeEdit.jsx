@@ -30,8 +30,6 @@ const EchangeEdit = () => {
     setData((prev) => ({ ...prev, [fieldName]: updatedValue }));
   };
 
-  console.log(data)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -87,12 +85,6 @@ const EchangeEdit = () => {
     <>
         <div className="retourForm">
           <div className="product-container">
-            <div className="product-container-top">
-              <div className="product-left">
-                <h2 className="product-h2">Ajouter un échange</h2>
-                <span>Créer un nouveau échange</span>
-              </div>
-            </div>
             <div className="product-wrapper">
               <div className="product-container-bottom">
                 <div className="form-controle">
@@ -123,10 +115,6 @@ const EchangeEdit = () => {
                       onChange={selectedOption => handleInputChange({ target: { name: 'produit_echange_id', value: selectedOption.value } })}
                   />
                 </div>
-              </div>
-              <div className="form-submit">
-                <button className="btn-submit" onClick={handleClick}>Soumetre</button>
-                <button className="btn-submit btn-annuler">Annuler</button>
               </div>
             </div>
           </div>
