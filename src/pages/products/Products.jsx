@@ -343,7 +343,6 @@ const filteredData = getProduit?.filter((item) =>
                 </div>
             </div>
         </div>
-
     </>
   )
 }
