@@ -49,6 +49,10 @@
                 border-radius: 5px;
                 margin: 20px 0;
                 outline: none;
+                transition: .5s;
+                &:focus{
+                    border: 1px solid rgba(32, 82, 231, 0.61);
+                }
             }
             .categorie-btn{
                 border: none;
@@ -100,8 +104,9 @@
                         border: 1px solid #d4d4d4;
                         border-radius: 5px;
                         outline: none;
+                        transition: .5s;
                         &:focus{
-                            border: 1px solid rgba(4, 54, 206, 0.781);
+                            border: 1px solid rgba(32, 82, 231, 0.61);
                         }
                     }
                 }

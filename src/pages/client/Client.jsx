@@ -26,7 +26,6 @@ const Client = () => {
         clearFilters();
         setSearchText('');
       };
-    
       const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
           <div
@@ -148,7 +147,7 @@ const Client = () => {
       } 
     };
     
-      const columns = [
+    const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1 },
         {
             title: 'Nom',
@@ -174,9 +173,9 @@ const Client = () => {
           },
         {
           title: 'Ville',
-          dataIndex: 'nom',
-          key: 'nom',
-          ...getColumnSearchProps('nom')
+          dataIndex: 'nom_province',
+          key: 'nom_province',
+          ...getColumnSearchProps('nom_province')
         },
         {
             title: 'Adresse',
@@ -211,7 +210,7 @@ const Client = () => {
               </Space>
             ),
           },
-      ];
+    ];
 
   return (
     <>
