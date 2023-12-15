@@ -7,7 +7,7 @@ import config from '../../../config';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-const RetourEdit = () => {
+const RetourEdit = ({getRetour,setGetRetour}) => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
   const [data, setData] = useState({})
   const [client, setClient] = useState([]);
@@ -54,31 +54,6 @@ const RetourEdit = () => {
     };
     fetchData();
   }, []);
-
-  const handleClick = async (e) => {
-    e.preventDefault();
-
-    try{
-      await axios.post(`${DOMAIN}/api/vente/retour`, data)
-      Swal.fire({
-        title: 'Success',
-        text: 'Retour créé avec succès!',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      });
-
-      navigate('/retour')
-      window.location.reload();
-
-    }catch(err) {
-      Swal.fire({
-        title: 'Error',
-        text: err.message,
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
-    }
-  }
 
   return (
     <>
