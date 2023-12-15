@@ -224,6 +224,7 @@ item.nom.toLowerCase().includes(searchValue.toLowerCase())
                 <div className="product-container-top">
                     <div className="product-left">
                         <h2 className="product-h2">Rapport de ventes</h2>
+                        <span>Gérez votre rapport de ventes</span>
                     </div>
                 </div>
                 <div className="product-bottom">
