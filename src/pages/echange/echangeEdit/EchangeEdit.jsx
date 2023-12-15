@@ -94,12 +94,18 @@ const EchangeEdit = ({getEchange, setGetEchange}) => {
                   <input type="number" name='quantite' className="form-input" placeholder='ex: 2' onChange={handleInputChange}  />
                 </div>
                 <div className="form-controle">
-                  <label htmlFor="">Produit échange</label>
-                  <Select
-                    name="produit_echange_id "
-                    options={produit?.map(item => ({ value: item.produit_id, label: `${item.nom_produit} de couleur ${item.couleur}` }))}
-                    onChange={selectedOption => handleInputChange({ target: { name: 'produit_echange_id', value: selectedOption.value } })}
-                  />
+                    <label htmlFor="">Produit échange</label>
+                    <select
+                        value={getEchange?.produit_id}
+                        name="produit_echange_id"
+                        className="form-input"
+                        onChange={handleInputChange}
+                    >
+                        <option disabled>Sélectionnez un produit</option>
+                            {produit?.map((item) => (
+                        <option key={item.id} value={item.produit_id}>{item.nom_produit }</option>
+                            ))}
+                    </select>
                 </div>
               </div>
             </div>
