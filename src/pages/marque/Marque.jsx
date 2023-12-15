@@ -19,6 +19,7 @@ const Marque = () => {
     const id = pathname.split('/')[2]
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
+    const [searchValue, setSearchValue] = useState('');
   
       const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width: '8%' },
@@ -146,6 +147,10 @@ const Marque = () => {
       }
     };
 
+    const filteredData = getMarque?.filter((item) =>
+    item.nom.toLowerCase().includes(searchValue.toLowerCase())
+    )
+
   return (
     <>
         <div className="categories">
@@ -170,7 +175,7 @@ const Marque = () => {
                               <PrinterOutlined className='product-icon-printer'/>
                             </div>
                             <div className="categorie-right">
-                              <input type="search" name="" id="" placeholder='Recherche...' className='categorie-search' />
+                              <input type="search" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder='Recherche...' className='categorie-search' />
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
@@ -185,7 +190,7 @@ const Marque = () => {
                             >
                               <FormMarque  setUpdata={setPutMarque} getUpdataOne={putMarque} OnchangePut={handleInputChange} />
                             </Modal>
-                            <Table columns={columns} dataSource={getMarque} scroll={scroll} pagination={{ pageSize: 5}} />
+                            <Table columns={columns} dataSource={filteredData} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
                 </div>
