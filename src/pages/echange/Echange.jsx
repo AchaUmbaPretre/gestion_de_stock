@@ -208,10 +208,12 @@ const Echange = () => {
           key: 'date',
           sorter: (a, b) => a.date_vente - b.date_vente,
           sortDirections: ['descend', 'ascend'],
-          render: (text) => (
+          render: (text) => ( 
+          <Tag color={'#7AA6E5'}>
             <span>
               {format(parseISO(text), 'dd-MM-yyyy')}
             </span>
+          </Tag>
           ),
         },
         {
