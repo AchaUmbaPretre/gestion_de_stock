@@ -28,7 +28,6 @@ const EchangeEdit = ({getEchange, setGetEchange}) => {
     }
     setGetEchange((prev) => ({ ...prev, [fieldName]: updatedValue }));
   };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -94,16 +93,16 @@ const EchangeEdit = ({getEchange, setGetEchange}) => {
                   <input type="number" name='quantite' value={getEchange?.quantite} className="form-input" placeholder='ex: 2' onChange={handleInputChange}  />
                 </div>
                 <div className="form-controle">
-                    <label htmlFor="">Produit échange</label>
+                    <label htmlFor="">Produit d'échange</label>
                     <select
-                        value={getEchange?.produit_id}
+                        value={getEchange?.produit_echange_id}
                         name="produit_echange_id"
                         className="form-input"
                         onChange={handleInputChange}
                     >
                         <option disabled>Sélectionnez un produit</option>
                             {produit?.map((item) => (
-                        <option key={item.id} value={item.produit_id}>{item.nom_produit }</option>
+                        <option key={item.id} value={item.produit_id}>{`${item.nom_produit} de couleur ${item.couleur}` }</option>
                             ))}
                     </select>
                 </div>

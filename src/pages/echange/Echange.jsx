@@ -22,7 +22,6 @@ const Echange = () => {
     const id = pathname.split('/')[2]
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
 
       const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -141,6 +140,18 @@ const Echange = () => {
       };
       fetchData();
     }, []);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axios.get(`${DOMAIN}/api/vente/echangeOne/${id}`);
+          setGetEchange(data[0]);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    }, [id]);
     
     const handleDelete = async (id) => {
      try {
@@ -211,6 +222,8 @@ const Echange = () => {
       ];
 
       const handleOk = async (e) => {
+        e.preventDefault();
+
         try{
           await axios.put(`${DOMAIN}/api/vente/echange/${id}`,getEchange)
   
@@ -220,8 +233,7 @@ const Echange = () => {
             icon: 'success',
             confirmButtonText: 'OK',
           });
-      
-          setModalText('The modal will be closed after two seconds');
+    
           setConfirmLoading(true);
           setTimeout(() => {
           setOpen(false);
@@ -238,6 +250,8 @@ const Echange = () => {
           });
         }
     };
+
+    console.log(getEchange)
 
   return (
     <>
@@ -270,7 +284,7 @@ const Echange = () => {
                     </div>
                     <div className="rowChart-row-table">
                         <Modal
-                          title="Modifier le retour"
+                          title="Modifier l'échange"
                           centered
                           open={open}
                           onOk={handleOk}
