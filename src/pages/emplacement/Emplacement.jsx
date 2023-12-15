@@ -19,7 +19,7 @@ const Emplacement = () => {
     const [modalText, setModalText] = useState('Content of the modal');
     const [putEmplacement, setPutEmplacement] = useState({});
     const {pathname} = useLocation();
-    const [initialData, setInitialData] = useState({});
+    const [searchValue, setSearchValue] = useState('');
     const id = pathname.split('/')[2]
 
     const showModal = (id) => {
@@ -80,11 +80,6 @@ const Emplacement = () => {
             ),
           },
     ];
-
-
-    const handleEdit = (id) => {
-        navigate(`/emplacement/${id}`);
-    };
     
     const handleDelete = async (id) => {
      try {
@@ -165,7 +160,9 @@ const Emplacement = () => {
         });
       }
   };
-
+  const filteredData = getdata?.filter((item) =>
+  item.nom.toLowerCase().includes(searchValue.toLowerCase())
+);
 
   return (
     <>
@@ -182,7 +179,7 @@ const Emplacement = () => {
                         <h2 className="categorie-title">Ajouter emplacement</h2>
                         <div className="categorie-form">
                             <label htmlFor="">Nom</label>
-                            <input type="text" className="input-form" name='nom' placeholder='Entrer le nom...' onChange={handleInputChange} />
+                            <input type="search" className="input-form" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder='Entrer le nom...' onChange={handleInputChange} />
                         </div>
                         <div className="categorie-form">
                             <label htmlFor="">Capacité maximale</label>
@@ -198,7 +195,7 @@ const Emplacement = () => {
                                 <PrinterOutlined className='product-icon-printer'/>
                             </div>
                             <div className="categorie-right">
-                                <input type="search" name="" id="" placeholder='Recherche...' className='categorie-search' />
+                                <input type="search" name="" id="" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder='Recherche...' className='categorie-search' />
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
@@ -213,7 +210,7 @@ const Emplacement = () => {
                             >
                               <FormEmplacement  setUpdata={setPutEmplacement} getUpdataOne={putEmplacement} OnchangePut={handleInputChange} />
                             </Modal>
-                            <Table columns={columns} dataSource={getdata} scroll={scroll} pagination={{ pageSize: 5}} />
+                            <Table columns={columns} dataSource={filteredData} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
                 </div>
