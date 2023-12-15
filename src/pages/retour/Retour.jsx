@@ -18,6 +18,7 @@ const Retour = () => {
     const {pathname} = useLocation();
     const id = pathname.split('/')[2]
     const [open, setOpen] = useState(false);
+    const [getRetour, setGetRetour] = useState({});
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState('Content of the modal');
 
