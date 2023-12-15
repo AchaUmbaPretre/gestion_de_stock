@@ -151,6 +151,11 @@ const columns = [
       key: 'categorie',
     },
     {
+      title: 'Marque',
+      dataIndex: 'nom',
+      key: 'nom',
+    },
+    {
       title: 'Montant vendu',
       dataIndex: 'montant_total',
       key: 'montant_total',
@@ -207,12 +212,10 @@ useEffect(() => {
   fetchData();
 }, []);
 
-/* const filteredData = getRapport?.filter((item) =>
+ const filteredData = getRapport?.filter((item) =>
 item.nom_produit.toLowerCase().includes(searchValue.toLowerCase()) ||
-item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
-) */;
-
-
+item.nom.toLowerCase().includes(searchValue.toLowerCase())
+)
 
   return (
     <>
@@ -241,7 +244,7 @@ item.nom_categorie.toLowerCase().includes(searchValue.toLowerCase())
 {/*                    {open &&
                     <ProductSelects getProduits={setGetProduit}/> }  */}
                     <div className="rowChart-row-table">
-                        <Table columns={columns} dataSource={getRapport} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
+                        <Table columns={columns} dataSource={filteredData} loading={loading} scroll={scroll} pagination={{ pageSize: 5}} />
                     </div>
                 </div>
             </div>
