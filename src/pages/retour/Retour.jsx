@@ -2,7 +2,7 @@ import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOu
 import React, { useEffect, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popconfirm, Popover} from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import config from '../../config';
 import axios from 'axios';
 
@@ -15,6 +15,11 @@ const Retour = () => {
     const searchInput = useRef(null);
     const scroll = { x: 400 };
     const navigate = useNavigate();
+    const {pathname} = useLocation();
+    const id = pathname.split('/')[2]
+    const [open, setOpen] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Content of the modal');
 
       const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -120,6 +125,11 @@ const Retour = () => {
             text
           ),
       });
+
+      const showModal = (id) => {
+        setOpen(true);
+        navigate(`/ventes/${id}`);
+      };
 
       const handleEdit = (id) => {
         navigate(`/retourForm/${id}`);
