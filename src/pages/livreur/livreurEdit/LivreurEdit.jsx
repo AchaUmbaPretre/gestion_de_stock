@@ -54,8 +54,8 @@ const LivreurEdit = () => {
           <div className="product-container">
             <div className="product-container-top">
               <div className="product-left">
-                <h2 className="product-h2">Ajouter un nouveau livreur</h2>
-                <span>Créer un nouveau livreur</span>
+                <h2 className="product-h2">Modifier un livreur</h2>
+                <span>Modifier les informations d'un livreur</span>
               </div>
             </div>
             <div className="product-wrapper">
