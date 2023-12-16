@@ -11,6 +11,7 @@ import axios from 'axios';
 
 const RowTotal = () => {
     const [venteTotal, setVenteTotal] = useState([]);
+    const [produitTotalAchats, setProduitTotalAchats] = useState([]);
     const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const [loading, setLoading] = useState(true);
 
@@ -19,6 +20,19 @@ const RowTotal = () => {
           try {
             const { data } = await axios.get(`${DOMAIN}/api/vente/venteTotal`);
             setVenteTotal(data[0]?.vente_total);
+            setLoading(false)
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        fetchData();
+      }, [DOMAIN]);
+
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data } = await axios.get(`${DOMAIN}/api/produit/produitTotalAchats`);
+            setProduitTotalAchats(data[0]?.achats_total);
             setLoading(false)
           } catch (error) {
             console.log(error);
@@ -36,7 +50,7 @@ const RowTotal = () => {
                         <CarryOutOutlined className='rowTotalIcon' style={{color: 'orange'}}/>
                     </div>
                     <div className="rowTotal-right">
-                        <h2><CountUp end={400144}/>$</h2>
+                        <h2><CountUp end={produitTotalAchats}/>$</h2>
                         <span className="rowTotal-span">Total des achats à payer</span>
                     </div>
                 </div>
@@ -45,7 +59,7 @@ const RowTotal = () => {
                         <Money className='rowTotalIcon' style={{color: 'blue'}}/>
                     </div>
                     <div className="rowTotal-right">
-                        <h2><CountUp end={207144}/>$</h2>
+                        <h2><CountUp end={0}/>$</h2>
                         <span className="rowTotal-span">Ventes totales dues</span>
                     </div>
                 </div>
