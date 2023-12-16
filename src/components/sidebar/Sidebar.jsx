@@ -105,7 +105,7 @@ const Sidebar = () => {
         </Item>
       </SubMenu> */}
 
-      <SubMenu key="people" title={<span className="sidebarH3">Peuples</span>} icon={<UsergroupAddOutlined style={{ fontSize: '19px', color: '#fafafa'}}/>}>
+      <SubMenu key="clients" title={<span className="sidebarH3">Peuples</span>} icon={<UsergroupAddOutlined style={{ fontSize: '19px', color: '#fafafa'}}/>}>
         <Item key="clients">
           <Link to="/clients" className="sidebarLink">
             Clients
@@ -116,7 +116,7 @@ const Sidebar = () => {
             Livreurs
           </Link>
         </Item>
-        <Item key="users">
+        <Item key="utilisateurs">
           <Link to="/utilisateurs" className="sidebarLink">
             Utilisateurs
           </Link>
@@ -124,7 +124,7 @@ const Sidebar = () => {
       </SubMenu>
 
       <SubMenu key="reports" title={<span className="sidebarH3">Rapports</span>} icon={<FileTextOutlined style={{ fontSize: '19px', color: '#fafafa' }}/>}>
-        <Item key="salesReport">
+        <Item key="rapportVente">
           <Link to="/rapportVente" className="sidebarLink">
             Rapport de ventes
           </Link>
