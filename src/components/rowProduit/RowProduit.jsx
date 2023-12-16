@@ -4,7 +4,6 @@ import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import { Button, Input, Space, Table, Popover } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
-import photoIcon from './../../assets/logo doe.jpg'
 import axios from 'axios';
 import { useEffect } from 'react';
 import config from '../../config';
