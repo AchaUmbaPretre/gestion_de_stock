@@ -162,14 +162,7 @@ const Client = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir modifier?"
-                  onConfirm={()=> handleEdit(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-                </Popconfirm>
+                <Button icon={<EditOutlined />} style={{ color: 'green' }} onClick={()=> handleEdit(record.id)} />
                 <Link to={`/presenceListView/${record.id}`}>
                   <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
                 </Link>
@@ -200,7 +193,7 @@ const Client = () => {
       }, []);
 
       const handleEdit = (id) => {
-        navigate(`/clientForm/${id}`);
+        navigate(`/clientEdit/${id}`);
       };
     
       const handleDelete = async (id) => {

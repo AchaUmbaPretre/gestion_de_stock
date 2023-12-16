@@ -34,6 +34,7 @@ import RapportVenteChart from './pages/rapport/rapportVenteChart.jsx/RapportVent
 import RapportVente from './pages/rapport/rapportVente/RapportVente';
 import RapportDachats from './pages/rapport/rapportDachat/RapportDachats';
 import LivreurEdit from './pages/livreur/livreurEdit/LivreurEdit';
+import ClientEdit from './pages/client/clientEdit/ClientEdit';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -166,8 +167,8 @@ function App() {
           element: <ClientForm />
         },
         {
-          path: '/clientForm/:id',
-          element: <ClientForm />
+          path: '/clientEdit/:id',
+          element: <ClientEdit />
         },
         {
           path: '/livreur',
