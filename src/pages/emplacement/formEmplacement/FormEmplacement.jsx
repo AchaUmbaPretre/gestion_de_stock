@@ -13,7 +13,6 @@ const FormEmplacement = ({getUpdataOne,OnchangePut}) => {
         <div className="formCategorie">
             <div className="formCategorie-wrapper">
                 <div className="categorie-container-left">
-                    <h2 className="categorie-title">Ajouter une categorie</h2>
                     <input type="text" name='nom' value={getUpdataOne?.nom} onChange={OnchangePut} placeholder='Entrer un emplacement...' className="categorie-input" />
                     <input type="text" name='capacite' value={getUpdataOne?.capacite} onChange={OnchangePut} placeholder="Entrer la capacité de l'emplacement..." className="categorie-input" />
                 </div>
