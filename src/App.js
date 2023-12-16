@@ -33,6 +33,7 @@ import FormProduitEdit from './pages/products/formEdit/FormProduitEdit';
 import RapportVenteChart from './pages/rapport/rapportVenteChart.jsx/RapportVenteChart';
 import RapportVente from './pages/rapport/rapportVente/RapportVente';
 import RapportDachats from './pages/rapport/rapportDachat/RapportDachats';
+import LivreurEdit from './pages/livreur/livreurEdit/LivreurEdit';
 
 function App() {
 /*   const { currentUser } = useContext(AuthContext); */
@@ -175,6 +176,10 @@ function App() {
         {
           path: '/livreurForm',
           element: <LivreurForm />
+        },
+        {
+          path: '/livreurEdit/:id',
+          element: <LivreurEdit />
         },
         {
           path: '/livreurForm/:id',

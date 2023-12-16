@@ -122,7 +122,7 @@ const Livreur = () => {
       });
 
       const handleEdit = (id) => {
-        navigate(`/presenceEdit/${id}`);
+        navigate(`/livreurEdit/${id}`);
     };
     
       const columns = [
@@ -158,14 +158,7 @@ const Livreur = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-                <Popconfirm
-                  title="Êtes-vous sûr de vouloir modifier?"
-                  onConfirm={()=> handleEdit(record.id)}
-                  okText="Oui"
-                  cancelText="Non"
-                >
-                  <Button icon={<EditOutlined />} style={{ color: 'green' }} />
-                </Popconfirm>
+                <Button icon={<EditOutlined />} style={{ color: 'green' }} onClick={()=> handleEdit(record.id)} />
                 <Popover title="Modifier" trigger="hover">
                   <Link to={`/presenceListView/${record.emp1_id}`}>
                     <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
