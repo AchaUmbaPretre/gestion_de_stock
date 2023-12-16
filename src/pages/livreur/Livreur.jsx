@@ -158,21 +158,29 @@ const Livreur = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-              <Popover title="Modifier" trigger="hover">
-                <Link to={`/presenceListView/${record.emp1_id}`}>
-                  <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
-                </Link>
-              </Popover>
-              <Popover title="Supprimer" trigger="hover">
                 <Popconfirm
-                  title="Êtes-vous sûr de vouloir supprimer?"
-                  onConfirm={() => handleDelete(record.id)}
+                  title="Êtes-vous sûr de vouloir modifier?"
+                  onConfirm={()=> handleEdit(record.id)}
                   okText="Oui"
                   cancelText="Non"
                 >
-                  <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
+                  <Button icon={<EditOutlined />} style={{ color: 'green' }} />
                 </Popconfirm>
-              </Popover>
+                <Popover title="Modifier" trigger="hover">
+                  <Link to={`/presenceListView/${record.emp1_id}`}>
+                    <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
+                  </Link>
+                </Popover>
+                <Popover title="Supprimer" trigger="hover">
+                  <Popconfirm
+                    title="Êtes-vous sûr de vouloir supprimer?"
+                    onConfirm={() => handleDelete(record.id)}
+                    okText="Oui"
+                    cancelText="Non"
+                  >
+                    <Button icon={<DeleteOutlined />} style={{ color: 'red' }} />
+                  </Popconfirm>
+                </Popover>
               </Space>
             ),
           },
