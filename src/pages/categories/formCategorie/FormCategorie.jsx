@@ -17,7 +17,6 @@ const FormCategorie = ({getUpdata,getUpdataOne}) => {
         <div className="formCategorie">
             <div className="formCategorie-wrapper">
                 <div className="categorie-container-left">
-                    <h2 className="categorie-title">Ajouter une categorie</h2>
                     <input type="text" name='nom_categorie' value={getUpdataOne?.nom_categorie} onChange={(e)=> getUpdata(e.target.value)} placeholder='Entrer une categorie...' className="categorie-input" />
                 </div>
             </div>
