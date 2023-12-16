@@ -7,7 +7,6 @@ const FormMatiere = ({getUpdataOne,OnchangePut}) => {
         <div className="formCategorie">
             <div className="formCategorie-wrapper">
                 <div className="categorie-container-left">
-                    <h2 className="categorie-title">Modifier une matière</h2>
                     <input type="text" name='nom' value={getUpdataOne?.nom} onChange={OnchangePut} placeholder='Entrer une matière...' className="categorie-input" />
                 </div>
             </div>
