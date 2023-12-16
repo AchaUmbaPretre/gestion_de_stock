@@ -43,7 +43,7 @@ ChartJS.register(
     },
   };
 
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  const labels = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre','Octobre','Novembre','Decembre'];
 
 export const data = {
   labels,
@@ -59,12 +59,6 @@ export const data = {
       data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
       backgroundColor: 'rgb(131, 159, 241)',
       stack: 'Stack 0',
-    },
-    {
-      label: 'Dataset 3',
-      data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-      backgroundColor: 'rgba(0, 128, 0, 0.74)',
-      stack: 'Stack 1',
     },
   ],
 };
