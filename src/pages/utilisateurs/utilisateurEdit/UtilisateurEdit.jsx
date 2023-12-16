@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-const UtilisateurForm = () => {
+const UtilisateurEdit = () => {
   const DOMAIN = config.REACT_APP_SERVER_DOMAIN
   const [data, setData] = useState({})
   const navigate = useNavigate();
@@ -55,8 +55,8 @@ const UtilisateurForm = () => {
           <div className="product-container">
             <div className="product-container-top">
               <div className="product-left">
-                <h2 className="product-h2">Ajouter un nouveau utilisateur</h2>
-                <span>Créer un nouveau utilisateur</span>
+                <h2 className="product-h2">Modification</h2>
+                <span>Modifier les informations d'utilisateur</span>
               </div>
             </div>
             <div className="product-wrapper">
@@ -83,7 +83,7 @@ const UtilisateurForm = () => {
                 </div>
 
               <div className="form-submit">
-                <button className="btn-submit" onClick={handleClick}>Soumetre</button>
+                <button className="btn-submit" onClick={handleClick}>Modifier</button>
                 <button className="btn-submit btn-annuler">Annuler</button>
               </div>
             </div>
@@ -95,4 +95,4 @@ const UtilisateurForm = () => {
   )
 }
 
-export default UtilisateurForm
+export default UtilisateurEdit

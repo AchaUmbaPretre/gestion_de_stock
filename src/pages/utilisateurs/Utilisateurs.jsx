@@ -1,7 +1,7 @@
 import { PlusOutlined, SearchOutlined, SisternodeOutlined,EyeOutlined, FilePdfOutlined, FileExcelOutlined,EditOutlined, PrinterOutlined, DeleteOutlined} from '@ant-design/icons';
 import React, { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
-import { Button, Input, Space, Table, Popover,Popconfirm} from 'antd';
+import { Button, Input, Space, Table, Popover,Popconfirm, Tag} from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import config from '../../config';
 import axios from 'axios';
@@ -123,7 +123,7 @@ const Utilisateurs = () => {
       });
 
       const handleEdit = (id) => {
-        navigate(`/presenceEdit/${id}`);
+        navigate(`/utilisateurEdit/${id}`);
     };
     
     const columns = [
@@ -148,7 +148,16 @@ const Utilisateurs = () => {
         {
           title: 'Permission',
           dataIndex: 'role',
-          key: 'role'
+          key: 'role',
+          render: (role) => {
+            return (
+              <Tag color={'green'}>
+                <span>
+                  {role === 0 ? "Admin" : "Utilisateur"}
+                </span>
+              </Tag>
+            );
+          }
         },
         {
             title: 'Action',
@@ -183,7 +192,7 @@ const Utilisateurs = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const { data } = await axios.get(`${DOMAIN}/api/peuple/utilisateur`);
+          const { data } = await axios.get(`${DOMAIN}/api/auth/loginGet`);
           setData(data);
           setLoading(false)
         } catch (error) {
@@ -195,7 +204,7 @@ const Utilisateurs = () => {
 
     const handleDelete = async (id) => {
       try {
-         await axios.delete(`${DOMAIN}/api/peuple/utilisateur/${id}`);
+         await axios.delete(`${DOMAIN}/api/auth/utilisateur/${id}`);
            window.location.reload();
        } catch (err) {
          console.log(err);
