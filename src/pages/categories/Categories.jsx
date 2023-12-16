@@ -207,18 +207,18 @@ const Categories = () => {
                             </div>
                         </div>
                         <div className="categorie-right-bottom">
-                            <Modal
-                              title="Modifier la categorie"
-                              open={open}
-                              onOk={handleOk}
-                              confirmLoading={confirmLoading}
-                              onCancel={handleCancel}
-                              okText="Confirmer"
-                              cancelText="Annuler"
-                            >
-                              <FormCategorie getUpdata={setPutCategorie} getUpdataOne={putCategorie} />
-                            </Modal>
-                            <Table columns={columns} loading={loading} dataSource={filteredData} scroll={scroll} pagination={{ pageSize: 5}} />
+                          <Modal
+                            title="Modifier la categorie"
+                            open={open}
+                            onOk={handleOk}
+                            confirmLoading={confirmLoading}
+                            onCancel={handleCancel}
+                            okText="Confirmer"
+                            cancelText="Annuler"
+                          >
+                            <FormCategorie getUpdata={setPutCategorie} getUpdataOne={putCategorie} />
+                          </Modal>
+                          <Table columns={columns} loading={loading} dataSource={filteredData} scroll={scroll} pagination={{ pageSize: 5}} />
                         </div>
                     </div>
                 </div>
