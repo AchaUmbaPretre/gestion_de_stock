@@ -180,7 +180,7 @@ const Marque = () => {
                         </div>
                         <div className="categorie-right-bottom">
                             <Modal
-                              title="Modifier une matière"
+                              title="Modifier une marque"
                               open={open}
                               onOk={handleOk}
                               confirmLoading={confirmLoading}
