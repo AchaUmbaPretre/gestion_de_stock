@@ -54,7 +54,7 @@ const LivreurEdit = () => {
           <div className="product-container">
             <div className="product-container-top">
               <div className="product-left">
-                <h2 className="product-h2">Modifier un livreur</h2>
+                <h2 className="product-h2">Modification</h2>
                 <span>Modifier les informations d'un livreur</span>
               </div>
             </div>

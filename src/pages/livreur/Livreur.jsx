@@ -158,12 +158,14 @@ const Livreur = () => {
             render: (text, record) => (
                 
               <Space size="middle">
-                <Button icon={<EditOutlined />} style={{ color: 'green' }} onClick={()=> handleEdit(record.id)} />
                 <Popover title="Modifier" trigger="hover">
+                  <Button icon={<EditOutlined />} style={{ color: 'green' }} onClick={()=> handleEdit(record.id)} />
+                </Popover>
+{/*                 <Popover title="Voir le detail" trigger="hover">
                   <Link to={`/presenceListView/${record.emp1_id}`}>
                     <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
                   </Link>
-                </Popover>
+                </Popover> */}
                 <Popover title="Supprimer" trigger="hover">
                   <Popconfirm
                     title="Êtes-vous sûr de vouloir supprimer?"

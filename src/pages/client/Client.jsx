@@ -163,9 +163,9 @@ const Client = () => {
                 
               <Space size="middle">
                 <Button icon={<EditOutlined />} style={{ color: 'green' }} onClick={()=> handleEdit(record.id)} />
-                <Link to={`/presenceListView/${record.id}`}>
+{/*                 <Link to={`/presenceListView/${record.id}`}>
                   <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
-                </Link>
+                </Link> */}
                 <Popconfirm
                   title="Êtes-vous sûr de vouloir supprimer?"
                   onConfirm={() => handleDelete(record.id)}
