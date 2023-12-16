@@ -67,8 +67,8 @@ const ClientEdit = () => {
           <div className="product-container">
             <div className="product-container-top">
               <div className="product-left">
-                <h2 className="product-h2">Ajouter un nouveau client</h2>
-                <span>Créer un nouveau client</span>
+                <h2 className="product-h2">Modification</h2>
+                <span>Modifier les informations d'un client</span>
               </div>
             </div>
             <div className="product-wrapper">
